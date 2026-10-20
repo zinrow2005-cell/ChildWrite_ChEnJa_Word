@@ -688,3 +688,24 @@ body.hanzi-library .library-card{margin-top:5px!important}
  .compact-symbol svg.multi-print-cell{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;aspect-ratio:1!important;object-fit:contain!important;flex:0 1 auto!important}
  .compact-print-foot{height:5mm;flex:none;text-align:right;font-size:8pt;color:#999}
 }
+
+/* V1.47 — Mobile toolbar, one-line circular swatches and board actions. */
+.removed-feature{display:none!important}
+.quick-ink-bar{display:flex;flex-wrap:nowrap;min-width:0}
+.quick-palette{flex:1 1 auto;min-width:0;justify-content:flex-start;flex-wrap:nowrap;gap:clamp(3px,1.1vw,8px)}
+.quick-swatch{flex:0 0 25px;width:25px;height:25px;aspect-ratio:1/1;min-width:0;max-width:25px;max-height:25px;border-radius:50%;padding:0;box-sizing:border-box}
+.quick-tool,.open-tool-btn{flex-shrink:0}
+.board-action-bar{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:7px 12px;background:#fffdfa;border-bottom:1px solid #ede7e0;min-width:0}
+.board-action-bar button{display:grid;place-items:center;flex:0 0 36px;width:36px;height:35px;padding:0;border:1px solid #e4ded6;border-radius:10px;background:#faf6f0;color:#62776a;font-size:20px;font-weight:800;line-height:1}
+.board-action-bar button:disabled{opacity:.4;cursor:not-allowed}
+@media(max-width:720px){
+ .quick-ink-bar{gap:5px;padding:6px;flex-wrap:nowrap}
+ .quick-palette{flex:1 1 0;gap:clamp(2px,.8vw,5px);overflow:visible}
+ .quick-swatch{flex:0 1 24px;width:clamp(15px,4.3vw,24px);height:auto;aspect-ratio:1;max-height:none;min-width:0;border-radius:50%}
+ .quick-tool{flex:0 0 30px;width:30px;min-width:30px;height:31px}
+ .open-tool-btn{flex:0 0 auto;min-height:31px;font-size:10px;padding:4px 7px}
+ .ink-separator{display:none}
+ .board-action-bar{gap:6px;padding:6px 9px}
+ .board-action-bar button{flex-basis:34px;width:34px;height:33px;font-size:19px}
+}
+@media(max-width:380px){.quick-ink-bar{gap:3px}.quick-palette{gap:2px}.quick-swatch{width:clamp(13px,4vw,19px);flex-basis:19px}.quick-tool{min-width:27px;width:27px;flex-basis:27px}.open-tool-btn{padding:4px;font-size:9px}}

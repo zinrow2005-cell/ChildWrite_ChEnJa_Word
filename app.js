@@ -1,4 +1,4 @@
-/* Little Lines Studio V1.46 — 五級國字各新增20字，總計300字／30課 */
+/* Little Lines Studio V1.47 — 五級國字各新增20字，總計300字／30課 */
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const NS='http://www.w3.org/2000/svg',STORAGE='little-lines-studio-v1',REFERENCE_STORE='little-lines-animcjk-v1';
