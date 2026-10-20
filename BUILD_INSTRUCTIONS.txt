@@ -1,0 +1,19 @@
+V1.23 日文 92 字 GitHub Actions 自動打包
+
+1. 先匯出舊版練字備份。
+2. 解壓本 ZIP，將所有檔案連同 .github/ 與 scripts/ 一起上傳 GitHub 儲存庫。
+3. GitHub 儲存庫 Settings → Pages → Source 選 GitHub Actions。
+4. 在 Actions 頁面執行「小小練字樂園｜92字真實筆順與 GitHub Pages」。
+5. 若成功，GitHub Pages 已部署含 92 字筆順版本，並可在該次 Actions 的 Artifacts 下載完整 ZIP。
+6. 若建置失敗，不代表 ZIP 已有 92 字；請查看來源下載／結構檢查的錯誤，勿以模擬資料替代。
+
+基礎 ZIP 僅內建「あ」，並非 92/92 已完成。完整筆順須從真實開源來源成功取得後才成立。
+資料來源開源但尚未與日本學校教材逐字人工核對。
+
+V1.23 新增教育部37個注音原始動畫與錄音的驗證階段。
+上傳全部檔案（含 .github、scripts）後，在 Actions 觸發工作流程。
+工作流程只有在「日文92字」及「教育部注音37字」兩關都驗證成功時，才會產生正式離線網站 ZIP；失敗則檢查 Actions 日誌。
+若教育部下載受限，可以把原始 ZIP 下載到電腦，執行 build_zhuyin.py 的 --source-zip 選項驗證。
+一般直接解壓上傳的基礎版本可正常練字，但沒有內建官方37組動畫或音檔。
+
+V1.36: Open 國字, choose a level of 40 characters and click 取得這一級逐筆; it attempts genuine AnimCJK Taiwan-traditional source data and reports missing characters. No synthetic QA strokes are bundled. Structural checks do not certify MOE stroke order.

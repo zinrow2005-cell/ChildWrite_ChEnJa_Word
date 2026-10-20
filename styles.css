@@ -1,0 +1,690 @@
+:root{--bg:#fcfaf7;--paper:#fffefa;--ink:#2e3440;--muted:#9396a1;--soft:#f3f0ed;--line:#eeeae5;--sage:#7fb7a1;--peach:#f2b298;--rose:#f5c8cd;--violet:#bcaade;--blue:#9ac6e1;--shadow:0 12px 34px rgba(91,70,49,.055)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:ui-rounded,-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}body{overscroll-behavior-y:none}button,input{font:inherit}button{cursor:pointer;border:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}button:focus-visible,input:focus-visible{outline:3px solid #95c7ba;outline-offset:3px}button,input,svg,canvas{ -webkit-touch-callout:none}button,.symbol-cell,.hero,.sidebar,.practice-paper,.tool-card,.library-card{-webkit-user-select:none;user-select:none}button:active{transform:scale(.975)}.hidden{display:none!important}.app-shell{min-height:100vh;display:grid;grid-template-columns:250px minmax(0,1fr)}.sidebar{position:sticky;top:0;height:100dvh;min-height:650px;display:flex;flex-direction:column;padding:30px 16px 20px 22px;background:#fffefc;border-right:1px solid #efede9}.logo{display:flex;align-items:center;gap:12px;background:transparent;text-align:left;padding:0 5px 0 1px;color:var(--ink)}.logo-mark{position:relative;width:48px;height:48px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(145deg,#fae8b7,#f4be96);font-size:35px;line-height:1;transform:rotate(-5deg);color:#a85d46;font-weight:800}.logo-mark small{position:absolute;right:-4px;top:-6px;font-size:16px;color:#b4a5e0}.logo-copy strong,.logo-copy small{display:block;white-space:nowrap}.logo-copy strong{font-size:18px;letter-spacing:.035em}.logo-copy small{font-size:10px;color:#aa9f9c;letter-spacing:.025em;margin-top:4px}.sidebar-overline{padding:46px 15px 14px;color:#b7b0ac;font-weight:800;font-size:10px;letter-spacing:2px}.category-nav{display:grid;gap:9px}.nav-item{width:100%;display:flex;align-items:center;gap:11px;padding:11px 10px;border-radius:16px;background:transparent;color:#656b75;text-align:left;transition:background .2s}.nav-item.selected{background:#e8f4ed;color:#377e67;box-shadow:inset 0 0 0 1px #dbece2}.nav-item>span:nth-child(2){font-size:14px;font-weight:850;flex:1;white-space:nowrap}.nav-item small{display:block;font-weight:500;font-size:11px;margin-top:3px;color:#9b9fa9}.nav-item.selected small{color:#74a693}.nav-icon{display:grid;place-items:center;width:40px;height:40px;border-radius:13px;font-size:16px;font-weight:900;flex:none}.number-icon{background:#f6e7da;color:#cb8d63}.zh-icon{background:#fbe7eb;color:#c77b98}.en-icon{background:#e7eaf8;color:#8189c2}.jp-icon{background:#f2eafb;color:#a48ac8}.nav-chevron{font-size:21px;color:#b7c2b9}.sidebar-note{position:relative;margin-top:auto;padding:22px 15px;border-radius:20px;background:#fbf1e4;color:#a88368;overflow:hidden;min-height:160px}.sidebar-note strong,.sidebar-note span:not(.note-sparkle){display:block;position:relative;z-index:1;font-size:13px;line-height:1.8}.note-sparkle{position:absolute;top:-20px;right:4px;font-size:95px;color:#f6e0c4}.note-doodle{margin-top:8px;font-size:34px;color:#d3a38b;letter-spacing:9px;transform:rotate(-6deg)}.sidebar-footer{padding:20px 8px 0;text-align:center;color:#b8b1af;font-size:11px}.sidebar-footer span{color:#d59bb0}.sidebar-footer small{display:block;margin-top:6px}.main-content{min-width:0;max-width:1640px;width:100%;margin:0 auto;padding:0 38px 46px}.top-header{min-height:87px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eeeae7;gap:15px}.header-crumb{color:#b4afa9;font-size:13px;font-weight:700}.header-crumb b{color:#68686e}.crumb-slash{margin:0 10px;color:#d4cbc5}.mobile-mark{display:none}.header-actions{display:flex;align-items:center;gap:20px}.today-chip{font-size:12px;color:#8c908e}.star-chip{background:#fff;border:1px solid #efebe6;border-radius:999px;padding:10px 14px;font-size:12px;white-space:nowrap;color:#a09b96}.star-chip strong{font-size:14px;color:#4e5851}.library-view{padding-top:28px}.hero{position:relative;min-height:274px;display:flex;justify-content:space-between;align-items:center;overflow:hidden;border-radius:26px;padding:33px 40px;background:linear-gradient(105deg,#f9eae5 0%,#fff4df 61%,#f7eadf 100%)}.hero::after{content:'';position:absolute;right:3%;top:-124px;width:330px;height:330px;background:#fff9e9;border-radius:50%;opacity:.45}.hero-text{position:relative;z-index:2}.hero-kicker{font-size:10px;letter-spacing:3px;color:#c68f77;font-weight:900}.hero h1{margin:14px 0 12px;font-size:clamp(27px,3vw,41px);line-height:1.38;letter-spacing:.045em;font-weight:900}.hero h1 em{font-style:normal;color:#b67d61}.hero p{color:#a48e85;font-size:12px;line-height:1.8;margin:0}.hero-cta{margin-top:18px;display:inline-flex;gap:21px;align-items:center;background:#d68f73;color:white;border-radius:13px;padding:12px 17px;font-size:13px;font-weight:850;box-shadow:0 6px 15px #daa18c55}.hero-cta span{font-size:17px}.hero-art{width:44%;height:234px;position:relative;z-index:1;min-width:290px}.hero-paper{position:absolute;right:18%;top:17px;width:310px;height:222px;background:#fffdf9;border:8px solid #fff;border-radius:12px;box-shadow:0 20px 40px #bf9b8070;transform:rotate(-7deg);overflow:hidden}.hero-paper-stripe{height:18px;background:linear-gradient(90deg,#e5b6a8,#b7d8cb,#ded0ec);opacity:.7}.hero-paper>span{position:absolute;font-size:116px;font-family:Georgia,serif;line-height:1;font-weight:900;color:transparent;-webkit-text-stroke:3px #d3b9a9}.hero-one{left:25px;top:47px}.hero-two{left:105px;top:42px}.hero-three{left:194px;top:48px}.hero-writing-line{position:absolute;left:18px;right:18px;bottom:46px;border-bottom:2px dashed #e8c9b8}.hero-writing-line.second{bottom:13px}.hero-pencil{position:absolute;right:10%;bottom:-28px;font-size:136px;line-height:1;color:#c58669;text-shadow:0 10px 9px #b8877260;transform:rotate(-42deg)}.hero-floating{position:absolute;color:#f6c27d;font-size:58px;z-index:2}.star-one{top:20px;left:3%}.star-two{right:6%;top:10px;font-size:40px;color:#bea4d3}.overview-row{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:33px 0 18px}.eyebrow{font-size:10px;font-weight:900;color:#bb9b87;letter-spacing:2px}.overview-copy h2{font-size:24px;margin:9px 0 5px;letter-spacing:.02em}.overview-copy h2 span{font-family:Georgia,serif;font-weight:500;color:#b1b0ae;margin-left:9px;font-size:22px}.overview-copy p{margin:0;color:#999a9e;font-size:12px;line-height:1.7}.overview-progress{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #f0eee9;border-radius:16px;padding:10px 16px;white-space:nowrap}.progress-pie{display:grid;place-items:center;position:relative;width:48px;height:48px;flex:none;border-radius:50%;background:conic-gradient(#91c3ab 0%,#f2f0ed 0%)}.progress-pie::before{content:'';position:absolute;inset:6px;border-radius:50%;background:white}.progress-pie span{z-index:1;font-size:10px;font-weight:900;color:#6d997f}.overview-progress strong{display:block;font-size:16px}.overview-progress small{font-size:10px;color:#a1a0a2}.library-card{background:#fff;border:1px solid #efeeeb;border-radius:21px;overflow:hidden;box-shadow:var(--shadow)}.library-toolbar{padding:18px 22px;min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #f2f0ed}.toolbar-left,.toolbar-right{display:flex;align-items:center;gap:14px}.toolbar-left strong{font-size:14px;color:#555761}.dot-3{display:flex;gap:4px}.dot-3 i,.paper-dots i{width:8px;height:8px;background:#ecc5b5;border-radius:50%}.dot-3 i:nth-child(2),.paper-dots i:nth-child(2){background:#ead6a8}.dot-3 i:nth-child(3),.paper-dots i:nth-child(3){background:#b9d7bf}.legend{font-size:11px;color:#a1a6a5;white-space:nowrap}.legend i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#83baa0;margin-right:3px}.variant-switch{display:flex;gap:3px;background:#f7f5f3;padding:4px;border-radius:12px}.variant-switch button{background:transparent;border-radius:9px;padding:7px 12px;font-size:11px;color:#8c8b90;font-weight:750;white-space:nowrap}.variant-switch button.selected{background:#fff;color:#5c8f76;box-shadow:0 2px 6px #4d473911}.table-heading{display:flex;justify-content:space-between;margin:18px 23px;color:#a39fa0;font-size:11px}.table-heading span{color:#c6aea3}.symbol-grid{padding:0 23px 20px;display:grid;gap:9px}.numbers-grid{grid-template-columns:repeat(10,minmax(0,1fr))}.zhuyin-grid{grid-template-columns:repeat(10,minmax(0,1fr))}.english-grid{grid-template-columns:repeat(9,minmax(0,1fr))}.japanese-grid{grid-template-columns:repeat(5,minmax(0,1fr));max-width:750px}.symbol-cell{position:relative;min-width:0;min-height:67px;background:#fdfcf9;border:1px solid #efeeeb;border-radius:11px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1px;font-size:23px;font-weight:700;color:#737983;transition:transform .12s,border-color .12s,background .12s;overflow:hidden}.symbol-cell:hover{border-color:#a9cbb8;background:#f7fbf8;transform:translateY(-2px)}.symbol-cell.done{background:#eff9f3;border-color:#b6daca;color:#51836b}.symbol-cell.done::after{content:'✓';position:absolute;top:4px;right:6px;background:#89c5a6;color:white;width:13px;height:13px;font-size:10px;display:grid;place-items:center;border-radius:50%}.symbol-cell .symbol-lower{font-size:12px;color:#bdafaa;font-weight:500}.symbol-cell small{font-size:10px;font-family:system-ui,sans-serif;color:#a9aab1;font-weight:500}.symbol-cell.kana-empty{visibility:hidden}.grid-bottom{border-top:1px solid #f2f0ee;padding:16px 23px;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#a9a2a0;font-size:11px}.text-action{background:transparent;color:#ba8f76;font-size:12px;font-weight:800}.practice-view{padding-top:24px}.practice-top{display:flex;justify-content:space-between;align-items:center;gap:14px}.back-btn{display:inline-flex;gap:10px;align-items:center;background:#fff;border:1px solid #e9e5e2;border-radius:12px;padding:11px 14px;color:#72747d;font-size:12px;font-weight:800}.practice-steps{font-size:12px;color:#aeb0b3}.practice-steps span{padding:0 7px;color:#d8c7c2}.icon-text-btn{border-radius:12px;border:1px solid #e8eee9;color:#549779;background:#eef9f2;padding:10px 14px;font-size:14px;font-weight:800}.icon-text-btn span{font-size:12px}.practice-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:26px 4px 17px}.practice-header h2{font-size:30px;margin:4px 0;color:#42464d}.practice-header h2 span{font-size:36px;color:#cf917d}.practice-header p{color:#9c9da3;font-size:12px;line-height:1.6;margin:0}.practice-step-status{font-size:12px;color:#afa8a2;background:#fff;border:1px solid #f0ece8;padding:10px 14px;border-radius:999px;white-space:nowrap}.practice-step-status.finished{color:#4d8b6d;background:#e8f8ed;border-color:#c9e7d2}.practice-layout{display:grid;grid-template-columns:minmax(0,1fr) 278px;gap:20px;align-items:start}.practice-paper{overflow:hidden;border:1px solid #e9e5e2;background:#fff;border-radius:19px;box-shadow:0 10px 30px #58433008}.paper-bar{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#fff;border-bottom:1px solid #f2efeb}.paper-dots{display:flex;gap:5px}.paper-bar-center{font-family:Georgia,serif;font-size:10px;color:#c1b7ad;letter-spacing:2px}.paper-pill{border-radius:999px;color:#70a58b;background:#eff8f2;font-size:10px;font-weight:800;padding:6px 9px}.drawing-stage{position:relative;width:100%;aspect-ratio:760/440;background:#fffdfa;overflow:hidden;isolation:isolate;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.template-svg,#drawCanvas{position:absolute;inset:0;width:100%;height:100%}.template-svg{z-index:1;pointer-events:none}.template-svg .trace-outline{stroke:#a8b3bb;fill:#fffdfa;stroke-width:2;stroke-linejoin:round;paint-order:stroke fill}.template-svg .guide-line{fill:none;stroke:#dac4ad;stroke-width:2;stroke-dasharray:3.7 5;stroke-linecap:round}.template-svg .ribbon-under{stroke:#a4afb9;fill:none;stroke-width:32;stroke-linecap:round;stroke-linejoin:round}.template-svg .ribbon-inner{stroke:#fffdfa;fill:none;stroke-width:27;stroke-linecap:round;stroke-linejoin:round}.template-svg .start-num{font-family:system-ui,sans-serif;font-size:9px;font-weight:900;fill:#b46f59;text-anchor:middle;dominant-baseline:central}.template-svg .start-dot{fill:#fff1e5;stroke:#df9d7b;stroke-width:1}.template-svg .arrow-tri{fill:#dd9174}.template-svg .demo-stroke{fill:none;stroke:#e9a284;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.72}.template-svg .grid-line{stroke:#eedfd9;stroke-width:1;stroke-dasharray:6 8}.template-svg .grid-edge{stroke:#f1e0d8;stroke-width:1.5}.template-svg .grid-shade{fill:#fffdfb}.template-svg .grid-mid{stroke:#e7d4c5;stroke-dasharray:8 8}.template-svg .glyph-fill-outline{fill:#fffdfa;stroke:#9ca9b6;stroke-width:2.3;stroke-linejoin:round;paint-order:stroke fill}#drawCanvas{z-index:2;touch-action:none;cursor:crosshair;overscroll-behavior:contain;display:block;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.paper-foot{height:40px;display:flex;justify-content:space-between;align-items:center;padding:0 19px;color:#c0b8af;font-size:11px;background:#fff}.paper-foot span:first-child{color:#ae998e}.quick-actions{margin-top:13px;display:flex;gap:8px;flex-wrap:wrap}.quick-btn{border-radius:12px;border:1px solid #ebe8e4;background:#fff;color:#777c82;padding:12px 15px;font-size:15px;font-weight:800}.quick-btn span{font-size:12px;margin-left:6px}.quick-btn:disabled{opacity:.4}.quick-btn#demoBtn{color:#af846c;background:#fff8f0;border-color:#efe1d6}.practice-navigation{display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:11px;margin-top:19px}.practice-navigation button{min-height:53px;border-radius:14px;font-size:13px;font-weight:850;white-space:nowrap}.nav-prev,.nav-next{background:#fff;color:#777b80;border:1px solid #ebe9e6}.done-btn{background:#81b49a;color:#fff;box-shadow:0 7px 15px #69af892e;font-size:14px!important}.done-btn span{margin-left:5px}.tool-card{background:#fff;border:1px solid #efede8;border-radius:19px;padding:21px 18px;box-shadow:var(--shadow)}.tool-section{min-width:0}.tool-heading{display:flex;align-items:center;gap:10px;margin-bottom:17px}.tool-heading-icon{width:36px;height:36px;border-radius:13px;background:#fff0ee;color:#df978c;display:grid;place-items:center;font-size:23px}.tool-heading-icon.width-icon{background:#f5efff;color:#b3a0d4}.tool-heading-icon.guide-icon{background:#eaf4fb;color:#8aa8c5}.tool-heading strong,.tool-heading small{display:block}.tool-heading strong{font-size:14px}.tool-heading small{font-size:10px;color:#b4afab;margin-top:3px}.pastel-palette{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.swatch{width:100%;aspect-ratio:1;background:var(--swatch);border:0;position:relative;border-radius:50%;box-shadow:inset 0 0 0 1px #73737313;min-width:0}.swatch.selected{outline:2px solid var(--swatch);outline-offset:3px}.swatch.selected::after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;font-size:12px;color:#33333395;font-weight:900}.custom-color-row{margin-top:20px;padding:11px 12px;border:1px solid #f1eee9;border-radius:12px;display:flex;align-items:center;gap:10px}.custom-color-row label{font-size:11px;color:#777c84;font-weight:800;flex:1}.custom-color-row input{height:25px;width:32px;border:0;background:transparent;padding:0;cursor:pointer}.current-color-dot{width:18px;height:18px;border-radius:50%;background:#f39a88;border:2px solid white;box-shadow:0 0 0 1px #e9e5e1}.tool-divider{border-bottom:1px solid #f0eeeb;margin:22px 0}.tool-two{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tool-mode{display:grid;justify-content:center;gap:4px;place-items:center;font-size:27px;color:#9b9fa7;background:#faf9f8;border:1px solid #eeece9;padding:11px;border-radius:12px}.tool-mode span{font-size:11px;font-weight:800}.tool-mode.selected{color:#61a488;background:#eef9f2;border-color:#bde0cf}.size-row,.width-ends{display:flex;justify-content:space-between;align-items:center;color:#898c91}.size-row{font-size:11px;margin:21px 1px 9px}.size-row strong{color:#6d9484}.brush-range{width:100%;accent-color:#87b9a0;margin:0}.width-ends{font-size:10px;color:#bcb8b3}.switch-row{display:flex;align-items:center;justify-content:space-between;margin:15px 0;gap:10px;cursor:pointer}.switch-row>span strong{display:block;font-size:11px;color:#6f727c}.switch-row>span small{display:block;font-size:9px;color:#bbb6b5;margin-top:4px}.switch-row input{position:absolute;width:1px;height:1px;opacity:0}.switch-track{width:35px;height:21px;flex:none;border-radius:99px;background:#dddeda;position:relative;transition:.15s}.switch-track::after{content:'';width:15px;height:15px;position:absolute;top:3px;left:3px;border-radius:50%;background:white;box-shadow:0 2px 5px #0002;transition:.15s}.switch-row input:checked+.switch-track{background:#90c3a8}.switch-row input:checked+.switch-track::after{left:17px}.switch-row input:focus-visible+.switch-track{outline:3px solid #a8ccc0}.trace-modes{display:flex;background:#f7f5f3;padding:4px;border-radius:11px;gap:2px;margin-top:17px}.trace-mode{flex:1;border-radius:8px;background:transparent;color:#aa9fa0;font-weight:800;font-size:10px;padding:9px 2px;white-space:nowrap}.trace-mode.selected{background:#fff;color:#5f9b7f;box-shadow:0 2px 5px #4f393013}.save-image-btn{width:100%;border-radius:13px;background:#f8f2e9;padding:13px;color:#9c806d;font-size:12px;font-weight:850}.safe-note{font-size:9px;color:#b3aca8;line-height:1.7;margin:12px 0 0;text-align:center}.toast{position:fixed;left:50%;bottom:32px;z-index:1000;transform:translate(-50%,30px);background:#465851;color:white;border-radius:12px;padding:11px 18px;max-width:calc(100vw - 25px);text-align:center;font-size:13px;box-shadow:0 12px 20px #0002;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}.toast.visible{opacity:1;transform:translate(-50%,0)}.celebrate{position:fixed;inset:0;z-index:80;display:grid;place-items:center;background:#554b413b;pointer-events:none;animation:fade-in .25s}.celebrate-inner{display:grid;place-items:center;gap:5px;min-width:230px;background:#fffdf4;border:5px solid #fff;border-radius:24px;padding:25px 30px;box-shadow:0 25px 60px #0002;animation:pop .3s}.celebrate-star{font-size:63px;animation:bounce .5s}.celebrate-inner strong{font-size:25px;color:#bb8867}.celebrate-inner span{font-size:12px;color:#98948f}@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes pop{from{transform:scale(.7)}to{transform:scale(1)}}@keyframes bounce{50%{transform:translateY(-10px) rotate(12deg)}}
+@media(max-width:1250px){.main-content{padding:0 24px 35px}.app-shell{grid-template-columns:220px minmax(0,1fr)}.sidebar{padding-left:12px;padding-right:10px}.logo-copy strong{font-size:15px}.hero-art{transform:scale(.85);transform-origin:center right;min-width:220px}.practice-layout{grid-template-columns:minmax(0,1fr) 250px;gap:13px}.tool-card{padding:16px 13px}.quick-btn{padding:10px 12px}.symbol-grid{gap:7px}}
+@media(max-width:960px){.app-shell{display:block}.sidebar{height:auto;min-height:0;position:relative;z-index:15;display:block;padding:12px 15px;background:#fff;border-bottom:1px solid #eeece9}.logo-mark{width:36px;height:36px;font-size:26px;border-radius:11px}.logo-copy strong{font-size:15px}.logo-copy small{display:none}.sidebar-overline,.sidebar-note,.sidebar-footer{display:none}.category-nav{display:flex;overflow-x:auto;white-space:nowrap;margin-top:12px;gap:7px;padding-bottom:2px;scrollbar-width:none}.category-nav::-webkit-scrollbar{display:none}.nav-item{width:auto;flex:none;padding:8px 13px 8px 8px;gap:7px;border:1px solid #f0efeb}.nav-item>span:nth-child(2){font-size:12px}.nav-item small,.nav-chevron{display:none!important}.nav-icon{width:30px;height:30px;border-radius:9px;font-size:12px}.main-content{padding:0 16px 30px}.top-header{min-height:55px}.hero{min-height:245px}.hero h1{font-size:30px}.practice-layout{grid-template-columns:minmax(0,1fr) 265px}.symbol-cell{min-height:60px}}
+@media(max-width:720px){.header-actions .today-chip{display:none}.hero{padding:27px 23px;min-height:224px}.hero h1{font-size:25px}.hero-art{transform:scale(.55);transform-origin:center right;position:absolute;right:0;top:3px;opacity:.78}.hero-text{z-index:2}.hero p{font-size:11px;max-width:235px}.desktop-only{display:none}.hero-cta{padding:11px 15px;margin-top:12px}.overview-row{margin:25px 0 15px}.overview-copy h2{font-size:20px}.overview-copy h2 span{font-size:17px}.overview-copy p{font-size:11px}.overview-progress{padding:7px 8px;gap:6px}.progress-pie{height:36px;width:36px}.progress-pie span{font-size:9px}.overview-progress strong{font-size:12px}.overview-progress small{font-size:9px}.library-toolbar{padding:13px 11px;min-height:56px}.symbol-grid{padding:0 10px 14px;gap:5px}.table-heading{margin:12px 12px 14px;font-size:10px}.toolbar-left{gap:8px}.toolbar-left strong{font-size:12px}.legend{font-size:9px}.symbol-cell{min-height:45px;font-size:17px;border-radius:8px}.english-grid{grid-template-columns:repeat(7,minmax(0,1fr))}.zhuyin-grid{grid-template-columns:repeat(7,minmax(0,1fr))}.japanese-grid{grid-template-columns:repeat(5,minmax(0,1fr))}.grid-bottom{padding:13px 11px;font-size:10px}.practice-layout{display:flex;flex-direction:column;gap:14px}.practice-main-column{width:100%}.tool-card{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;padding:18px}.tool-divider{display:none}.tool-section:nth-of-type(5){grid-column:2;grid-row:1/3}.tool-section{min-width:0}.pastel-palette{grid-template-columns:repeat(7,1fr);gap:7px}.practice-header{padding:19px 2px 15px}.practice-header h2{font-size:23px}.practice-header h2 span{font-size:30px}.practice-header p{font-size:11px}.practice-step-status{font-size:10px;padding:7px 10px}.drawing-stage{aspect-ratio:460/520}.quick-actions{gap:6px}.quick-btn{flex:1;padding:12px 6px}.quick-btn span{font-size:10px;margin-left:1px}.practice-navigation{gap:7px;margin-top:14px}.practice-navigation button{font-size:12px;min-height:47px}.done-btn{font-size:12px!important}.practice-top{gap:7px}.back-btn{padding:10px;font-size:11px}.practice-steps{font-size:11px}.icon-text-btn{padding:10px;font-size:12px}.icon-text-btn span{font-size:10px}}
+@media(max-width:440px){.sidebar{padding:10px 11px}.category-nav{gap:5px}.nav-item{padding:6px 9px 6px 7px}.nav-item>span:nth-child(2){font-size:11px}.nav-icon{width:26px;height:27px}.main-content{padding:0 11px 32px}.top-header{min-height:48px}.header-crumb{font-size:11px}.star-chip{padding:7px 10px;font-size:10px}.hero{border-radius:19px;padding:24px 18px}.hero h1{font-size:23px}.hero p{max-width:203px}.hero-art{right:-50px;opacity:.65}.overview-row{align-items:center;gap:8px}.overview-copy h2{font-size:18px}.overview-copy h2 span{font-size:15px}.overview-copy p{max-width:260px}.overview-progress{border:0;background:transparent;padding:2px}.overview-progress strong{font-size:11px}.overview-progress small{font-size:8px}.progress-pie{width:32px;height:32px}.table-heading span{display:none}.numbers-grid{gap:4px}.symbol-cell{min-height:42px;font-size:15px}.grid-bottom{gap:8px;align-items:flex-start}.grid-bottom span{max-width:200px}.toolbar-right{gap:5px}.variant-switch button{padding:7px 8px;font-size:10px}.practice-header h2{margin:3px 0}.tool-card{grid-template-columns:1fr;gap:20px}.tool-section:nth-of-type(5){grid-column:auto;grid-row:auto}.tool-heading{margin-bottom:12px}.pastel-palette{grid-template-columns:repeat(7,minmax(0,1fr));max-width:400px}.paper-bar-center{font-size:8px;letter-spacing:1.2px}.paper-foot{padding:0 11px;font-size:9px}.quick-btn{font-size:14px}.quick-btn span{font-size:9px}.icon-text-btn span{display:none}.practice-steps{font-size:10px}}
+/* iPad Air 2 等中型平板：放大書寫板，工具搬到下方，避免筆畫區過小。*/
+@media(min-width:721px) and (max-width:960px){
+ .practice-layout{display:flex;flex-direction:column;gap:15px}
+ .practice-main-column,.tool-card{width:100%}
+ .tool-card{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:18px}
+ .tool-card>.tool-divider{display:none}
+ .tool-card>.save-image-btn{grid-column:1/3;align-self:start}
+ .tool-card>.safe-note{grid-column:3;align-self:center}
+ .drawing-stage{aspect-ratio:760/460}
+ .pastel-palette{grid-template-columns:repeat(7,minmax(0,1fr))}
+ .tool-heading{gap:8px}.tool-heading strong{font-size:12px}
+ .practice-navigation{max-width:none}
+}
+/* 避免快速點擊 / 雙擊時，瀏覽器全選介面文字。*/
+html,body,.app-shell{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+
+/* V1.1 學習進度、逐筆控制、列印與跨裝置備份 */
+.daily-strip{margin:18px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:13px 20px;background:#f0f8f2;border:1px solid #e4efe5;border-radius:15px;color:#678976;font-size:12px}
+.daily-strip span:first-child strong{font-size:18px;color:#4c8a70}
+.daily-strip button{margin-left:auto;color:#4e9a79;font-weight:850;background:#fff;border:1px solid #dbece4;border-radius:11px;padding:10px 14px;font-size:12px}
+.guide-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:11px;background:#fff9f0;border:1px solid #f3e5d4;border-radius:13px;padding:10px 12px}
+.guide-status{display:flex;flex-direction:column;gap:3px}.guide-status span{font-size:10px;color:#ad927d}.guide-status strong{font-size:13px;color:#ae806b}.guide-controls{display:flex;flex-wrap:wrap;gap:6px}
+.guide-controls button{border:1px solid #eedbce;color:#976c54;font-size:12px;font-weight:800;border-radius:9px;padding:9px 11px;background:white}.guide-controls button:last-child{background:#f5e0cb}.guide-controls button:disabled{opacity:.35;cursor:not-allowed}
+.guide-unverified{background:#f5f3fa;border-color:#e7e2f0}.guide-unverified .guide-status strong{color:#827a9a}
+.source-caption{color:#a4a1a7;font-size:11px;line-height:1.5;margin:7px 4px 0}
+.template-svg .demo-outline{stroke:#edaa94;fill:none;stroke-width:3.5;stroke-linejoin:round;stroke-linecap:round;pointer-events:none}
+.data-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.data-action-grid button{min-height:45px;padding:8px 5px;font-size:11px}
+.data-btn{border-radius:13px;background:#eef7f2;color:#6e9b82;font-size:11px;font-weight:850;border:1px solid #d8eadf}
+@media(max-width:720px){.daily-strip{font-size:11px;padding:10px 12px;gap:9px}.daily-strip button{padding:8px 10px}.guide-controls button{font-size:11px;padding:8px}.guide-toolbar{gap:8px}.source-caption{font-size:10px}}
+#printSheet{display:none}
+@media print{
+ @page{size:A4 portrait;margin:12mm}
+ body{background:white!important}body > .app-shell,body > .toast,body > .celebrate{display:none!important}
+ #printSheet{display:block!important;width:100%;color:#343434;font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif}
+ #printSheet h1{margin:2mm 0 3mm;font-size:23pt}#printSheet p{font-size:11pt;margin:3mm 0 6mm}
+ .print-cells{display:grid;grid-template-columns:1fr 1fr;gap:4mm}.print-cell{position:relative;height:109mm;border:1.4pt solid #bbb;border-radius:3mm;overflow:hidden;padding:6mm 2mm 2mm}
+ .print-cell strong{position:absolute;top:2mm;left:4mm;font-size:10pt;color:#888}
+ .print-cell svg{width:100%;height:100%;display:block}
+ .print-cell .glyph-fill-outline{fill:white;stroke:#a5a5a5;stroke-width:2}
+ .print-cell .ribbon-under{stroke:#aaa}.print-cell .ribbon-inner{stroke:white}
+ .print-cell .grid-shade{fill:white;stroke:#ddd}
+ #printSheet>p:last-child{text-align:center;margin-top:6mm;color:#888}
+}
+
+.reference-link{display:inline-block;margin:0 4px 12px;color:#648f80;font-weight:800;font-size:11px;text-decoration:none}.reference-link:hover{text-decoration:underline}
+
+/* V1.2 練習導航與逐筆參考 */
+.kid-learning-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0;padding:2px}
+.kid-learning-row button{background:#f6f5fc;border:1px solid #e8e1f3;border-radius:12px;padding:11px 13px;color:#806e98;font-size:12px;font-weight:800}
+.kid-learning-row button.selected{background:#e2f3eb;color:#447d6a;border-color:#bee4d0}
+.kid-learning-row span{font-size:11px;color:#9c9ea7;margin-left:auto}
+.reference-control{display:flex;justify-content:space-between;gap:7px;align-items:center;padding:8px 10px;background:#f8faf7;border:1px solid #e3eee8;border-radius:10px;margin-top:9px;font-size:11px;color:#648b7b}
+.reference-control button{border:1px solid #d3e6df;border-radius:9px;padding:7px 11px;background:#fff;color:#517d6c;font-size:11px;font-weight:800}
+.reference-control button:disabled{opacity:.4}.reference-control button.hidden{display:none!important}
+.template-svg .reference-fill{fill:#fffdfa;stroke:#a8b7bd;stroke-width:7;stroke-linejoin:round;stroke-linecap:round;pointer-events:none}
+.template-svg .reference-median{stroke:#e0b5a9;stroke-width:21;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:12 24;fill:none;opacity:.78;pointer-events:none}
+.template-svg .reference-guide{stroke:#c99179;stroke-width:10;stroke-dasharray:12 30;stroke-linecap:round;fill:none;opacity:.95;pointer-events:none}
+.template-svg .reference-start{r:29}
+.template-svg .reference-num{font-size:31px}
+.template-svg .demo-reference{stroke:#6fbd9d;stroke-width:33;stroke-linecap:round;stroke-linejoin:round;fill:none;pointer-events:none}
+.template-svg .guide-active{stroke:#66ab8f;stroke-width:19}
+body.focus-mode .sidebar,body.focus-mode .top-header,body.focus-mode .practice-header,body.focus-mode .tool-card,body.focus-mode .source-caption,body.focus-mode .reference-link{display:none!important}
+body.focus-mode .app-shell{display:block!important}
+body.focus-mode .main-content{max-width:1450px;margin:0 auto;padding:0 13px 25px}
+body.focus-mode .practice-top{margin-top:10px}
+body.focus-mode .practice-layout{display:block}
+body.focus-mode .practice-paper{max-width:1250px;margin:auto}
+body.focus-mode .drawing-stage{aspect-ratio:760/440;max-height:72vh}
+body.focus-mode .kid-learning-row{justify-content:center}
+@media(max-width:720px){.kid-learning-row{gap:6px}.kid-learning-row button{font-size:11px;padding:9px 10px}.kid-learning-row span{display:none}.reference-control{font-size:10px}.reference-control button{font-size:10px}body.focus-mode .drawing-stage{aspect-ratio:460/520;max-height:77vh}}
+
+.download-guides-btn{min-width:max-content;border:1px solid #cadfd6;border-radius:11px;background:#eff8f1;color:#568573;font-size:11px;font-weight:850;padding:9px 10px}.download-guides-btn:disabled{opacity:.55}.download-guides-btn.hidden{display:none!important}
+@media(max-width:720px){.library-toolbar{flex-wrap:wrap}.toolbar-right{flex-wrap:wrap;justify-content:flex-end}.download-guides-btn{font-size:10px;padding:7px 8px}}
+
+/* V1.3: 橡皮擦實際半徑提示，螢幕圓圈與 destination-out 擦除寬度相同 */
+.eraser-cursor{position:absolute;z-index:4;left:50%;top:50%;width:22px;height:22px;transform:translate(-50%,-50%);pointer-events:none;border:2px solid #579c8f;background:rgba(106,192,176,.18);outline:1px solid rgba(255,255,255,.9);box-shadow:0 0 0 1px rgba(51,112,105,.2);border-radius:50%;opacity:0;transition:opacity .12s;will-change:left,top}
+.eraser-cursor.visible{opacity:1}
+.eraser-info{margin-top:12px;padding:9px 12px;border:1px solid #cde7dc;background:#f2faf6;border-radius:14px;display:flex;align-items:center;gap:11px;color:#477b70;font-size:11px;font-weight:850;min-height:70px}
+.eraser-info .eraser-size-shell{display:grid;place-items:center;width:58px;height:58px;flex:none;background:#fff;border:1px dashed #a8c8bc;border-radius:13px}
+.eraser-size-dot{display:block;flex:none;border:2px solid #579c8f;border-radius:50%;background:rgba(106,192,176,.18)}
+.eraser-info strong{display:block;font-size:13px;margin-top:4px}
+.eraser-info small{display:block;color:#83a59a;font-size:10px;line-height:1.6;margin-top:3px}
+/* 編號牌與起筆點分離；短連線指向真正起筆位置 */
+.template-svg .guide-leader{stroke:#ce957d;stroke-width:1.3;stroke-dasharray:2.6 2.5;pointer-events:none}
+.template-svg .guide-origin{fill:#df9d7b;stroke:#fffaf5;stroke-width:1.5}
+.template-svg .guide-label .start-dot{fill:#fff7e9;stroke:#dc9874;stroke-width:1.35}
+.template-svg .guide-label .start-num{font-size:10px;font-weight:900;fill:#a56042}
+.template-svg .guide-label .reference-num{font-size:38px}
+.template-svg .guide-label .reference-start{stroke-width:5}
+.template-svg .guide-label.label-active .start-dot{fill:#def7e9;stroke:#419c7e;stroke-width:2}
+.template-svg .guide-label.label-active .start-num{fill:#237960}
+.template-svg .guide-label.label-active .guide-leader{stroke:#439c82;stroke-dasharray:none;stroke-width:2}
+
+
+/* V1.4: 字表與練習頁的漂亮發音按鈕 */
+.symbol-card{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0}
+.symbol-card.done .symbol-cell{box-shadow:0 10px 18px rgba(129,189,153,.12)}
+.symbol-card.kana-empty{min-height:0;visibility:hidden}
+.symbol-card .symbol-cell{width:100%;height:100%}
+.cell-speak-btn{display:flex;align-items:center;justify-content:center;gap:6px;min-height:30px;border-radius:12px;border:1px solid #ead8cb;background:linear-gradient(180deg,#fff8f2,#fbe8dc);color:#aa7456;font-size:11px;font-weight:900;letter-spacing:.2px;box-shadow:0 4px 10px rgba(231,185,156,.22);padding:6px 8px;transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease}
+.cell-speak-btn:hover,.cell-speak-btn:focus-visible{transform:translateY(-1px);border-color:#e3b79d;box-shadow:0 7px 15px rgba(225,176,146,.28)}
+.cell-speak-btn .speak-blob{display:grid;place-items:center;width:19px;height:19px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px rgba(230,184,156,.65);font-size:11px;line-height:1}
+.pretty-speak-btn{display:inline-flex;align-items:center;gap:9px;padding:8px 14px 8px 10px;border-radius:18px;border:1px solid #ecd6c6;background:linear-gradient(180deg,#fff9f5,#f9eadd)!important;color:#9d6a4f!important;box-shadow:0 8px 16px rgba(232,190,162,.22)}
+.pretty-speak-btn .speaker-badge{display:grid;place-items:center;width:34px;height:34px;border-radius:999px;background:linear-gradient(180deg,#fffbf7,#fff);box-shadow:inset 0 0 0 1px rgba(233,191,165,.8),0 4px 10px rgba(235,191,160,.18);font-size:17px;flex:none}
+.pretty-speak-btn .speak-main{font-size:13px;font-weight:900;line-height:1.1}
+.pretty-speak-btn small{display:block;font-size:10px;color:#bc8e73;font-weight:800;letter-spacing:.2px}
+.pretty-speak-btn:hover,.pretty-speak-btn:focus-visible{transform:translateY(-1px);box-shadow:0 10px 18px rgba(232,190,162,.3)}
+@media(max-width:720px){.cell-speak-btn{min-height:28px;font-size:10px;padding:6px}.cell-speak-btn .speak-blob{width:18px;height:18px}.pretty-speak-btn{padding:8px 10px;border-radius:16px;gap:8px}.pretty-speak-btn .speaker-badge{width:31px;height:31px;font-size:15px}.pretty-speak-btn small{font-size:9px}.symbol-card{gap:5px}}
+/* V1.5 — device voice calibration panel; soft, accessible touch targets. */
+.voice-settings-launch{border:1px solid #d9e5db;border-radius:12px;padding:10px 12px;background:#eef8f1;color:#5a8777;font-size:12px;font-weight:850;white-space:nowrap;box-shadow:0 4px 10px #7fa78a12}
+.voice-mini-launch{padding:10px 13px;background:#eef8f1;color:#507d70}
+.voice-panel-overlay{position:fixed;z-index:10000;inset:0;background:rgba(42,50,55,.38);display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
+.voice-panel{background:#fffdf9;border:1px solid #efede4;border-radius:25px;box-shadow:0 30px 90px rgba(45,54,52,.22);width:min(100%,510px);max-height:calc(100dvh - 36px);overflow-y:auto;outline:none}
+body.voice-panel-open{overflow:hidden}
+.voice-panel-header{display:flex;align-items:center;gap:12px;padding:22px 23px 18px;background:linear-gradient(115deg,#f0f8ef,#fff2e7);border-bottom:1px solid #f4ede6}
+.voice-panel-icon{width:49px;height:49px;display:grid;place-items:center;background:#fff;border-radius:17px;font-size:27px;box-shadow:0 6px 15px #86a79722;flex:none}
+.voice-panel-header>div{min-width:0;flex:1}.voice-panel-header h2{font-size:20px;margin:2px 0 4px}.voice-panel-header p{font-size:11px;color:#7b9489;margin:0}.voice-panel-kicker{font-size:9px;font-weight:900;color:#82ad98;letter-spacing:2px}.voice-close{background:#fff8f3;border:1px solid #f0ded0;border-radius:50%;width:35px;height:35px;flex:none;color:#a68b7a;font-size:14px}
+.voice-panel-content{padding:19px 22px 23px}.voice-device{background:#edf7f1;color:#588a72;border:1px solid #dceee3;border-radius:11px;padding:11px 13px;font-size:12px;font-weight:800;line-height:1.5}
+.voice-field{margin-top:18px}.voice-field label,.voice-label-line label{font-size:13px;font-weight:900;color:#555e63}.voice-field select{margin-top:9px;display:block;width:100%;max-width:100%;min-height:44px;padding:8px 12px;border:1px solid #dddcd2;border-radius:11px;background:white;color:#58616a;font-size:13px}.voice-field select:disabled{opacity:.65}.voice-hint{font-size:11px;line-height:1.65;color:#789187;margin:7px 2px 0}.voice-label-line{display:flex;align-items:center;justify-content:space-between;gap:10px}.voice-label-line strong{color:#598c79;font-size:15px}.voice-field input[type=range]{width:100%;height:28px;margin:9px 0;accent-color:#85bba1;touch-action:pan-x}.voice-speed-presets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.voice-speed-presets button{background:#f8f6f3;border:1px solid #ece9e2;color:#7c8280;padding:12px 4px;border-radius:11px;font-size:12px;font-weight:900}.voice-speed-presets button.selected{background:#e7f5ec;border-color:#9cccaf;color:#427d61}
+.voice-sample{margin:19px 0 0;border:1px solid #f0e7dc;border-radius:16px;background:#fff8f0;padding:13px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.voice-sample span{font-size:11px;color:#a28d7c}.voice-sample strong{font-size:18px;color:#a87861;flex:1}.voice-sample button{background:linear-gradient(120deg,#f3af8f,#e8a88a);padding:12px 14px;border-radius:12px;color:#fff;font-size:12px;font-weight:900;box-shadow:0 4px 9px #db9a7955}.voice-sample button:disabled{opacity:.5}
+.voice-advisory{font-size:11px;line-height:1.8;color:#887d74;background:#f9f7f2;border-radius:11px;padding:10px 12px;margin:12px 0 18px}.voice-confirm{width:100%;padding:14px;color:#fff;background:#79b69a;border-radius:13px;font-size:13px;font-weight:900}
+.pretty-speak-btn.voice-speaking{box-shadow:0 0 0 5px rgba(135,207,176,.28);border-color:#77b698;animation:voicePulse 1.1s ease-in-out infinite alternate}
+@keyframes voicePulse{from{filter:brightness(1)}to{filter:brightness(1.06)}}
+@media(max-width:960px){.voice-settings-launch{font-size:11px;padding:8px 9px}.voice-panel-overlay{padding:11px}.voice-panel{max-height:calc(100dvh - 22px)}}
+@media(max-width:720px){.voice-mini-launch{font-size:10px;padding:8px}.voice-panel-header{padding:18px 16px}.voice-panel-content{padding:16px}.voice-panel-header h2{font-size:18px}.voice-sample button{width:100%}.practice-top-actions{gap:6px}.pretty-speak-btn .speak-main{display:inline!important}.pretty-speak-btn .speaker-badge{display:grid!important}.pretty-speak-btn small{display:none}.toolbar-right .voice-settings-launch{font-size:10px;padding:7px 8px}}
+
+@media(max-width:440px){.practice-steps{display:none}.practice-top-actions{display:flex;flex-wrap:nowrap;align-items:center;gap:6px}.practice-top{gap:6px}.back-btn{white-space:nowrap}.voice-mini-launch{white-space:nowrap}}
+
+/* V1.6 來源明確的錄音優先發音方案 */
+.voice-mode-row{padding:13px 14px;border:1px solid #e4d5be;border-radius:16px;background:#fffaf1;margin:8px 0 16px}
+.voice-mode-row>strong{font-size:13px;color:#84694f}.voice-mode-picks{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.voice-mode-picks button{flex:1;min-width:120px;background:#fff;border:1px solid #eadcc8;border-radius:12px;padding:12px 8px;font-size:12px;font-weight:800;color:#857565;cursor:pointer}
+.voice-mode-picks button.selected{border-color:#95c7ac;background:#e6f6ed;color:#3b8e68;box-shadow:0 3px 10px rgba(90,167,121,.15)}
+.voice-mode-row p{margin:3px 0 0;color:#99877b;font-size:11px;line-height:1.55}
+.voice-speaking .speaker-badge,.voice-speaking .speak-blob{animation:voicePulse 1s ease-in-out infinite alternate}
+@keyframes voicePulse{from{transform:scale(1)}to{transform:scale(1.13)}}
+.voice-field input:disabled{opacity:.45}
+
+/* 手機的 10 欄數字表只顯示喇叭圖示，避免「發音」直排擠住每格 */
+@media(max-width:720px){.numbers-grid .cell-speak-btn{padding:5px 1px;min-width:0;min-height:29px}.numbers-grid .cell-speak-btn>span:not(.speak-blob){display:none}.numbers-grid .cell-speak-btn .speak-blob{width:23px;height:23px;font-size:12px}}
+
+/* V1.7 — 逐個試聽與女聲來源清楚提示 */
+.voice-quick-samples{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:17px 0 0}
+.voice-quick-samples button{min-height:42px;background:linear-gradient(160deg,#fff5e7,#f7e7d6);border:1px solid #f2ddc7;border-radius:13px;font-weight:900;color:#ac7351;font-size:15px;box-shadow:0 3px 9px #ead0b222}
+.voice-quick-samples button:focus-visible,.voice-quick-samples button:hover{background:#fce5cd;border-color:#cfa580}
+.voice-refresh{background:#eff8f2;color:#639078;font-size:11px;border:1px solid #d2e8d9;border-radius:9px;padding:8px 10px;margin-left:10px;font-weight:800}
+@media(max-width:480px){.voice-quick-samples{gap:6px}.voice-quick-samples button{min-height:40px}.voice-refresh{margin-left:6px;padding:6px;font-size:10px}}
+
+.voice-other-voices{margin-top:9px;padding:10px 12px;border:1px dashed #d7c2de;border-radius:11px;color:#876c94;background:#f9f3fb;font-size:11px;font-weight:850;min-height:41px}
+.voice-other-voices[aria-pressed=true]{background:#f0e9f5;border-color:#aa8fb9}
+
+/* V1.8 — optional local full-number recordings and default natural zh-TW */
+.number-recording-panel{border-radius:17px;background:linear-gradient(150deg,#f1f8f4,#fffaf0);border:1px solid #d8ebdf;margin-top:16px;padding:15px;box-shadow:0 4px 14px rgba(112,153,132,.06)}
+.number-recording-title{display:flex;gap:8px;align-items:center;color:#558975;font-size:14px}.number-recording-title span{font-size:20px}
+.number-recording-panel p{font-size:11px;line-height:1.8;color:#698476;margin:9px 0}
+.number-audio-switch{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:850;color:#537f6f;background:#fff;padding:10px;border-radius:10px;margin:10px 0}
+.number-audio-switch input{width:19px;height:19px;accent-color:#77ae97}
+.number-import-btn{display:block;text-align:center;cursor:pointer;background:#79ac97;color:#fff;font-size:12px;font-weight:850;padding:12px;border-radius:12px;margin:12px 0 8px}
+.number-hidden-file{position:absolute;inline-size:1px;block-size:1px;opacity:0;overflow:hidden;pointer-events:none}
+.number-clip-status{color:#577e70;font-size:11px;line-height:1.6}
+.number-clip-footer{display:flex;gap:10px;align-items:flex-start;margin-top:10px}.number-clip-footer small{flex:1;color:#8b9990;font-size:10px;line-height:1.7}.number-clip-footer button{flex:none;border:1px solid #ebdcd1;color:#a37969;font-size:10px;border-radius:8px;padding:8px;background:#fff}.number-clip-footer button:disabled{opacity:.4}
+@media(max-width:480px){.number-recording-panel{padding:12px}.number-clip-footer{flex-direction:column}.number-clip-footer button{align-self:flex-end}}
+
+/* V1.10 */
+.english-attribution{display:block;margin-top:10px;color:#8a8c9a;font-size:10px;line-height:1.7}.english-attribution a{color:#568c83;text-decoration:underline}
+
+
+/* V1.11 畫筆自動貼合空心字內框寬度 */
+.auto-pen-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;border:1.5px solid #cce8d7;background:linear-gradient(115deg,#eefaf2,#f8fcf1);border-radius:15px;padding:12px 10px;margin-top:14px;min-height:64px}
+.auto-pen-toggle input{width:19px;height:19px;accent-color:#60a787;flex-shrink:0;cursor:pointer}
+.auto-pen-icon{font-size:21px;color:#75ac85}
+.auto-pen-text{display:flex;flex:1;min-width:0;flex-direction:column;gap:4px}
+.auto-pen-text strong{font-size:12px;color:#497c63;line-height:1.2}
+.auto-pen-text small{font-size:10px;line-height:1.4;color:#7fa592}
+.auto-pen-tag{border-radius:99px;background:#fff;color:#56876d;font-size:10px;font-weight:850;padding:5px 6px;border:1px solid #d6ebdc;white-space:nowrap}
+.auto-pen-toggle:has(input:not(:checked)){background:#f9f9f7;border-color:#ece9e4}
+.auto-pen-toggle:has(input:not(:checked)) .auto-pen-tag{opacity:.45}
+.size-row small{display:block;color:#91a89a;font-size:10px;margin-top:4px;font-weight:500}
+.brush-range:disabled{opacity:.35;cursor:not-allowed}
+@media(max-width:720px){.auto-pen-toggle{padding:11px 9px}.auto-pen-text strong{font-size:11px}.auto-pen-tag{font-size:9px}}
+
+/* V1.12｜切換導覽緊貼畫板底端，孩子不用捲到最下方 */
+.practice-paper + .practice-navigation{margin-top:8px;margin-bottom:7px;gap:9px}
+.practice-paper + .practice-navigation button{min-height:56px;border-radius:15px;font-size:15px;font-weight:900}
+.practice-paper + .practice-navigation .nav-prev,.practice-paper + .practice-navigation .nav-next{background:#f1f8f3;color:#427c68;border:1px solid #cfe8db;box-shadow:0 4px 10px rgba(113,166,135,.12)}
+.practice-paper + .practice-navigation .done-btn{background:#83b99e}
+.paper-foot{gap:10px}.paper-guide-chip{margin-left:auto;border-radius:99px;background:#edf8ee;color:#488466;padding:4px 8px;white-space:nowrap;font-size:10px;font-weight:800}
+.paper-guide-chip.pending{background:#fff7e6;color:#aa7c47}.paper-guide-chip.missing{background:#f5edf1;color:#9d6d7d}.paper-guide-chip.schematic{background:#edf2fd;color:#777fb2}
+.guide-audit-btn{min-width:max-content;border:1px solid #d8d9ed;border-radius:11px;background:#f3f2fd;color:#746da4;font-size:11px;font-weight:850;padding:9px 11px}
+.guide-audit-btn[aria-expanded="true"]{background:#e6e3f6;color:#655990}
+.guide-audit-panel{display:grid;gap:8px;margin:9px 16px 15px;padding:13px 15px;background:#f8f9ff;border:1px solid #e6e8f8;border-radius:13px;font-size:12px;color:#686b86;line-height:1.6}
+.guide-audit-panel strong{font-size:13px;color:#5c6986}
+.guide-audit-panel .missing-list{word-break:break-word;line-height:1.9}
+.guide-audit-panel .audit-legend{font-size:10px;color:#9592a2}
+.symbol-card.guide-unavailable .symbol-cell:after{content:'?';position:absolute;top:2px;right:3px;font-size:9px;display:grid;place-items:center;width:14px;height:14px;background:#fbe8e4;border-radius:50%;color:#ad7770;font-weight:900;pointer-events:none}
+@media(max-width:720px){.practice-paper + .practice-navigation{gap:5px;margin-top:7px}.practice-paper + .practice-navigation button{min-height:52px;font-size:12px;white-space:nowrap;padding:5px 6px}.paper-foot{padding:0 8px;gap:5px}.paper-foot span:first-child{display:none}.paper-guide-chip{font-size:9px}.guide-audit-panel{margin:8px 10px 12px;padding:11px}.guide-audit-btn{font-size:10px;padding:7px 8px}}
+body.focus-mode .practice-paper + .practice-navigation{max-width:1250px;margin:8px auto 0}
+
+/* V1.13 | 幼兒繁體國字 · 五級課程 / 四課共 40 字 */
+.hanzi-icon{background:linear-gradient(135deg,#fff0dc,#eec99d)!important;color:#93643e!important;font-size:22px!important;font-weight:950}
+.hanzi-hub{display:grid;gap:14px;margin:16px 0 20px}
+.hanzi-hub-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.hanzi-hub-top h3{margin:4px 0 6px;font-size:19px;color:#765c55}.hanzi-hub-top p{color:#9c8f88;margin:0;font-size:12px}
+.hanzi-level-note{border-radius:100px;background:#e7f6ed;color:#578f6b;border:1px solid #cee8d6;padding:8px 12px;font-size:11px;font-weight:900;white-space:nowrap}
+.hanzi-levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.hanzi-level{min-width:0;display:flex;flex-direction:column;gap:5px;align-items:flex-start;border:1px solid #e9e1d7;border-radius:17px;background:linear-gradient(165deg,#fffdf9,#fff6ed);padding:13px 12px;min-height:123px;text-align:left;color:#706568;box-shadow:0 5px 12px rgba(143,117,94,.06)}
+.hanzi-level.active{background:linear-gradient(165deg,#ecf9ee,#fffef7);border:2px solid #99cfaa;box-shadow:0 9px 18px rgba(124,184,143,.14)}.hanzi-level:disabled{opacity:.68;cursor:not-allowed}
+.hanzi-level b{font-size:13px}.hanzi-level small{font-size:10px;line-height:1.5;color:#998c89}.hanzi-level em{font-size:9px;color:#619976;font-weight:850;font-style:normal;margin-top:auto}
+.hanzi-level-icon{font-size:24px;line-height:1.1}.hanzi-lesson-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.hanzi-lesson-head h3{font-size:16px;color:#776d65;margin:4px 0}.hanzi-lesson-head span{font-size:12px;color:#66a484;font-weight:850}
+.hanzi-lessons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.hanzi-lesson{display:flex;flex-direction:column;gap:7px;text-align:left;border:1px solid #e8e4de;border-radius:16px;padding:14px;background:#fff;min-width:0}.hanzi-lesson.selected{background:#f0f9f4;border-color:#8bc1a0;box-shadow:0 7px 16px rgba(112,178,139,.12)}
+.hanzi-lesson strong{color:#736568;font-size:14px}.hanzi-lesson small{color:#a19c9b;font-size:10px;line-height:1.5}.hanzi-lesson .hanzi-mini{font-size:17px;letter-spacing:2px;color:#9d777a;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hanzi-lesson .hanzi-lesson-count{color:#599e76;font-weight:900;font-size:11px}
+.symbol-grid.hanzi-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:10px}.hanzi-grid .symbol-card .symbol-cell{font-family:'Noto Sans CJK TC','Microsoft JhengHei',sans-serif;font-size:31px}
+.hanzi-grid .symbol-card{gap:6px}.hanzi-grid .symbol-card .cell-speak-btn{min-height:32px}
+.hanzi-word-info{display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-radius:15px;border:1px solid #f2e5d5;background:#fffbf3;padding:13px 16px;margin:0 0 15px;color:#7e7773;font-size:12px}
+.hanzi-word-info .hanzi-bopomofo{font-size:17px;color:#b17869;font-weight:900}.hanzi-word-info strong{font-size:15px;color:#947865}.hanzi-word-info .word-tag{background:#f0eee5;padding:6px 10px;border-radius:10px;font-weight:700}
+@media(max-width:1100px){.hanzi-levels{grid-template-columns:repeat(3,minmax(0,1fr))}.hanzi-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}.symbol-grid.hanzi-grid{gap:7px}}
+@media(max-width:720px){.hanzi-hub{gap:11px}.hanzi-hub-top h3{font-size:16px}.hanzi-hub-top p{font-size:10px}.hanzi-levels{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.hanzi-level{padding:9px;min-height:98px}.hanzi-level b{font-size:11px}.hanzi-level small{font-size:9px}.hanzi-level-icon{font-size:19px}.hanzi-lessons{gap:7px}.hanzi-lesson{padding:10px;gap:5px}.hanzi-lesson strong{font-size:12px}.hanzi-lesson .hanzi-mini{font-size:15px}.symbol-grid.hanzi-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.hanzi-grid .symbol-card .symbol-cell{font-size:25px;min-height:58px}.hanzi-word-info{padding:10px 12px;font-size:11px;gap:7px}.hanzi-word-info .hanzi-bopomofo{font-size:14px}}
+@media(min-width:721px) and (max-width:960px){.symbol-grid.hanzi-grid{grid-template-columns:repeat(8,minmax(0,1fr))}}
+
+/* 國字課程直接進入分級與字表，避免舊數字海報佔據平板首屏。*/
+body.hanzi-library .library-view .hero{display:none!important}
+body.hanzi-library .library-view .daily-strip{margin:8px 0 0!important}
+body.hanzi-library .library-view .overview-row{margin-top:15px!important}
+body.hanzi-library .library-view .hanzi-hub{margin-top:8px}
+@media(max-width:720px){body.hanzi-library .library-view .daily-strip{padding:8px 11px}body.hanzi-library .library-view .overview-row{margin-top:11px!important}}
+
+/* V1.14 本機方向示意，刻意與驗證過的來源色調區分 */
+.template-svg .offline-median{fill:none;stroke:#d7bfb0;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:3 7;opacity:.92;pointer-events:none}
+.template-svg .offline-median ~ .guide-line{stroke:#bb8f79}
+.symbol-card.guide-demo-only .symbol-cell{border-color:#ecdccb}
+
+
+/* V1.15 國字筆順人工比對介面：與小朋友描寫區清楚分離 */
+.hanzi-compare-panel{margin:0 0 13px;border:1px solid #d9e6e4;border-radius:16px;background:linear-gradient(145deg,#f9fcf9,#fff9f4);padding:12px 14px;color:#517168}
+.hanzi-compare-title{display:flex;align-items:center;gap:9px}
+.hanzi-compare-title .compare-icon{width:35px;height:35px;display:grid;place-items:center;border-radius:11px;background:#e3f0e9;font-size:19px}
+.hanzi-compare-title strong{display:block;font-size:13px;color:#47756b}
+.hanzi-compare-title small{display:block;color:#829a93;font-size:11px;margin-top:3px;line-height:1.4}
+.hanzi-compare-title .compare-count{margin-left:auto;font-size:11px;border-radius:99px;padding:6px 10px;background:#fff;color:#8b796c;border:1px solid #e8dfd7;white-space:nowrap}
+.hanzi-compare-actions,.hanzi-compare-options{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.hanzi-compare-actions a,.hanzi-compare-actions button{display:inline-flex;align-items:center;justify-content:center;border:1px solid #b9dbcb;background:#eaf6ed;border-radius:10px;padding:8px 11px;font-size:11px;font-weight:800;color:#4c8571;text-decoration:none;cursor:pointer}
+.hanzi-compare-actions button{background:#fff;border-color:#dfeae6}
+.compare-option{border:1px solid #dfebe6;background:#fff;color:#7b8d83;border-radius:11px;padding:10px 11px;font-weight:800;font-size:11px;cursor:pointer;flex:1;min-width:max-content}
+.compare-option.selected{color:#286f5b;border-color:#88c9ad;background:#e4f5ea;box-shadow:inset 0 0 0 1px #b3dbc8}
+.compare-option[data-review="issue"].selected{color:#a05e42;background:#fff0e5;border-color:#e7ab8c}
+.compare-foot{font-size:10px;color:#92918c;margin:9px 1px 0;line-height:1.55}
+.review-tag{background:#f0f5f3;color:#508375}
+.audit-review-area{border-top:1px solid #e7e8e6;padding-top:14px;margin-top:15px}
+.audit-review-area strong{display:block;font-size:12px;color:#447b6d}
+.audit-review-area p{font-size:11px;margin:6px 0 12px;color:#89908c;line-height:1.6}
+.audit-review-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px}
+.audit-review-char{min-width:0;aspect-ratio:1;border:1px solid #e2e5e6;border-radius:10px;background:white;color:#687879;font-size:21px;font-weight:700;cursor:pointer}
+.audit-review-char.checked{background:#e1f3e8;border-color:#abd3ba;color:#358064}
+.audit-review-char.issue{background:#fff0e4;border-color:#e6c2a8;color:#ac7457}
+.symbol-card.review-issue .symbol-cell{border-color:#e4ae96!important;background:#fff6ee!important}
+.symbol-card.review-checked .symbol-cell{border-color:#a6d7c1!important}
+@media(max-width:720px){.hanzi-compare-panel{padding:10px}.hanzi-compare-title small{font-size:10px}.hanzi-compare-actions a,.hanzi-compare-actions button{flex:1}.compare-option{padding:8px 6px;font-size:10px}.audit-review-grid{grid-template-columns:repeat(8,minmax(0,1fr));gap:5px}.audit-review-char{font-size:18px}}
+
+
+/* V1.16 幼兒逐筆引導：只強調當前一筆；不宣稱未校正資料為正式筆順 */
+.guide-controls .one-step-btn{border-color:#bee0cf;background:#f0fbf4;color:#417a65;white-space:nowrap}
+.guide-controls .one-step-btn.selected{border-color:#70ad90;background:#ccebdc;color:#245f48;box-shadow:0 3px 9px rgba(75,143,110,.13)}
+.template-svg.single-step .guide-line:not(.guide-active){opacity:0.13}
+.template-svg.single-step .guide-label:not(.label-active){opacity:0.045}
+.template-svg.single-step .arrow-tri:not(.step-selected){opacity:0.06}
+.template-svg.single-step .offline-median:not(.step-selected),.template-svg.single-step .reference-median:not(.step-selected){opacity:0.12}
+.template-svg.single-step .offline-median.step-selected{stroke:#65ab8c;stroke-width:5;stroke-dasharray:8 4;opacity:1}
+.template-svg.single-step .reference-median.step-selected{stroke:#64b38f;stroke-width:27;stroke-dasharray:14 12;opacity:.96}
+.template-svg.single-step .guide-line.guide-active{opacity:1;stroke:#58aa8b;stroke-width:5}
+.template-svg.single-step .guide-line.reference-guide.guide-active{stroke-width:14}
+.template-svg.single-step .guide-label.label-active{opacity:1}
+.stroke-count-verified{background:#ecf6f0;color:#51826d}
+@media(max-width:720px){.guide-controls .one-step-btn{font-size:10px;min-height:38px}}
+
+/* V1.17 畫板優先 — compact practice header and immediate canvas access */
+body.practice-open .top-header{display:none!important}
+body.practice-open .practice-view{padding-top:10px}
+body.practice-open .practice-top{gap:10px;min-height:43px}
+body.practice-open .practice-header{padding:6px 2px 9px;min-height:50px}
+body.practice-open .practice-header .eyebrow,body.practice-open .practice-header p{display:none!important}
+body.practice-open .practice-header h2{font-size:21px;line-height:1.2;margin:0}
+body.practice-open .practice-header h2 span{font-size:26px}
+body.practice-open .practice-step-status{font-size:11px;padding:7px 10px}
+body.practice-open .practice-layout{gap:14px}
+body.practice-open .practice-main-column{min-width:0}
+body.practice-open .drawing-stage{aspect-ratio:760/440}
+body.practice-open .paper-bar{height:35px}
+body.practice-open .paper-foot{min-height:29px}
+body.practice-open .sidebar-note{opacity:.4}
+.quick-ink-bar{display:flex;align-items:center;gap:10px;min-height:43px;margin-bottom:7px;padding:5px 11px 5px 13px;border:1px solid #e7e8e4;border-radius:14px;background:#fff;box-shadow:0 3px 12px rgba(80,80,65,.035)}
+.quick-ink-label{font-size:12px;color:#8f8c89;font-weight:800;white-space:nowrap}
+.quick-palette{display:flex;gap:8px;align-items:center;flex:1;min-width:0}
+.quick-swatch{height:25px;width:25px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #ddd9d3;flex:none}
+.quick-swatch.selected{outline:2px solid #9a8c80;outline-offset:2px}
+.ink-separator{height:24px;border-left:1px solid #efe9e2}
+.quick-tool{min-width:32px;height:31px;border:1px solid #e7e6e3;background:#f8f8f6;border-radius:10px;font-size:18px;color:#68776e}
+.quick-tool.selected{background:#e5f5eb;border-color:#acd5c0;color:#2e8366}
+.open-tool-btn{border:1px solid #e7ddd4;background:#fff9f3;color:#a07b63;border-radius:10px;min-height:34px;font-size:11px;font-weight:850;padding:6px 10px;white-space:nowrap}
+.tool-drawer-heading{display:none}
+.hanzi-side-details{margin-top:12px;border:1px solid #e6eae6;border-radius:13px;background:#fcfdfb;overflow:hidden}
+.hanzi-side-details>summary{padding:12px;font-size:12px;font-weight:850;color:#567869;cursor:pointer;display:flex;justify-content:space-between;align-items:center;list-style:none;touch-action:manipulation}
+.hanzi-side-details>summary::-webkit-details-marker{display:none}
+.hanzi-side-details .expander{font-size:18px;transition:transform .16s}
+.hanzi-side-details[open] .expander{transform:rotate(180deg)}
+.hanzi-side-inner{padding:0 8px 8px}
+.hanzi-side-inner .hanzi-word-info{margin:0;gap:6px;padding:10px;font-size:11px}
+.hanzi-side-details .hanzi-compare-panel{margin:0 7px 9px;padding:10px}
+.hanzi-side-details .hanzi-compare-options{display:grid;grid-template-columns:1fr;gap:5px}
+.hanzi-side-details .hanzi-compare-actions{flex-wrap:wrap}
+.hanzi-side-details .hanzi-compare-actions a,.hanzi-side-details .hanzi-compare-actions button{flex:1;min-width:100%}
+body.focus-mode .quick-ink-bar{max-width:1250px;margin:7px auto}
+/* Tablet & phone: compact category bar and slide-out tool drawer */
+@media(max-width:960px){
+ body.practice-open .sidebar{padding:8px 13px;min-height:0}
+ body.practice-open .sidebar .logo-mark{width:29px;height:29px;font-size:21px;border-radius:9px}
+ body.practice-open .sidebar .logo-copy strong{font-size:12px}
+ body.practice-open .sidebar .category-nav{display:none!important}
+ body.practice-open .main-content{padding:0 12px 24px}
+ body.practice-open .practice-view{padding-top:7px}
+ body.practice-open .practice-header{padding:6px 0 7px;min-height:44px}
+ body.practice-open .practice-header h2{font-size:18px}
+ body.practice-open .practice-header h2 span{font-size:23px}
+ body.practice-open .practice-top{min-height:39px}
+ body.practice-open .practice-paper{max-width:none}
+ body.practice-open .drawing-stage{aspect-ratio:760/460}
+ .tool-backdrop:not(.hidden){position:fixed;inset:0;background:rgba(39,45,41,.38);z-index:79;touch-action:none}
+ body.practice-open .tool-card{display:block!important;position:fixed;z-index:80;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;max-height:83dvh;overflow:auto;overscroll-behavior:contain;transform:translateY(110%);visibility:hidden;pointer-events:none;transition:transform .22s ease,visibility .22s;box-shadow:0 -20px 50px rgba(40,60,50,.17);border-radius:22px 22px 0 0;padding:15px 18px calc(16px + env(safe-area-inset-bottom))}
+ body.practice-tools-open.practice-open .tool-card{transform:translateY(0);visibility:visible;pointer-events:auto}
+ .tool-drawer-heading{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid #ebece8;margin-bottom:16px}
+ .tool-drawer-heading strong{font-size:15px;color:#557a69}
+ #closeToolBtn{background:#f5f6f3;color:#687770;border-radius:10px;padding:9px 11px;font-size:12px;font-weight:850}
+ body.practice-open .tool-card>.tool-section,body.practice-open .tool-card>.data-action-grid{margin-bottom:18px}
+ body.practice-open .tool-card>.tool-divider{display:block;margin:11px 0}
+ body.practice-open .pastel-palette{max-width:420px}
+}
+@media(max-width:720px){
+ body.practice-open .drawing-stage{aspect-ratio:460/520}
+ body.practice-open .practice-top .back-btn{padding:8px 10px}
+ body.practice-open .practice-header h2{font-size:17px}
+ body.practice-open .practice-header h2 span{font-size:22px}
+ body.practice-open .practice-step-status{padding:5px 7px;font-size:10px}
+ .quick-ink-bar{gap:6px;min-height:40px;padding:5px 7px;margin-bottom:6px}
+ .quick-palette{gap:6px}
+ .quick-swatch{width:21px;height:21px}
+ .quick-ink-label{display:none}
+ .quick-tool{min-width:27px;height:29px;font-size:15px}
+ .open-tool-btn{min-height:30px;padding:5px 7px;font-size:10px}
+ .ink-separator{height:20px}
+ body.practice-open .paper-bar{height:29px}
+ body.practice-open .paper-bar-center{font-size:8px}
+}
+@media(max-width:380px){.quick-swatch{width:17px;height:17px}.quick-palette{gap:5px}.quick-ink-bar{gap:5px}.open-tool-btn{font-size:9px;padding:5px}.practice-top .voice-mini-launch{display:none}}
+/* Keep the writing board AND previous/next buttons visible on typical desktop heights. */
+@media(min-width:961px){body.practice-open .practice-layout{max-width:min(100%,calc(100vh + 365px));margin-inline:auto}}
+/* The full tool sidebar is already visible on desktop. */
+@media(min-width:961px){body.practice-open .open-tool-btn{display:none}}
+@media(max-width:960px){body.practice-open .open-tool-btn{display:inline-flex;align-items:center;justify-content:center}}
+
+/* V1.19 日文逐筆整套離線包管理 */
+.kana-pack-manager{margin:12px 0 14px;padding:13px 16px;border:1px solid #d9e8df;border-radius:16px;background:linear-gradient(130deg,#f6fcf8,#fff8f5);color:#547263;font-size:12px}
+.kana-pack-info{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.kana-pack-info strong{font-size:14px;color:#3f7761}.kana-pack-info span{font-size:11px;font-weight:800;border-radius:99px;background:#fff;padding:6px 10px;border:1px solid #dbe9e0}
+.kana-pack-manager p{margin:7px 0 10px;font-size:11px;line-height:1.7}.kana-pack-actions{display:flex;flex-wrap:wrap;gap:8px}.kana-pack-actions button{border:1px solid #cbded5;border-radius:12px;background:white;color:#568370;font-weight:850;font-size:11px;padding:11px 12px;min-height:42px}.kana-pack-actions button:first-child{background:#e4f5ec;color:#317653}.kana-pack-actions button:disabled{opacity:.43}.kana-pack-manager details{margin:10px 0 5px}.kana-pack-manager summary{cursor:pointer;color:#8a725b;font-weight:800;font-size:11px}.kana-pack-manager details p{word-break:break-all;line-height:1.9}.kana-pack-manager small{font-size:10px;color:#90a398;line-height:1.7;display:block}
+@media(max-width:720px){.kana-pack-manager{padding:10px 11px}.kana-pack-actions button{flex:1 1 42%;font-size:10px;padding:9px 5px}.kana-pack-info strong{font-size:12px}}
+
+/* V1.20 一鍵產生可攜離線網站 */
+.kana-pack-actions .kana-deploy-button{background:linear-gradient(135deg,#5eac8e,#397f71);border-color:#3f907b;color:white;font-weight:900;box-shadow:0 5px 15px rgba(73,142,111,.16)}
+.kana-pack-actions .kana-deploy-button:disabled{background:#e7edea;color:#9db3a8;border-color:#d8e2df;box-shadow:none;cursor:not-allowed}
+.kana-deploy-status{margin:8px 0 8px;padding:10px 13px;border:1px solid #dce9e0;background:#f3faf5;color:#587c6a;border-radius:12px;font-size:12px;line-height:1.7}
+
+/* V1.22 GitHub build information */
+.kana-build-tip{padding:11px 14px;border:1px solid #cae5d8;background:#f3faf5;color:#527b69;border-radius:14px;display:grid;gap:4px;line-height:1.7;font-size:11px;margin:10px 0}
+.kana-build-tip strong{font-size:12px;color:#3e7961}
+
+/* V1.23 MOE bopomofo original assets display */
+.zh-official-panel{margin:12px 16px 15px;padding:16px 17px;border-radius:17px;background:linear-gradient(135deg,#f0f9f4,#fff8f0);border:1px solid #dfece1;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.zh-official-intro{display:flex;align-items:center;gap:12px;flex:1;min-width:225px}
+.zh-official-icon{display:grid;place-items:center;flex:none;background:white;border-radius:15px;width:44px;height:44px;font-size:22px}
+.zh-official-intro strong{display:block;font-size:13px;color:#4e7662}
+.zh-official-intro p{font-size:11px;color:#718f80;line-height:1.55;margin:5px 0 0}
+.zh-official-actions a{display:inline-flex;padding:10px 12px;font-weight:800;font-size:11px;color:#508874;background:#fff;border:1px solid #cfe4d8;border-radius:12px;text-decoration:none}
+.zh-official-panel>small{width:100%;color:#8b948d;line-height:1.55;font-size:10px}
+.zh-official-practice{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:8px 12px;border:1px solid #dfede5;background:#f4faf6;border-radius:12px}
+.zh-official-practice button{padding:10px 14px;border:1px solid #abd8c4;background:#e1f3e9;border-radius:11px;color:#417f67;font-size:12px;font-weight:900}
+.zh-official-practice button:disabled{opacity:.6;cursor:not-allowed}
+.zh-official-practice span{font-size:11px;color:#739683}
+.zh-audit-official{color:#427f67;font-size:12px;font-weight:800;margin-top:12px}
+.zh-official-overlay{position:fixed;inset:0;z-index:1800;background:rgba(32,48,43,.62);display:grid;place-items:center;padding:15px}
+.zh-official-overlay.hidden{display:none!important}
+.zh-official-dialog{max-width:590px;width:min(100%,590px);border-radius:22px;background:#fffdf9;padding:18px;box-shadow:0 15px 60px rgba(21,38,30,.3)}
+.zh-official-dialog-head,.zh-official-dialog-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.zh-official-dialog-head strong{display:block;color:#435d52;font-size:19px}
+.zh-official-dialog-head small{display:block;color:#91a99c;font-size:11px;margin-top:4px}
+.zh-official-dialog-head button{width:37px;height:37px;background:#f5f0eb;border-radius:10px;color:#76716d;font-size:18px}
+.zh-official-media{margin:14px 0;min-height:210px;height:min(52vh,460px);border:1px solid #e9dfd5;border-radius:14px;background:white;overflow:hidden}
+.zh-official-media object{width:100%;height:100%;display:block}
+.zh-official-dialog-foot button{background:#e3f2e8;color:#4c7f68;padding:10px 14px;border-radius:11px;font-weight:900}
+.zh-official-dialog-foot a{font-size:11px;color:#4b876c}
+.zh-official-dialog>p{font-size:10px;color:#96a198;line-height:1.5;margin:12px 0 0}
+@media(max-width:720px){.zh-official-panel{margin:10px 7px;padding:12px}.zh-official-media{height:min(49vh,350px)}.zh-official-dialog{padding:13px}.zh-official-practice{margin-top:8px}.zh-official-practice button{font-size:11px}}
+
+/* V1.24: 40 字開源繁體離線筆順進度；不把字形示意誤標為官方認證 */
+.hanzi-offline-status{display:inline-flex;align-items:center;max-width:100%;background:#fff8ee;border:1px solid #eadac6;color:#886e52;border-radius:12px;font-size:12px;font-weight:800;padding:9px 13px;margin:10px 0 15px;line-height:1.5}
+.hanzi-offline-status.all-ready{background:#edf8f2;border-color:#c9e4d3;color:#40795c}
+.hanzi-grid .symbol-card.hanzi-offline-ready .symbol-cell{box-shadow:inset 0 0 0 2px #a8d4be}
+@media(max-width:720px){.hanzi-offline-status{font-size:11px;padding:8px 10px}}
+
+/* V1.25 real-source Hanzi lesson pack */
+.hanzi-pack-manager{margin:12px 0 16px;padding:14px;border-radius:17px;background:#f4faf7;border:1px solid #d7e9df;color:#466b5d}
+.hanzi-pack-heading{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hanzi-pack-heading strong{font-size:14px}.hanzi-pack-heading small{display:block;color:#729183;font-size:11px;margin-top:4px;line-height:1.6}
+.hanzi-pack-counter{white-space:nowrap;background:white;border:1px solid #d7e9df;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900}
+.hanzi-pack-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.hanzi-pack-actions button{min-height:41px;padding:8px 14px;border-radius:12px;border:1px solid #b9dbca;background:#fff;color:#377a5a;font-weight:850;font-size:12px;touch-action:manipulation}
+.hanzi-pack-actions button:first-child{background:#dff3e6}.hanzi-pack-actions button:disabled{opacity:.4;cursor:not-allowed}
+.hanzi-pack-note{font-size:12px;line-height:1.6;margin:12px 0 3px;overflow-wrap:anywhere}
+.hanzi-pack-details summary{font-weight:750;font-size:11px;cursor:pointer;color:#557d69;margin-top:10px}
+.hanzi-pack-details p{font-size:11px;line-height:1.65}.hanzi-pack-details a{color:#277957}
+@media(max-width:540px){.hanzi-pack-manager{padding:12px}.hanzi-pack-actions{flex-direction:column}.hanzi-pack-actions button{width:100%}.hanzi-pack-heading small{font-size:10px}}
+
+/* V1.26 40 字分課複習、待練清單與 A4 一課10字練習紙 */
+.hanzi-study-kit{background:#fffdfa;border:1px solid #eee2d5;border-radius:19px;padding:16px;display:grid;gap:13px;box-shadow:0 5px 18px rgba(174,144,112,.06)}
+.hanzi-study-title{display:flex;align-items:center;gap:12px;color:#755f51}.hanzi-study-icon{font-size:24px;background:#f8eee1;border-radius:13px;padding:9px}.hanzi-study-title strong{display:block;font-size:15px}.hanzi-study-title small{display:block;font-size:11px;color:#a08e82;line-height:1.6;margin-top:3px}
+.hanzi-study-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.hanzi-study-actions label{font-size:12px;color:#938377;font-weight:800}.hanzi-study-actions select{background:#fff;border:1px solid #dddbd2;border-radius:12px;color:#665f58;padding:10px 12px;min-height:40px;flex:1;min-width:165px;max-width:315px}.hanzi-study-actions button{border:1px solid #d2e8d6;border-radius:12px;background:#e4f4e9;color:#527f65;font-weight:900;padding:10px 14px;min-height:40px}
+.hanzi-review-box{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px;border:1px solid #eee3d7;border-radius:14px;background:#fff8f2}.hanzi-review-box>span{font-size:12px;color:#9b745e;font-weight:900}.hanzi-review-box>button{border:1px solid #e2c9ac;border-radius:10px;background:white;color:#9f745b;font-weight:850;font-size:11px;padding:9px 11px}.hanzi-review-box>button.selected{background:#e7f4e9;color:#547d63;border-color:#b9dec4}
+.hanzi-review-chars{display:flex;gap:5px;flex-wrap:wrap;align-items:center;width:100%;min-height:23px}.hanzi-review-chars button{background:#fff;border:1px solid #d6c3b0;border-radius:9px;padding:5px 9px;font-size:19px;color:#7b6961}.hanzi-review-empty{font-size:11px!important;color:#ae9a86!important;font-weight:500!important;line-height:1.6}
+.hanzi-study-note{font-size:10px;color:#a39b94;line-height:1.5;margin:0}.hanzi-grid-empty{grid-column:1/-1;color:#9c8a7c;text-align:center;padding:23px;background:#fff7f2;border-radius:12px;font-size:12px}
+.hanzi-review-quick{display:flex;align-items:center;gap:11px;justify-content:space-between;background:#fff8ed;border:1px solid #f1e4ce;border-radius:11px;padding:7px 12px;margin:3px 0 7px;font-size:12px;color:#967d69}.hanzi-review-quick>button{border-radius:10px;border:1px solid #e6c8ad;background:#fff;color:#946f56;font-weight:900;padding:8px 11px}.hanzi-review-quick>button.selected{background:#e7f6ec;border-color:#afdac0;color:#518468}
+@media(max-width:720px){.hanzi-study-kit{padding:11px}.hanzi-study-title strong{font-size:13px}.hanzi-study-title small{font-size:10px}.hanzi-study-actions button{width:100%}.hanzi-review-quick{padding:6px 8px;font-size:10px}}
+@media print{
+ body.printing-hanzi-lesson #printSheet{display:block!important;width:100%;font-family:'Noto Sans CJK TC','Microsoft JhengHei',sans-serif}
+ body.printing-hanzi-lesson #printSheet>h1{font-size:17pt;margin:1mm 0 2mm}
+ body.printing-hanzi-lesson #printSheet>p{font-size:9pt;margin:1mm 0 3mm}
+ .hanzi-worksheet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(5,1fr);gap:2.6mm 4mm;width:100%;height:244mm}
+ .hanzi-worksheet-item{border:1px solid #d8c7bd;border-radius:2mm;display:flex;flex-direction:column;padding:1.5mm;overflow:hidden;min-height:0;break-inside:avoid}
+ .hanzi-worksheet-caption{height:6mm;display:flex;align-items:baseline;gap:4mm;color:#66564d;white-space:nowrap}.hanzi-worksheet-caption strong{font-size:10.5pt}.hanzi-worksheet-caption span{font-size:8pt;color:#8a7f79}
+ .hanzi-worksheet-tiles{flex:1;min-height:0;display:flex;gap:2mm;justify-content:center;align-items:center}
+ .hanzi-worksheet-tiles svg{display:block;height:100%;width:auto;max-width:47%;max-height:37mm;aspect-ratio:1/1}
+}
+
+/* V1.27: 國字三步自主書寫、家長熟練標記（非自動判分） */
+.hanzi-stage-bar{margin:9px 0 12px;padding:10px 12px;border:1px solid #d9e7dc;border-radius:15px;background:#f8fcf8;display:grid;gap:9px}
+.hanzi-stage-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#4e7c6a;font-size:12px}
+.hanzi-stage-heading>span{color:#7f988c;font-size:11px}
+.hanzi-stage-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.hanzi-stage-controls button{background:#fff;border:1px solid #cbded2;color:#658776;border-radius:12px;padding:10px 4px;min-width:0;min-height:43px;font-weight:850;font-size:12px;cursor:pointer}
+.hanzi-stage-controls button.selected{background:#d9f0e1;color:#337859;border-color:#8bcbaa;box-shadow:inset 0 0 0 1px #9ed4b4}
+.hanzi-stage-bottom{display:flex;align-items:center;justify-content:space-between;gap:9px}
+.hanzi-stage-bottom>span{font-size:10px;line-height:1.45;color:#8aa294;flex:1}
+.hanzi-mastery-btn{min-height:38px;background:#fff5e5;border:1px solid #e8d0a8;color:#946b3d;border-radius:11px;padding:8px 11px;font-weight:900;font-size:11px;white-space:nowrap}
+.hanzi-mastery-btn.selected{background:#e0f4e7;border-color:#a7d7b6;color:#448162}
+.template-svg.study-ghost > svg{opacity:.23}
+.template-svg.study-ghost .guide-line,.template-svg.study-ghost .arrow-tri,.template-svg.study-ghost .guide-label,.template-svg.study-ghost .reference-guide,.template-svg.study-ghost .offline-median,.template-svg.study-ghost .guide-leader{display:none!important}
+.hanzi-mastery-hub{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:10px 12px;background:#f0f9f3;border:1px solid #d3e7d8;border-radius:14px}
+.hanzi-mastery-hub>strong{color:#478268;font-size:12px}
+.hanzi-mastery-hub>p{flex:1;margin:0;font-size:12px;font-weight:750;color:#5e8a77}
+.hanzi-mastery-hub>button{border-radius:11px;border:1px solid #a8d4b3;color:#447e60;background:#fff;font-size:11px;font-weight:850;padding:9px 11px}
+.hanzi-mastery-hub>button.selected{background:#d9f0e1}
+.hanzi-mastery-hub>small{width:100%;font-size:10px;color:#8f9d90;line-height:1.4}
+.symbol-card.hanzi-mastered .symbol-cell{background:#e8f6ec!important;border-color:#97c9ac!important}
+.symbol-card.hanzi-mastered::after{content:"✓";position:absolute;top:4px;right:4px;color:#348161;background:#fff;border-radius:99px;padding:1px 4px;font-size:10px;pointer-events:none}
+@media(max-width:720px){.hanzi-stage-bar{padding:9px}.hanzi-stage-controls{gap:5px}.hanzi-stage-controls button{font-size:11px;min-height:40px}.hanzi-stage-bottom{flex-wrap:wrap}.hanzi-stage-bottom>span{width:100%;flex:initial}.hanzi-mastery-btn{margin-left:auto}.hanzi-stage-heading{font-size:11px}.hanzi-mastery-hub>p{flex-basis:100%}}
+
+/* V1.31 – 國字字形固定使用內建向量，不顯示字型載入中途的替代字體。 */
+.fixed-hanzi{display:inline-block;flex:0 0 auto;width:1em;height:1em;vertical-align:-.12em;overflow:visible;fill:currentColor;pointer-events:none}
+.fixed-hanzi-cell{width:1.24em;height:1.24em;vertical-align:middle}
+.fixed-hanzi-title{width:1.08em;height:1.08em;vertical-align:-.12em}
+.hanzi-grid .symbol-card .symbol-cell{display:flex;align-items:center;justify-content:center;min-width:0;line-height:1;contain:layout}
+.hanzi-level:not(:disabled){cursor:pointer}
+#practiceTitle[aria-label]{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle}
+
+/* V1.32: collapsed parent QA panel / accessible compact cards */
+.hanzi-quality-panel{margin:6px 0 14px;border:1px solid #d8e8df;border-radius:16px;background:#f7fbf8;color:#4d7764;overflow:hidden}
+.hanzi-quality-panel>summary{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none;min-height:49px;padding:12px 15px;font-size:13px;font-weight:900;touch-action:manipulation}
+.hanzi-quality-panel>summary::-webkit-details-marker{display:none}.hanzi-quality-panel>summary:before{content:'▸';margin-right:5px}.hanzi-quality-panel[open]>summary:before{content:'▾'}
+#hanziQualityMini{font-weight:700;color:#729685;font-size:11px;text-align:right}
+.hanzi-quality-body{padding:0 14px 15px}.hanzi-quality-hint,.hanzi-quality-foot{font-size:11px;color:#7d978d;line-height:1.7;margin:7px 0 13px}
+.hanzi-quality-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.hanzi-quality-stat{display:flex;flex-direction:column;gap:4px;background:white;border:1px solid #dcebe2;border-radius:12px;padding:12px;min-width:0}
+.hanzi-quality-stat b{font-size:18px;color:#447e67}.hanzi-quality-stat strong{font-size:11px;color:#5a7c70}.hanzi-quality-stat small{font-size:10px;color:#90a49b;line-height:1.45}
+.hanzi-quality-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 10px}.hanzi-quality-controls label{font-size:11px;font-weight:800}.hanzi-quality-controls select,.hanzi-quality-controls button{border:1px solid #bedbcd;background:#fff;color:#507d69;min-height:40px;border-radius:11px;padding:8px 10px;font-size:12px;font-weight:800;min-width:0}.hanzi-quality-controls button{background:#e2f3e9}.hanzi-quality-count{font-size:11px;line-height:1.5;margin:9px 0;color:#7c9488}
+.hanzi-quality-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;max-height:330px;overflow:auto;padding:2px}.hanzi-quality-char{display:flex;align-items:center;flex-direction:column;gap:3px;border-radius:11px;border:1px solid #dce8e0;background:#fff;padding:8px 3px;min-width:0;min-height:73px}.hanzi-quality-char strong{font-size:25px;color:#688474}.hanzi-quality-char small{font-size:10px;color:#a49794;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.hanzi-quality-char span{font-size:9px;color:#b0a6a0}.hanzi-quality-char.issue{border-color:#eabda5;background:#fff4eb}.hanzi-quality-char.has-strokes{border-color:#89bfa5}.hanzi-quality-char:focus-visible{outline:3px solid #79b999;outline-offset:1px}
+.hanzi-word-audio{border:1px solid #d7e7da;background:#ecf7ee;color:#5b8d73;padding:7px 11px;border-radius:11px;font-size:11px;font-weight:850;touch-action:manipulation}
+@media(max-width:720px){.hanzi-quality-panel>summary{padding:10px 12px;font-size:12px}.hanzi-quality-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.hanzi-quality-controls{gap:6px}.hanzi-quality-controls label{width:100%}.hanzi-quality-controls select{flex:1}.hanzi-quality-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.hanzi-quality-char strong{font-size:22px}.hanzi-quality-stat b{font-size:16px}}
+
+/* V1.34：家長筆順中線與同來源字形檢視 */
+.hanzi-alignment-tools{padding:9px 5px 12px;display:grid;gap:7px}
+.hanzi-alignment-tools button{background:#e4f4ed;color:#397b65;border:1px solid #c2dfd2;padding:10px 12px;border-radius:12px;font-weight:800;font-size:12px;text-align:center}
+.hanzi-alignment-tools button:disabled{background:#f4f4f4;color:#929797;border-color:#e6e6e6;cursor:not-allowed}
+.hanzi-alignment-tools p{margin:0;color:#8a8481;line-height:1.6;font-size:11px}
+.hanzi-alignment-layer{pointer-events:none}
+.hanzi-alignment-center{fill:none;stroke:#188b9a;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:16 11;opacity:.96}
+.hanzi-alignment-outlier{fill:#e9585c;stroke:white;stroke-width:3;opacity:.95}
+
+/* V1.35: compact playback beside pen / eraser, avoid hiding the writing pad. */
+.quick-guide-btn,.reference-ready-btn{border:1px solid #d9e8db;border-radius:12px;background:#edf7f1;color:#46886a;min-height:36px;padding:6px 11px;white-space:nowrap;font-weight:850;font-size:12px;flex-shrink:0}
+.quick-guide-btn:disabled{color:#9ca5a1;background:#f5f7f5;cursor:not-allowed;border-color:#ecefec;opacity:.78}
+.reference-ready-btn{background:#fff1df;border-color:#eecfaf;color:#9d7143;box-shadow:0 2px 9px #cea56923}
+.reference-ready-btn.hidden{display:none!important}
+@media(max-width:760px){.quick-guide-btn{font-size:11px;min-height:33px;padding:5px 8px}.reference-ready-btn{min-height:33px;font-size:10px;padding:5px 7px}}
+@media(max-width:440px){.quick-guide-btn{font-size:10px;padding:4px 6px;min-height:30px}.reference-ready-btn{font-size:9px;min-height:30px;padding:4px 5px}.quick-ink-bar{flex-wrap:wrap}.quick-palette{flex:1 1 140px}}
+
+/* V1.36 beginner-first network retrieval; mobile-first progress controls */
+.hanzi-fetch-panel{margin:13px 0 8px;padding:12px 14px;border:1px solid #d7e8db;border-radius:14px;background:rgba(255,255,255,.68)}
+.hanzi-fetch-heading{display:flex;flex-direction:column;gap:4px}.hanzi-fetch-heading strong{font-size:13px;color:#43765b}.hanzi-fetch-heading small{font-size:11px;color:#657e72;line-height:1.6}
+.hanzi-fetch-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.hanzi-fetch-actions label{font-weight:700;font-size:12px}.hanzi-fetch-actions select{height:38px;border:1px solid #cddfd1;border-radius:9px;background:#fff;padding:6px;font-size:12px;color:#32594b}.hanzi-fetch-actions button{border:1px solid #b7d5c5;background:#e4f3e9;color:#316d4f;border-radius:10px;min-height:38px;padding:7px 12px;font-size:12px;font-weight:800;touch-action:manipulation}.hanzi-fetch-actions button:disabled{opacity:.45;cursor:not-allowed}.hanzi-fetch-actions #hanziStopFetchBtn{background:#fff7f2;color:#a47761}.hanzi-fetch-actions #hanziMissingCsvBtn{background:#fff}.hanzi-fetch-status{font-size:12px;line-height:1.7;color:#536f61;margin:10px 0 0;overflow-wrap:anywhere;white-space:normal}
+@media(max-width:600px){.hanzi-fetch-panel{padding:10px}.hanzi-fetch-actions{display:grid;grid-template-columns:1fr 1fr}.hanzi-fetch-actions label{align-self:center}.hanzi-fetch-actions select{width:100%}.hanzi-fetch-actions #hanziFetchBtn,.hanzi-fetch-actions #hanziStopFetchBtn{width:100%}.hanzi-fetch-actions #hanziMissingCsvBtn{grid-column:span 2}}
+
+/* V1.37 – 繁體國字三個獨立子頁，選字頁進入即可看見等級／課程 */
+.hanzi-subnav{margin:4px 10px 12px 18px;padding:7px 0 7px 11px;border-left:2px solid #e2eae3;display:grid;gap:4px}
+.hanzi-subnav.hidden{display:none!important}
+.hanzi-subnav-item{border-radius:11px;padding:10px 10px;display:flex;align-items:center;gap:8px;text-align:left;color:#7a8881;background:transparent;font-size:12px;font-weight:850;min-height:38px;touch-action:manipulation}
+.hanzi-subnav-item>span{font-size:15px}
+.hanzi-subnav-item.selected{background:#e5f4eb;color:#407c5b;box-shadow:inset 0 0 0 1px #c6e4d2}
+.hanzi-subnav-item:focus-visible,.hanzi-print-chargrid button:focus-visible{outline:3px solid #98cbaa;outline-offset:2px}
+body.hanzi-library #dailyStrip,body.hanzi-library .overview-row{display:none!important}
+body.hanzi-library .main-content{padding-top:0}
+body.hanzi-library .hanzi-hub{margin-top:4px!important;gap:11px!important}
+body.hanzi-library .hanzi-hub-top{display:none!important}
+body.hanzi-library .hanzi-lesson-head{margin-top:4px}
+body.hanzi-library .hanzi-level{min-height:89px;padding:12px;gap:4px}
+body.hanzi-library .hanzi-level small{display:none}
+body.hanzi-library .hanzi-level-icon{font-size:20px}
+body.hanzi-library .hanzi-level em{margin-top:3px}
+body.hanzi-library #tableHeading{padding:10px 16px!important}
+body.hanzi-library .library-toolbar{min-height:41px}
+body.hanzi-library .top-header{margin-bottom:2px}
+body.hanzi-library .hanzi-subpage{margin:10px 0 24px;display:grid;gap:15px}
+body.hanzi-library .hanzi-subpage.hidden{display:none!important}
+.hanzi-subpage-heading{display:flex;align-items:center;gap:14px;padding:17px 20px;border:1px solid #d9eade;background:#f0f8f3;border-radius:17px;color:#456e56}
+.hanzi-subpage-heading h2{font-size:20px;margin:0 0 5px}
+.hanzi-subpage-heading p{font-size:12px;line-height:1.6;margin:0;color:#6b9080}
+.hanzi-subpage-emoji{font-size:27px;flex:none}
+.hanzi-print-custom{background:#fff;border-radius:17px;border:1px solid #e9e4dd;padding:19px;display:grid;gap:14px}
+.hanzi-print-custom strong{display:block;color:#746657;font-size:15px}
+.hanzi-print-custom small{display:block;color:#a19b94;font-size:11px;margin-top:5px}
+.hanzi-print-selection{display:grid;gap:10px}
+.hanzi-print-summary{font-size:12px;color:#678974;margin:0}
+.hanzi-print-group{border:1px solid #e9e9e5;border-radius:12px;padding:8px 10px;background:#fffdfb}
+.hanzi-print-group>summary{font-size:12px;color:#6c8070;font-weight:850;cursor:pointer;padding:5px}
+.hanzi-print-chargrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;padding:8px 0}
+.hanzi-print-chargrid button{border:1px solid #e5e2dc;border-radius:10px;background:#fff;min-height:42px;font-size:21px;color:#746969;touch-action:manipulation}
+.hanzi-print-chargrid button.selected{border-color:#7bbf97;background:#daf1e3;color:#36704f;box-shadow:inset 0 0 0 1px #a6dac0}
+.hanzi-print-buttons{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.hanzi-print-buttons button{padding:11px 16px;border-radius:11px;border:1px solid #d3e5d9;background:#eaf6ed;color:#4a8462;font-size:12px;font-weight:850;min-height:42px}
+.hanzi-print-buttons button:last-child{background:#fff;color:#8c827d;border-color:#eae7e3}
+/* 列印與資料管理獨立時，不讓選字表或工具誤入頁面 */
+body.hanzi-library.hanzi-subpage-open .hanzi-hub{display:none!important}
+body.hanzi-library.hanzi-subpage-open .library-card{display:none!important}
+@media(max-width:960px){
+ .hanzi-subnav{margin:4px 0 10px;display:flex;flex-wrap:wrap;gap:6px;border-left:0;border-bottom:1px solid #e5ede8;padding:7px 6px}
+ .hanzi-subnav-item{font-size:11px;min-height:37px;padding:8px 10px}
+ .hanzi-print-chargrid{grid-template-columns:repeat(8,minmax(0,1fr))}
+}
+@media(max-width:720px){
+ body.hanzi-library .hanzi-levels{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+ body.hanzi-library .hanzi-level{min-height:72px;padding:8px 7px;border-radius:12px;gap:3px}
+ body.hanzi-library .hanzi-level-icon{font-size:18px}
+ body.hanzi-library .hanzi-level b{font-size:10px}
+ body.hanzi-library .hanzi-level em{font-size:9px}
+ body.hanzi-library .hanzi-lesson-head h3{font-size:13px}
+ body.hanzi-library .top-header{padding-block:9px!important;min-height:40px!important}
+ .hanzi-subnav-item{font-size:10px;min-height:35px}
+ .hanzi-subpage-heading{padding:12px;gap:9px}
+ .hanzi-subpage-heading h2{font-size:17px}
+ .hanzi-subpage-heading p{font-size:11px}
+ .hanzi-print-custom{padding:12px}
+ .hanzi-print-chargrid{grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+}
+/* V1.37 final first-screen refinements: selection is the primary activity */
+body.hanzi-library .top-header{display:none!important}
+body.hanzi-library .library-toolbar #guideAuditBtn,
+body.hanzi-library .library-toolbar #downloadGuidesBtn{display:none!important}
+body.hanzi-library .library-toolbar .legend{display:none!important}
+body.hanzi-library .hanzi-lessons{display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 1px 8px;scrollbar-width:thin}
+body.hanzi-library .hanzi-lesson{flex:1 0 0;min-width:170px;min-height:95px;gap:4px;scroll-snap-align:start;padding:10px 12px}
+body.hanzi-library .hanzi-lesson small{display:none}
+body.hanzi-library .hanzi-lesson .hanzi-mini{font-size:14px;letter-spacing:1px}
+body.hanzi-library .hanzi-lesson strong{font-size:12px}
+body.hanzi-library .hanzi-lesson .hanzi-lesson-count{font-size:10px}
+body.hanzi-library .hanzi-hub{gap:8px!important;margin-bottom:9px}
+body.hanzi-library .library-card{margin-top:5px!important}
+@media(max-width:720px){
+ body.hanzi-library .hanzi-lessons{margin:0 -2px;padding:3px 2px 8px}
+ body.hanzi-library .hanzi-lesson{flex:0 0 155px;min-width:155px;min-height:77px;padding:9px;border-radius:11px}
+ body.hanzi-library .hanzi-lesson .hanzi-mini{font-size:12px}
+ body.hanzi-library .hanzi-lesson strong{font-size:11px}
+ body.hanzi-library .hanzi-lesson .hanzi-lesson-count{font-size:9px}
+ body.hanzi-library .hanzi-lesson-head{margin:0}
+ body.hanzi-library .hanzi-lesson-head h3{font-size:12px}
+ body.hanzi-library .symbol-grid.hanzi-grid{gap:5px}
+ body.hanzi-library .symbol-grid.hanzi-grid .symbol-cell{min-height:49px}
+}
+
+/* V1.38 鉛筆國字練習單：一字一列，格子橫向排列，可選A4密度 */
+.hanzi-print-layout-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:13px 16px;margin:12px 0;background:#f5fbf6;border:1px solid #d8e8dc;border-radius:15px;color:#4b7865;font-size:13px}
+.hanzi-print-layout-controls>label:first-child{font-weight:900;white-space:nowrap}
+.hanzi-print-layout-controls select{min-width:260px;max-width:100%;padding:9px 10px;border:1px solid #c7dccd;border-radius:10px;background:white;color:#4c6556}
+.hanzi-print-repeat{display:flex;align-items:center;gap:6px;cursor:pointer}.hanzi-print-repeat input{accent-color:#79b596;width:16px;height:16px}
+#hanziPrintAdvice{margin:0;width:100%;font-size:12px;color:#658a74;line-height:1.65;font-weight:700}
+.hanzi-lesson-print-advice{font-size:11px;color:#70947c;font-weight:750}
+@media(max-width:720px){.hanzi-print-layout-controls{display:grid;grid-template-columns:1fr;gap:9px}.hanzi-print-layout-controls select{width:100%;min-width:0}.hanzi-print-repeat{font-size:12px}}
+@media print{
+ @page{size:A4 portrait;margin:8mm}
+ body.printing-hanzi-lesson #printSheet{width:194mm!important;max-width:194mm!important;margin:0!important;padding:0!important;overflow:visible!important;color:#333!important;font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif!important}
+ body.printing-hanzi-lesson #printSheet>h1,body.printing-hanzi-lesson #printSheet>p{display:none!important}
+ .hanzi-print-page{width:194mm;height:279mm;break-after:page;page-break-after:always;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box!important}
+ .hanzi-print-page:last-child{break-after:auto;page-break-after:auto}
+ .hanzi-print-head{height:8mm;display:flex;justify-content:space-between;align-items:center}
+ .hanzi-print-head h1{font-size:14pt!important;margin:0!important;line-height:1.1}
+ .hanzi-print-head span{font-size:8pt;color:#777}
+ .hanzi-print-info{height:7mm;line-height:7mm!important;margin:0!important;font-size:9pt!important;color:#777}
+ .hanzi-horizontal-print .hanzi-worksheet-grid{height:250mm!important;width:194mm!important;display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(var(--page-rows), minmax(0,1fr))!important;gap:0!important;margin:0!important;padding:0!important}
+ .hanzi-horizontal-print .hanzi-worksheet-item{height:100%!important;min-height:0!important;border:0!important;border-bottom:1px solid #e5dfd9!important;border-radius:0!important;margin:0!important;padding:0!important;display:flex!important;flex-direction:row!important;align-items:center!important;gap:1.2mm;break-inside:avoid}
+ .hanzi-horizontal-print .hanzi-worksheet-caption{width:21mm!important;min-width:21mm;max-width:21mm;flex:0 0 21mm;display:flex!important;flex-direction:column;align-items:flex-start;justify-content:center;gap:0!important;white-space:normal!important;height:100%!important;overflow:hidden;font-size:8pt!important;line-height:1.15!important}
+ .hanzi-horizontal-print .hanzi-worksheet-caption strong{font-size:14pt!important;line-height:1.2!important;color:#454545}
+ .hanzi-horizontal-print .hanzi-worksheet-caption span{font-size:8pt!important;color:#777}
+ .hanzi-horizontal-print .hanzi-worksheet-caption small{font-size:7pt!important;max-width:20mm;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+ .hanzi-horizontal-print .hanzi-worksheet-tiles{width:auto!important;min-width:0!important;flex:1!important;height:auto!important;display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;gap:.7mm!important;overflow:visible!important}
+ .hanzi-horizontal-print .hanzi-worksheet-tiles svg{width:var(--cell-size)!important;height:var(--cell-size)!important;max-width:none!important;max-height:none!important;aspect-ratio:1!important;flex:none!important;margin:0!important;padding:0!important}
+ .hanzi-horizontal-print .hanzi-worksheet-tiles svg.second-trace path:last-child{opacity:.6}
+ .hanzi-print-foot{font-size:8pt;color:#999;line-height:5mm;height:5mm;text-align:right;margin:0!important;padding:0!important}
+}
+
+
+/* V1.39 A4 淡米字線：與格數獨立設定、SVG向量列印，不依賴背景色列印 */
+.hanzi-print-grid-toggle{display:inline-flex;align-items:center;gap:8px;color:#74645c;font-size:12px;font-weight:750;cursor:pointer}
+.hanzi-print-grid-toggle input{accent-color:#d2a291;width:16px;height:16px;flex:none}
+.hanzi-print-layout-controls label[for=hanziPrintCells]{font-weight:900;white-space:nowrap}
+.hanzi-print-layout-controls #hanziPrintCells{min-width:215px}
+@media(max-width:720px){.hanzi-print-layout-controls #hanziPrintCells{width:100%;min-width:0}}
+@media print{
+ .hanzi-horizontal-print .hanzi-worksheet-tiles svg.hanzi-print-cell{print-color-adjust:exact!important;-webkit-print-color-adjust:exact!important}
+ .hanzi-horizontal-print .hanzi-worksheet-tiles svg.hanzi-print-cell path{vector-effect:non-scaling-stroke}
+}
+
+/* V1.41 國字詞語發音：不增加畫板上方大量空白 */
+.hanzi-word-listen{font-size:12px;font-weight:800;color:#487763;background:#eaf6ee;border:1px solid #c1dfce;border-radius:14px;padding:9px 12px;white-space:nowrap;min-height:40px}
+.hanzi-word-listen:hover{background:#d8ede0}
+.hanzi-reading-bar{display:flex;align-items:center;min-height:23px;margin:0 0 2px;padding:2px 8px;color:#7e796f;font-size:11px;line-height:1.4;gap:6px}
+.hanzi-reading-bar.hidden,.hanzi-word-listen.hidden{display:none!important}
+@media(max-width:720px){.hanzi-word-listen{font-size:11px;padding:6px 7px;min-height:36px}.hanzi-reading-bar{font-size:10px;padding:0 5px}.practice-open .practice-top-actions{gap:5px}}
+@media(max-width:400px){.hanzi-word-listen{font-size:10px;padding:5px 6px}.practice-open .practice-top .voice-mini-launch{display:none}}
+
+/* V1.42 — 回放孩子自己的畫線，與教材筆順示範嚴格區分。 */
+.kid-replay-row{display:flex;align-items:center;flex-wrap:wrap;gap:9px;padding:10px 12px;margin:8px 0 12px;border:1px solid #e4e7db;border-radius:15px;background:linear-gradient(100deg,#f3faf5,#fffaf5)}
+.kid-replay-btn{border:1px solid #a3cfbb;border-radius:12px;background:#e3f5e9;color:#337c68;min-height:38px;padding:8px 14px;font-size:13px;font-weight:900;white-space:nowrap}
+.kid-replay-btn.playing{border-color:#e5bc9d;background:#fff0de;color:#976344}
+.kid-replay-row label{display:flex;gap:7px;align-items:center;white-space:nowrap;font-size:12px;color:#708a7f;font-weight:750}
+.kid-replay-row select{font:inherit;font-size:12px;color:#596d63;background:white;border:1px solid #e0e4dc;border-radius:9px;padding:7px;max-width:130px}
+#myReplayStatus{flex:1;min-width:170px;font-size:11px;color:#849085;line-height:1.5}
+@media(max-width:720px){.kid-replay-row{gap:7px;padding:9px;margin-top:6px}.kid-replay-btn{flex:none;font-size:12px;min-height:38px}.kid-replay-row select{max-width:108px}.kid-replay-row label{font-size:11px}#myReplayStatus{flex-basis:100%;font-size:10px}}
+
+/* V1.44 · A4 multi-character worksheet toolbar */
+.multi-worksheet{margin:16px 0 18px;border:1px solid #e6d6bf;border-radius:18px;background:#fffaf2;padding:16px;box-shadow:0 5px 18px #806f5720}
+.multi-worksheet.hidden,.multi-worksheet-picker.hidden{display:none!important}
+.multi-worksheet-heading{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.multi-worksheet-heading strong{font-size:17px;color:#685447}.multi-worksheet-heading p{margin:4px 0 0;color:#88796e;font-size:12px}
+.multi-primary{border:0;border-radius:11px;background:#729e85;color:white;font-weight:800;padding:11px 15px;cursor:pointer;white-space:nowrap}
+.multi-primary:disabled{opacity:.45;cursor:not-allowed}
+.multi-worksheet-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0 9px}
+.multi-worksheet-controls label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:750;color:#77685c;min-width:0}
+.multi-worksheet-controls select{width:100%;padding:9px 6px;border:1px solid #dfd7c9;border-radius:9px;background:white;font:inherit;font-weight:500;color:#544d46}
+.multi-worksheet-switches{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:#716b63}
+.multi-worksheet-switches label{display:flex;align-items:center;gap:6px}.multi-worksheet-switches input{accent-color:#729e85}
+.multi-worksheet-note{font-size:12px;color:#718577;margin:12px 0 0}
+.multi-worksheet-picker{margin-top:14px;padding-top:12px;border-top:1px solid #ebe0d3}
+.multi-picker-actions{display:flex;align-items:center;gap:8px;margin-bottom:10px}.multi-picker-actions button{padding:6px 11px;border-radius:8px;border:1px solid #d9cdba;background:#fff;cursor:pointer}.multi-picker-actions span{font-size:12px;color:#777}
+.multi-symbols{display:grid;grid-template-columns:repeat(auto-fill,minmax(43px,1fr));gap:7px;max-height:195px;overflow:auto}
+.multi-symbol{border:1px solid #ddd2c6;background:white;border-radius:8px;min-height:40px;font-size:18px;cursor:pointer;color:#554a41}.multi-symbol.selected{background:#d9eddb;border:2px solid #75a587}
+@media(max-width:720px){.multi-worksheet-heading{align-items:flex-start;flex-direction:column}.multi-worksheet-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.multi-primary{width:100%}}
+@media print{.multi-print-cell text{paint-order:normal}}
+
+/* V1.46 one square per symbol on single-page A4 */
+@media print {
+ body.printing-hanzi-lesson #printSheet.compact-print-sheet{width:194mm!important;height:279mm!important;max-width:194mm!important;display:block!important}
+ .compact-print-page{width:194mm!important;height:279mm!important;display:flex!important;flex-direction:column!important;overflow:hidden!important;break-inside:avoid!important;page-break-inside:avoid!important;box-sizing:border-box!important}
+ .compact-print-head{height:10mm;flex:none;display:flex;align-items:center;justify-content:space-between}
+ .compact-print-head h1{font-size:15pt!important;margin:0!important;line-height:1.1!important}
+ .compact-print-head span{font-size:9pt;color:#777}
+ .compact-print-info{height:8mm;flex:none;font-size:9pt;color:#777}
+ .compact-print-grid{display:grid!important;grid-template-columns:repeat(var(--compact-cols),minmax(0,1fr))!important;grid-template-rows:repeat(var(--compact-rows),minmax(0,1fr))!important;flex:1!important;min-height:0!important;gap:1mm!important}
+ .compact-symbol{min-height:0!important;min-width:0!important;box-sizing:border-box!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;break-inside:avoid!important}
+ .compact-symbol svg.multi-print-cell{display:block!important;width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;aspect-ratio:1!important;object-fit:contain!important;flex:0 1 auto!important}
+ .compact-print-foot{height:5mm;flex:none;text-align:right;font-size:8pt;color:#999}
+}

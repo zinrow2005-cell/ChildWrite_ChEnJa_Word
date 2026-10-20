@@ -1,0 +1,217 @@
+{
+  "previous_version": "1.42",
+  "new_version": "1.43",
+  "note": "Lesson numbering only; per-character progress identifiers unchanged.",
+  "lessons": [
+    {
+      "level": 1,
+      "old_lesson": 1,
+      "new_lesson": 1,
+      "title": "筆畫小種子",
+      "characters": "一二三十人大小口日月"
+    },
+    {
+      "level": 1,
+      "old_lesson": 2,
+      "new_lesson": 2,
+      "title": "自然小探險",
+      "characters": "山水火木土田石川天上"
+    },
+    {
+      "level": 1,
+      "old_lesson": 3,
+      "new_lesson": 3,
+      "title": "我的小身體",
+      "characters": "下中左右手目耳足心子"
+    },
+    {
+      "level": 1,
+      "old_lesson": 4,
+      "new_lesson": 4,
+      "title": "生活小故事",
+      "characters": "女父母白牛羊生正米八"
+    },
+    {
+      "level": 1,
+      "old_lesson": 21,
+      "new_lesson": 5,
+      "title": "常見數字與文字",
+      "characters": "工王玉文方四五六七九"
+    },
+    {
+      "level": 1,
+      "old_lesson": 22,
+      "new_lesson": 6,
+      "title": "每天會用的字",
+      "characters": "刀力太午早半本用出立"
+    },
+    {
+      "level": 2,
+      "old_lesson": 5,
+      "new_lesson": 7,
+      "title": "我的家人與朋友",
+      "characters": "好你我他她們爸媽哥姐"
+    },
+    {
+      "level": 2,
+      "old_lesson": 6,
+      "new_lesson": 8,
+      "title": "花草與天氣",
+      "characters": "花草林雨雲風星河海光"
+    },
+    {
+      "level": 2,
+      "old_lesson": 7,
+      "new_lesson": 9,
+      "title": "生活食物",
+      "characters": "吃喝果菜肉魚茶香甜飯"
+    },
+    {
+      "level": 2,
+      "old_lesson": 8,
+      "new_lesson": 10,
+      "title": "學習與出門",
+      "characters": "字書畫看玩走跑車來去"
+    },
+    {
+      "level": 2,
+      "old_lesson": 23,
+      "new_lesson": 11,
+      "title": "朋友與日常稱呼",
+      "characters": "友名多少每兩同自老師"
+    },
+    {
+      "level": 2,
+      "old_lesson": 24,
+      "new_lesson": 12,
+      "title": "位置時間與比較",
+      "characters": "新年前後長短高低近遠"
+    },
+    {
+      "level": 3,
+      "old_lesson": 9,
+      "new_lesson": 13,
+      "title": "學校裡的探索",
+      "characters": "家校室班課問答習記知"
+    },
+    {
+      "level": 3,
+      "old_lesson": 10,
+      "new_lesson": 14,
+      "title": "大自然的變化",
+      "characters": "樹葉森湖雪雷虹暖晴島"
+    },
+    {
+      "level": 3,
+      "old_lesson": 11,
+      "new_lesson": 15,
+      "title": "城市與小旅行",
+      "characters": "橋路船站城街旅館店燈"
+    },
+    {
+      "level": 3,
+      "old_lesson": 12,
+      "new_lesson": 16,
+      "title": "心情與故事",
+      "characters": "開笑哭喜愛想感情聲夢"
+    },
+    {
+      "level": 3,
+      "old_lesson": 25,
+      "new_lesson": 17,
+      "title": "教室與學習工具",
+      "characters": "教筆紙桌椅窗陽陰秋園"
+    },
+    {
+      "level": 3,
+      "old_lesson": 26,
+      "new_lesson": 18,
+      "title": "可愛動物與活動",
+      "characters": "鳥貓狗兔猴蝴蝶球歌舞"
+    },
+    {
+      "level": 4,
+      "old_lesson": 13,
+      "new_lesson": 19,
+      "title": "健康與身體",
+      "characters": "醫護藥療痛鼻腳腦齒體"
+    },
+    {
+      "level": 4,
+      "old_lesson": 14,
+      "new_lesson": 20,
+      "title": "餐桌與料理",
+      "characters": "餐糖麵鍋糕飽鹽餅蔬煮"
+    },
+    {
+      "level": 4,
+      "old_lesson": 15,
+      "new_lesson": 21,
+      "title": "遊戲與活動",
+      "characters": "運遊戲樂親輪轉輕鬧跳"
+    },
+    {
+      "level": 4,
+      "old_lesson": 16,
+      "new_lesson": 22,
+      "title": "節日與心意",
+      "characters": "慶節禮謝願繪歡驚難福"
+    },
+    {
+      "level": 4,
+      "old_lesson": 27,
+      "new_lesson": 23,
+      "title": "觀察與解決問題",
+      "characters": "健康視察解決選擇傳達"
+    },
+    {
+      "level": 4,
+      "old_lesson": 28,
+      "new_lesson": 24,
+      "title": "環境與生活習慣",
+      "characters": "環境維持種植物潔整齊"
+    },
+    {
+      "level": 5,
+      "old_lesson": 17,
+      "new_lesson": 25,
+      "title": "閱讀與思考",
+      "characters": "識證議講讀覽觀辯題績"
+    },
+    {
+      "level": 5,
+      "old_lesson": 18,
+      "new_lesson": 26,
+      "title": "自然與動物",
+      "characters": "露霧霜霞鯨鷹鶴鱷蟬鱗"
+    },
+    {
+      "level": 5,
+      "old_lesson": 19,
+      "new_lesson": 27,
+      "title": "心情與品格",
+      "characters": "懷憶懼懂懶慮憂慰懇變"
+    },
+    {
+      "level": 5,
+      "old_lesson": 20,
+      "new_lesson": 28,
+      "title": "藝術與文化",
+      "characters": "藝攝劇雜繡織贈鑑寶鐘"
+    },
+    {
+      "level": 5,
+      "old_lesson": 29,
+      "new_lesson": 29,
+      "title": "語文與思辨",
+      "characters": "辭釋譯續繼權屬競賽爍"
+    },
+    {
+      "level": 5,
+      "old_lesson": 30,
+      "new_lesson": 30,
+      "title": "精密字形與文化",
+      "characters": "鑲嵌嚴謹慎簽籤蠟燭躍"
+    }
+  ]
+}

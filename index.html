@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#fff8f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="description" content="數字、注音、英文、日文與繁體國字五級練習，支援彩色空心描寫、離線方向示意及學習紀錄。" />
+  <title>小小練字樂園｜空心字描寫</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css?v=1.46.0" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="學習分類">
+    <button class="logo" id="logoHome" type="button" aria-label="回到練習表單">
+      <span class="logo-mark" aria-hidden="true">✎<small>✦</small></span>
+      <span class="logo-copy"><strong>小小練字樂園</strong><small>Little Letters Studio</small></span>
+    </button>
+    <div class="sidebar-overline">我的學習冒險</div>
+    <nav class="category-nav" id="categoryNav">
+      <button type="button" class="nav-item selected" data-category="numbers"><span class="nav-icon number-icon">12</span><span>數字練習<small>0 – 99</small></span><span class="nav-chevron">›</span></button>
+      <button type="button" class="nav-item" data-category="zhuyin"><span class="nav-icon zh-icon">ㄅ</span><span>注音符號<small>ㄅ ㄆ ㄇ ··· ㄦ</small></span><span class="nav-chevron">›</span></button>
+      <button type="button" class="nav-item" data-category="english"><span class="nav-icon en-icon">Aa</span><span>英文 ABC<small>A – Z · a – z</small></span><span class="nav-chevron">›</span></button>
+      <button type="button" class="nav-item" data-category="japanese"><span class="nav-icon jp-icon">あ</span><span>日文假名<small>平假名 · 片假名</small></span><span class="nav-chevron">›</span></button>
+      <button type="button" class="nav-item" data-category="hanzi"><span class="nav-icon hanzi-icon">字</span><span>繁體國字<small>五級學習 · 從簡單開始</small></span><span class="nav-chevron">›</span></button>
+    </nav>
+    <nav class="hanzi-subnav hidden" id="hanziSubnav" aria-label="繁體國字子選單">
+      <button type="button" data-hanzi-page="learn" class="hanzi-subnav-item selected"><span>✏️</span> 國字選字練習</button>
+      <button type="button" data-hanzi-page="print" class="hanzi-subnav-item"><span>🖨️</span> 國字練習單列印</button>
+      <button type="button" data-hanzi-page="data" class="hanzi-subnav-item"><span>🗂️</span> 逐筆資料管理</button>
+    </nav>
+    <div class="sidebar-note"><span class="note-sparkle">✧</span><strong>每天寫一點點，</strong><span>慢慢就會越來越棒！</span><div class="note-doodle">✎ 〰 ✦</div></div>
+    <div class="sidebar-footer">Made for little hands <span>♡</span><small>V1.46 · 每字單格列印</small></div>
+  </aside>
+  <main class="main-content" id="mainContent">
+    <header class="top-header">
+      <div class="header-crumb"><span class="mobile-mark">✎</span> 學習樂園 <span class="crumb-slash">/</span> <b id="breadcrumb">數字練習</b></div>
+      <div class="header-actions"><span class="today-chip">☀️ 今天也要開心練字</span><span class="star-chip">⭐ <strong id="topStarCount">0</strong> 個完成</span></div>
+    </header>
+    <section class="library-view" id="libraryView" aria-label="練字選字表單">
+      <div class="hero">
+        <div class="hero-text"><span class="hero-kicker">✦ WRITE • COLOR • SMILE</span><h1>一筆一畫，<br><em>寫出小小成就感。</em></h1><p>挑選喜歡的字，拿起手指或觸控筆，<br class="desktop-only">沿著空心字慢慢畫，就能完成今天的練習。</p><button type="button" class="hero-cta" id="startFirst">開始練習 <span>↗</span></button></div>
+        <div class="hero-art" aria-hidden="true"><div class="hero-floating star-one">✳</div><div class="hero-paper"><div class="hero-paper-stripe"></div><span class="hero-one">1</span><span class="hero-two">2</span><span class="hero-three">3</span><div class="hero-writing-line"></div><div class="hero-writing-line second"></div></div><div class="hero-pencil">✎</div><div class="hero-floating star-two">✦</div></div>
+      </div>
+      <div class="daily-strip" id="dailyStrip"><span>🌷 <strong id="todayCount">0</strong> 個今日練習</span><span>✦ 每天慢慢寫，寫完就會留下小星星</span><button type="button" id="continueBtn">繼續未完成的字 →</button></div>
+      <div class="overview-row">
+        <div class="overview-copy"><div class="eyebrow">CHOOSE YOUR PRACTICE</div><h2 id="sectionTitle">數字練習 <span>0–99</span></h2><p id="sectionDescription">從 0 開始，依照順序寫到 99。每個數字都能反覆練習。</p></div>
+        <div class="overview-progress"><div class="progress-pie" id="progressPie"><span id="progressRatio">0%</span></div><div><strong id="progressStat">0 / 100</strong><small>已完成練習</small></div></div>
+      </div>
+      <section id="hanziHub" class="hanzi-hub hidden" aria-label="繁體國字分級與課程"><div class="hanzi-hub-top"><div><span class="eyebrow">FIVE LEARNING LEVELS</span><h3>五個等級，從簡單開始</h3><p>先學會生活常用字，再一步步挑戰更複雜的國字。</p></div><span class="hanzi-level-note">五級全部開放</span></div><div id="hanziLevelList" class="hanzi-levels"></div><div class="hanzi-lesson-head"><h3>🌱 國字分級 · 300 字 / 30 課</h3><span id="hanziLessonCounter">已完成 0 / 60</span></div><div id="hanziLessonList" class="hanzi-lessons"></div>
+      </section>
+      <section id="hanziPrintPage" class="hanzi-subpage hidden" aria-label="國字練習單列印">
+        <div class="hanzi-subpage-heading"><span class="hanzi-subpage-emoji">🖨️</span><div><h2>國字練習單列印</h2><p>選課或挑選需要再練的字，產生可以描寫與自己寫的 A4 練習單。</p></div></div>
+        <div class="hanzi-print-layout-controls" aria-label="A4 紙張練習格設定">
+          <label for="hanziPrintCellSize">田字格尺寸</label>
+          <select id="hanziPrintCellSize">
+            <option value="small" selected>小格 18 mm・10 字／頁・每字 9 格（推薦）</option>
+            <option value="medium">標準 20 mm・9 字／頁・每字 8 格</option>
+            <option value="large">大格 23 mm・8 字／頁・每字 7 格</option>
+          </select>
+          <label for="hanziPrintCells">每個國字的練習格數</label>
+          <select id="hanziPrintCells" aria-label="每個國字的練習格數">
+            <option value="auto" selected>依格子大小自動配置（推薦）</option>
+            <option value="6">每字 6 格</option>
+            <option value="8">每字 8 格</option>
+            <option value="10">每字 10 格（自動縮小）</option>
+          </select>
+          <label class="hanzi-print-grid-toggle" for="hanziPrintMiGrid"><input id="hanziPrintMiGrid" type="checkbox" checked> 顯示淡米字線（含十字與斜線）</label>
+          <label class="hanzi-print-repeat"><input id="hanziPrintRepeat" type="checkbox" checked> 字數較少時循環練習，填滿整張 A4</label>
+          <p id="hanziPrintAdvice" role="status" aria-live="polite">建議選 10 個字印一張 A4；每字由左到右寫 9 格。</p>
+        </div>
+        <div class="hanzi-print-custom"><div><strong>✎ 自選國字練習單</strong><small>從 300 個國字中選字，列印描寫與田字格；可一次選多字（可選多字，會依紙張容量自動分頁）</small></div><div class="hanzi-print-selection" id="hanziPrintSelection"></div><div class="hanzi-print-buttons"><button type="button" id="printSelectedHanziBtn">🖨️ 列印已選字（A4）</button><button type="button" id="clearSelectedHanziBtn">清除選取</button></div></div>
+<section class="hanzi-study-kit" aria-label="國字課程複習與列印">
+        <div class="hanzi-study-title"><span class="hanzi-study-icon">✏️</span><div><strong>國字複習與整課練習單</strong><small>不必逐字列印；每個國字橫向練習多格，整課依 A4 容量自動分頁</small></div></div>
+        <div class="hanzi-study-actions"><label for="hanziWorksheetLesson">列印課程</label><select id="hanziWorksheetLesson" aria-label="選擇國字練習單課程"><option value="1">第 1 課 · 筆畫小種子</option><option value="2">第 2 課 · 自然小探險</option><option value="3">第 3 課 · 我的小身體</option><option value="4">第 4 課 · 生活小故事</option><option value="5">第 5 課 · 常見數字與文字</option><option value="6">第 6 課 · 每天會用的字</option><option value="7">第 7 課 · 我的家人與朋友</option><option value="8">第 8 課 · 花草與天氣</option><option value="9">第 9 課 · 生活食物</option><option value="10">第 10 課 · 學習與出門</option><option value="11">第 11 課 · 朋友與日常稱呼</option><option value="12">第 12 課 · 位置時間與比較</option><option value="13">第 13 課 · 學校裡的探索</option><option value="14">第 14 課 · 大自然的變化</option><option value="15">第 15 課 · 城市與小旅行</option><option value="16">第 16 課 · 心情與故事</option><option value="17">第 17 課 · 教室與學習工具</option><option value="18">第 18 課 · 可愛動物與活動</option><option value="19">第 19 課 · 健康與身體</option><option value="20">第 20 課 · 餐桌與料理</option><option value="21">第 21 課 · 遊戲與活動</option><option value="22">第 22 課 · 節日與心意</option><option value="23">第 23 課 · 觀察與解決問題</option><option value="24">第 24 課 · 環境與生活習慣</option><option value="25">第 25 課 · 閱讀與思考</option><option value="26">第 26 課 · 自然與動物</option><option value="27">第 27 課 · 心情與品格</option><option value="28">第 28 課 · 藝術與文化</option><option value="29">第 29 課 · 語文與思辨</option><option value="30">第 30 課 · 精密字形與文化</option></select><small id="hanziLessonPrintAdvice" class="hanzi-lesson-print-advice">預設 10 字剛好一張 A4</small><button id="printHanziLessonBtn" type="button">🖨️ 整課橫向練習單列印</button></div>
+        <section class="hanzi-mastery-hub"><strong>🌟 國字學習里程碑</strong><p id="hanziMasteryStats" aria-live="polite">正在整理 300 字進度…</p><button id="hanziUnmasteredBtn" type="button" aria-pressed="false">🌱 只看尚未熟練的字</button><small>「我會寫了」由家長確認，不會使用畫線長度冒充書寫正確率。</small></section>
+        <div class="hanzi-review-box"><span id="hanziReviewCount">需要再練 0 字</span><button id="hanziReviewOnlyBtn" type="button" aria-pressed="false">⭐ 只看需要再練的字</button><div id="hanziReviewChars" class="hanzi-review-chars" aria-live="polite"></div></div>
+        <p class="hanzi-study-note">「需要再練」由家長或孩子手動標記，與「已完成」分開記錄；不代表系統已自動判斷筆順正確。</p>
+      </section>
+      </section>
+      <section id="hanziDataPage" class="hanzi-subpage hidden" aria-label="國字資料管理">
+        <div class="hanzi-subpage-heading"><span class="hanzi-subpage-emoji">🗂️</span><div><h2>繁體國字・資料管理</h2><p>家長專用：管理開源逐筆資料、離線封裝、教材檢查與缺漏報告。這些設定不影響孩子直接選字書寫。</p></div></div>
+<div id="hanziOfflineStatus" class="hanzi-offline-status" aria-live="polite">📘 繁體逐筆網站內建 0 / 300（開源參考，非官方認證）</div><section class="hanzi-pack-manager" id="hanziPackManager" aria-label="國字逐筆離線資料管理">
+   <div class="hanzi-pack-heading"><div><strong>📚 五級 300 字 · 開源逐筆資料管理</strong><small>可部分匯入，取得多少就能先離線打包多少；保留所有 300 個空心字</small></div><span id="hanziPackCount" class="hanzi-pack-counter">0 / 300</span></div>
+   <div class="hanzi-fetch-panel" aria-label="直接取得某一級開源筆順參考"><div class="hanzi-fetch-heading"><strong>🌱 直接取得本級筆順參考</strong><small>需網路，優先下載 AnimCJK 臺灣繁體整套原始資料；失敗才逐字補齊。不產生猜測筆順。</small></div><div class="hanzi-fetch-actions"><label for="hanziFetchLevel">練習等級</label><select id="hanziFetchLevel"><option value="1">簡單 60 字</option><option value="2">中等 60 字</option><option value="3">高級 60 字</option><option value="4">困難 60 字</option><option value="5">精深 60 字</option></select><button type="button" id="hanziFetchBtn">↓ 取得這一級逐筆</button><button type="button" id="hanziStopFetchBtn" disabled>停止</button><button type="button" id="hanziMissingCsvBtn">↓ 匯出300字缺漏清單</button></div><p class="hanzi-fetch-status" id="hanziFetchStatus" role="status" aria-live="polite">已取得的筆順會存於目前瀏覽器；可再打包成跨裝置網站 ZIP。離線或來源失敗時，空心字仍可描寫。</p></div>
+   <div class="hanzi-pack-actions"><button type="button" id="hanziImportBtn">📂 匯入真實原始資料</button><button type="button" id="hanziExportBtn" disabled>📦 打包已取得的逐筆網站 ZIP</button><input hidden type="file" id="hanziSourceFile" accept=".txt,.json,.js,text/plain,application/json"/></div>
+   <p class="hanzi-pack-note" id="hanziPackMessage" role="status" aria-live="polite">網站尚未內建完整逐筆資料。可先描寫空心字。</p>
+   <details class="hanzi-pack-details"><summary>查看資料來源、缺漏與操作方式</summary><div><p>來源：AnimCJK 的臺灣繁體 <code>graphicsZhHant.txt</code>。請先自行下載該原始檔，再匯入本頁。程式檢查 SVG 路徑及是否重複；簡單級會對照內建筆畫數，其他等級先檢查路徑合理性，均不代表教育部正式筆順認證。部分字沒有來源時仍可描寫。</p><p><a href="https://github.com/parsimonhi/animCJK/blob/master/graphicsZhHant.txt" target="_blank" rel="noopener noreferrer">↗ 開啟原始資料下載頁</a></p><p id="hanziPackMissing">目前缺少 300 字逐筆資料</p></div></details>
+  </section><details id="hanziQualityPanel" class="hanzi-quality-panel"><summary>🔎 家長教材品質檢查 <span id="hanziQualityMini">檢查 300 字中…</span></summary><div class="hanzi-quality-body"><p class="hanzi-quality-hint">自動檢查教材內容、注音格式與空心字資料；不能驗證真人發音音質或教育部正式筆順。</p><div id="hanziQualityStats" class="hanzi-quality-stats" aria-live="polite"></div><div class="hanzi-quality-controls"><label for="hanziQualityLevel">檢查等級</label><select id="hanziQualityLevel" aria-label="篩選國字難度"><option value="all">全部 300 字</option><option value="1">簡單級</option><option value="2">中等級</option><option value="3">高級</option><option value="4">困難級</option><option value="5">精深級</option></select><label for="hanziQualityFilter">檢查狀態</label><select id="hanziQualityFilter" aria-label="篩選檢查項目"><option value="all">顯示全部</option><option value="issues">只看教材資料異常</option><option value="stroke">尚無開源逐筆</option><option value="available">已有開源逐筆</option><option value="review">尚未人工核對</option></select><button id="hanziQualityExport" type="button">↓ 匯出檢查報告</button></div><p id="hanziQualityCount" class="hanzi-quality-count"></p><div id="hanziQualityGrid" class="hanzi-quality-grid"></div><p class="hanzi-quality-foot">「資料格式完整」只代表內容符合程式檢查規則；家長標記也不代表教育部認證。</p></div></details>
+      </section>
+      <div class="library-card">
+        <div class="library-toolbar"><div class="toolbar-left"><span class="dot-3"><i></i><i></i><i></i></span><strong id="gridTitle">數字表 · 0～99</strong></div><div class="toolbar-right"><button id="voiceSettingsLibrary" class="voice-settings-launch" type="button" aria-label="開啟語音與速度設定">⚙️ 聲音設定</button><button id="guideAuditBtn" type="button" class="guide-audit-btn" aria-expanded="false" aria-controls="guideAuditPanel">✓ 筆順檢查</button><button id="downloadGuidesBtn" type="button" class="download-guides-btn hidden">↓ 離線筆順</button><div class="variant-switch hidden" id="variantSwitch" role="group" aria-label="切換字母種類"></div><span class="legend"><i></i>已練習</span></div></div>
+        <section id="multiWorksheet" class="multi-worksheet hidden" aria-label="A4 寫字練習單製作">
+          <div class="multi-worksheet-heading"><div><strong>🖨️ A4 寫字練習單</strong><p>數字 0～99、注音、英文大小寫、日文假名可選「全字表單頁」印在同一張 A4；也能使用大格分頁練習。</p></div><button type="button" id="multiWorksheetPrint" class="multi-primary">列印練習表 ↗</button></div>
+          <div class="multi-worksheet-controls">
+            <label>版面模式<select id="multiWorksheetMode"><option value="single">全字表單頁（每字一格，A4 一張）</option><option value="practice">大格練習（自動分頁）</option></select></label>
+            <label>列印內容<select id="multiWorksheetScope"><option value="all">全部字表</option><option value="custom">自選字</option></select></label>
+            <label>格子大小<select id="multiWorksheetSize"><option value="small">小格・10 列／頁</option><option value="medium">中格・9 列／頁</option><option value="large">大格・8 列／頁</option></select></label>
+            <label>每列格數<select id="multiWorksheetCells"><option value="auto">自動（推薦）</option><option value="6">6 格</option><option value="8">8 格</option><option value="10">10 格</option></select></label>
+            <label>前幾格描寫<select id="multiWorksheetTraces"><option value="1">1 格</option><option value="2" selected>2 格</option><option value="3">3 格</option></select></label>
+          </div>
+          <div class="multi-worksheet-switches"><label><input id="multiWorksheetMi" type="checkbox" checked> 淡米字線</label><label><input id="multiWorksheetRepeat" type="checkbox"> 選字不足一頁時重複填滿</label></div>
+          <div id="multiWorksheetPicker" class="multi-worksheet-picker hidden"><div class="multi-picker-actions"><button type="button" id="multiSelectAll">全選</button><button type="button" id="multiSelectNone">清除選取</button><span id="multiSelectedCount"></span></div><div id="multiWorksheetSymbols" class="multi-symbols" aria-label="選擇要列印的符號"></div></div>
+          <p id="multiWorksheetNote" class="multi-worksheet-note" role="status" aria-live="polite"></p>
+        </section>
+        <div id="guideAuditPanel" class="guide-audit-panel hidden" role="status" aria-live="polite"></div>
+        <div class="kana-pack-manager hidden" id="kanaPackManager" aria-label="日文假名離線筆順管理">
+          <div class="kana-pack-info"><strong>🌸 日文 92 字逐筆資料</strong><span id="kanaPackStatus">本機逐筆 1 / 92</span></div><div class="kana-build-tip"><strong>V1.25 新增：GitHub 自動製作離線筆順包</strong><span>如果透過 GitHub Actions 部署，會先取得並檢查 92 個不同的真實假名筆畫，成功才發布。一般直接上傳 ZIP 仍只內建「あ」，下方保留手動下載與匯入。</span></div>
+          <p>首次連網可整套下載平假名與片假名；下載成功後可離線播放。可匯出筆順包，再匯入另一台手機或平板。</p>
+          <div class="kana-pack-actions"><button id="kanaPackDownload" type="button">↓ 下載 92 字離線筆順（雙來源）</button><button id="kanaPackExport" type="button">↑ 匯出筆順包</button><button id="kanaPackImport" type="button">📂 匯入筆順 JSON</button><button id="kanaDeployZip" class="kana-deploy-button" type="button" disabled title="請先取得全部 92 字">📦 產生完整離線網站 ZIP</button><input id="kanaPackFile" class="hidden" type="file" accept=".json,.txt,application/json,text/plain" multiple aria-label="匯入日文逐筆 JSON 或 AnimCJK graphicsJaKana.txt"></div>
+          <p id="kanaDeployStatus" class="kana-deploy-status">取得完整筆順後，可產生含 92 字的離線網站 ZIP，再上傳至 GitHub Pages。</p><details><summary>查看尚未取得的字</summary><p id="kanaPackMissing"></p></details>
+          <small>整套資料源：AnimCJK／kana-svg-data（LGPL）。新增直接匯入官方 graphicsJaKana.txt，也支援 allHiragana.json、allKatakana.json；資料齊全後可產生完整 GitHub Pages ZIP。這是開源筆順參考，不代表逐字核對學校正式教材。</small>
+        </div>
+        <section id="zhuyinOfficialPanel" class="zh-official-panel hidden" aria-label="教育部注音官方教材狀態">
+          <div class="zh-official-intro"><span class="zh-official-icon">📚</span><div><strong>教育部 37 注音・筆順與真人發音</strong><p id="zhuyinOfficialStatus" role="status" aria-live="polite">檢查內建教材中…</p></div></div>
+          <div class="zh-official-actions"><a href="https://language.moe.gov.tw/001/Upload/files/site_content/M0001/juyin/" target="_blank" rel="noopener noreferrer">↗ 教育部《國語注音符號手冊》</a></div>
+          <small>正式素材需由 GitHub Actions 成功下載並驗證後才會內建；基礎安裝版不把開源描寫示意冒充官方筆順。官方素材另採 CC BY 4.0 授權，須註明來源。</small>
+        </section>
+        <div class="table-heading" id="tableHeading">點選任何一個數字，就能打開練字畫板 <span>↓</span></div>
+        <div id="symbolGrid" class="symbol-grid numbers-grid"></div>
+        <div class="grid-bottom"><span>✷ 可以重複寫同一個字，沒有次數限制</span><button type="button" id="randomPick" class="text-action">幫我隨機挑一個 ↗</button></div>
+      </div>
+    </section>
+    <section class="practice-view hidden" id="practiceView" aria-label="練字畫板">
+      <div class="practice-top"><button class="back-btn" id="backLibrary" type="button">← <span>返回字表</span></button><div class="practice-steps" id="practiceStepLabel">數字練習 <span>/</span> 第 1 個</div><div class="practice-top-actions"><button class="voice-settings-launch voice-mini-launch" id="voiceSettingsPractice" type="button" aria-label="調整發音速度與語音">⚙️ 語速</button><button class="hanzi-word-listen hidden" id="hanziWordListen" type="button" aria-label="播放國字詞語">🔊 聽詞語</button><button class="icon-text-btn pretty-speak-btn" id="speakBtn" type="button" title="朗讀目前的字"><span class="speaker-badge">🔊</span><span class="speak-main">聽發音</span><small>Play sound</small></button></div></div>
+      <div id="hanziReadBar" class="hanzi-reading-bar hidden" aria-live="polite"><span id="hanziReadingNote"></span></div>
+      <div id="hanziReviewQuick" class="hanzi-review-quick hidden"><span>✦ 這個字還要再練嗎？</span><button id="markHanziReviewBtn" type="button" aria-pressed="false">☆ 加入複習</button></div>
+      <div class="practice-header"><div><span class="eyebrow">TIME TO TRACE ✨</span><h2>來寫 <span id="practiceTitle">0</span> 吧！</h2><p id="practiceInstruction">沿著箭頭慢慢描寫，把顏色留在空心字裡。</p></div><div class="practice-step-status" id="practiceDoneStatus">尚未完成</div></div>
+      <div class="practice-layout"><div class="practice-main-column"><div class="quick-ink-bar" aria-label="快速書寫工具"><span class="quick-ink-label">🎨 選顏色</span><div id="quickPalette" class="quick-palette" role="group" aria-label="快速畫筆顏色"></div><span class="ink-separator"></span><button type="button" class="quick-tool selected" data-quick-tool="pen" aria-label="彩色筆" title="彩色筆">✎</button><button type="button" class="quick-tool" data-quick-tool="eraser" aria-label="橡皮擦" title="橡皮擦">▰</button><button type="button" id="quickDemoBtn" class="quick-guide-btn" title="播放可用的筆順或描寫示意">▶ 示範</button><button type="button" id="referenceReadyBtn" class="reference-ready-btn hidden" title="套用已取得的新筆順，不清除原有筆跡">↻ 套用新筆順</button><button type="button" id="openToolBtn" class="open-tool-btn" aria-controls="practiceTools" aria-expanded="false">⚙ 更多工具</button></div><div class="practice-paper" id="paperWrap"><div class="paper-bar"><div class="paper-dots"><i></i><i></i><i></i></div><div class="paper-bar-center">MY LITTLE WRITING PAD</div><div class="paper-pill" id="paperModeTag">描寫模式</div></div><div class="drawing-stage" id="drawingStage"><svg id="templateSvg" class="template-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg><canvas id="drawCanvas" aria-label="練字書寫區，可用手指或觸控筆繪畫"></canvas><div id="eraserCursor" class="eraser-cursor" aria-hidden="true"></div></div><div class="paper-foot"><span>♡ 用手指或 Apple Pencil 畫畫</span><span id="paperGuideChip" class="paper-guide-chip" aria-live="polite">筆順確認中</span><span id="strokeCounter">0 筆畫線</span></div></div>
+        <div class="practice-navigation"><button class="nav-prev" id="prevBtn" type="button">← 上一個</button><button class="done-btn" id="completeBtn" type="button">✓ 我寫好了 <span>⭐</span></button><button class="nav-next" id="nextBtn" type="button">下一個 →</button></div>
+        <section id="hanziStageBar" class="hanzi-stage-bar hidden" aria-label="繁體國字三階段練習">
+          <div class="hanzi-stage-heading"><strong>✎ 國字三步練</strong><span id="hanziStageMessage">第 1 步：看字形描寫</span></div>
+          <div class="hanzi-stage-controls" role="group" aria-label="選擇練習階段">
+            <button type="button" data-stage="trace" aria-pressed="true">① 描一描</button><button type="button" data-stage="hint" aria-pressed="false">② 淡提示</button><button type="button" data-stage="free" aria-pressed="false">③ 自己寫</button>
+          </div>
+          <div class="hanzi-stage-bottom"><span>切換階段會保留目前畫過的線；可按「清空畫板」重新寫。筆順僅依已取得、已核對的來源教學。</span><button id="hanziMasteryBtn" type="button" class="hanzi-mastery-btn" aria-pressed="false">☆ 家長確認：我會寫了</button></div>
+        </section>
+        <div class="quick-actions"><button type="button" class="quick-btn" id="undoBtn">↶ <span>上一步</span></button><button type="button" class="quick-btn" id="redoBtn">↷ <span>重做</span></button><button type="button" class="quick-btn" id="clearBtn">⌫ <span>清空畫板</span></button><button type="button" class="quick-btn" id="demoBtn">▶ <span>播放描寫示範</span></button></div><div class="kid-replay-row" role="group" aria-label="回看自己書寫的筆跡"><button type="button" id="myReplayBtn" class="kid-replay-btn" aria-pressed="false">▶ 回看我寫的</button><label for="myReplaySpeed">回放速度 <select id="myReplaySpeed" aria-label="我的書寫回放速度"><option value="0.75">慢慢看</option><option value="1" selected>正常</option><option value="1.5">快一點</option></select></label><span id="myReplayStatus" aria-live="polite">依儲存的畫線順序重現，不是標準筆順</span></div><div class="kid-learning-row"><button type="button" id="focusBtn">⛶ 專心練習</button><button type="button" id="followStepBtn">✎ 寫一筆提示下一筆</button><span>由孩子自己操作，無需評分</span></div>
+        <div class="guide-toolbar" id="guideToolbar" aria-label="示範控制"><div class="guide-status"><span id="guideTag">印刷字描寫示意</span><strong id="guideStepText">共 1 筆</strong></div><div class="guide-controls"><button id="oneStepBtn" type="button" class="one-step-btn" aria-pressed="false" title="一次只強調目前的筆畫">◎ 一次看一筆</button><button id="guidePrev" type="button" aria-label="前一筆">← 前一筆</button><button id="guideNext" type="button" aria-label="下一筆">下一筆 →</button><button id="guidePlay" type="button" aria-label="播放示範">▶ 播放</button></div></div>
+        <div class="zh-official-practice hidden" id="zhOfficialPractice"><button type="button" id="showZhuyinOfficialBtn">📖 看教育部正式筆順</button><span id="zhOfficialPracticeStatus">官方動畫尚未內建</span></div><div class="reference-control"><span id="referenceStatus">可離線練習</span><button id="retryGuideBtn" class="hidden" type="button">↻ 重試下載逐筆資料</button></div><p class="source-caption" id="sourceCaption">書寫示意為練字輔助，非官方標準筆順。</p><a class="reference-link hidden" id="referenceLink" href="#" target="_blank" rel="noopener noreferrer">↗ 線上查詢標準筆順（需網路）</a>
+        </div>
+        <div id="toolBackdrop" class="tool-backdrop hidden" aria-hidden="true"></div><aside class="tool-card" id="practiceTools" aria-label="練字工具"><div class="tool-drawer-heading"><strong>🎨 練字工具箱</strong><button type="button" id="closeToolBtn" aria-label="關閉工具箱">✕ 關閉</button></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon">✿</span><div><strong>我的畫筆顏色</strong><small>挑一個喜歡的柔和色彩</small></div></div><div id="palette" class="pastel-palette"></div><div class="custom-color-row"><label for="customColor">🎨 自訂顏色</label><input type="color" id="customColor" value="#f39a88" aria-label="選擇自訂畫筆顏色"><span class="current-color-dot" id="currentColorDot"></span></div></div>
+          <div class="tool-divider"></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon width-icon">〰</span><div><strong>畫筆工具</strong><small>調整線條，寫起來更順手</small></div></div><div class="tool-two"><button type="button" class="tool-mode selected" data-tool="pen">✎<span>彩色筆</span></button><button type="button" class="tool-mode" data-tool="eraser">▰<span>橡皮擦</span></button></div><label class="auto-pen-toggle"><input id="autoPenWidth" type="checkbox" checked><span class="auto-pen-icon">✦</span><span class="auto-pen-text"><strong>畫筆自動符合字內框</strong><small>描寫時依字形大小自動調整，建議開啟</small></span><span class="auto-pen-tag">推薦</span></label>
+           <div class="size-row"><span>畫筆粗細 <small id="brushModeHint">自動填滿內框寬度</small></span><strong id="brushSizeLabel">自動</strong></div><input id="brushSize" class="brush-range" type="range" min="5" max="100" step="1" value="14" disabled aria-label="手動畫筆粗細"><div class="width-ends"><span>細</span><span>粗</span></div><div id="eraserInfo" class="eraser-info hidden" aria-live="polite"><span class="eraser-size-shell"><i id="eraserSizeDot" class="eraser-size-dot"></i></span><span>橡皮擦擦拭範圍 <strong id="eraserSizeText">22 px</strong><small>圓圈會跟隨手指或滑鼠移動</small></span></div></div>
+          <div class="tool-divider"></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon guide-icon">⌗</span><div><strong>練習輔助</strong><small>每個孩子都能依自己的速度來</small></div></div><label class="switch-row"><span><strong>筆畫方向提示</strong><small id="arrowSettingHint">數字與英文可顯示箭頭</small></span><input id="showArrows" type="checkbox" checked><i class="switch-track"></i></label><label class="switch-row"><span><strong>田字格輔助線</strong><small>寫得更整齊</small></span><input id="showGrid" type="checkbox" checked><i class="switch-track"></i></label><div class="trace-modes"><button type="button" id="traceModeBtn" class="trace-mode selected">空心字描寫</button><button type="button" id="freeModeBtn" class="trace-mode">空白自由寫</button></div></div>
+          <div class="tool-divider"></div><div class="data-action-grid"><button type="button" id="savePngBtn" class="save-image-btn">↓ 儲存作品圖片</button><button type="button" id="printBtn" class="save-image-btn">▤ 列印練習單</button></div><div class="tool-divider"></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon">♧</span><div><strong>我的練習紀錄</strong><small>換手機前先匯出，匯入後可繼續描寫</small></div></div><div class="data-action-grid"><button type="button" id="backupBtn" class="data-btn">↑ 匯出完整備份</button><button type="button" id="restoreBtn" class="data-btn">↓ 匯入備份</button><input id="backupInput" type="file" accept=".json,.txt,application/json,text/plain" hidden></div></div><div class="tool-divider"></div><details id="hanziMetaDrawer" class="hanzi-side-details hidden"><summary>🧩 國字資訊・注音・詞語 <span class="expander">⌄</span></summary><div class="hanzi-side-inner"><div id="hanziWordInfo" class="hanzi-word-info hidden" aria-live="polite"></div></div></details><details id="hanziCompareDrawer" class="hanzi-side-details hidden"><summary>🔎 家長筆順校對 <span class="expander">⌄</span></summary><section id="hanziComparePanel" class="hanzi-compare-panel hidden" aria-label="國字筆順對照工具">
+        <div class="hanzi-compare-title"><span class="compare-icon">🔎</span><div><strong>國字筆順校對</strong><small id="hanziCompareMessage">先查看教育部筆順，再記錄核對結果</small></div><span id="hanziCompareCount" class="compare-count">— 筆</span></div>
+        <div class="hanzi-compare-actions"><a href="https://stroke-order.learningweb.moe.edu.tw/searchW.jsp?la=0" target="_blank" rel="noopener noreferrer" id="hanziOfficialLookup">↗ 教育部標準筆順</a><button id="copyHanziBtn" type="button">⧉ 複製這個字</button></div>
+        <div class="hanzi-alignment-tools"><button type="button" id="hanziAlignmentBtn" aria-pressed="false" disabled>🔎 檢視字形與筆畫對齊</button><p id="hanziAlignmentStatus" role="status" aria-live="polite">需要先取得真正逐筆路徑才能檢視對齊。</p></div>
+        <div class="hanzi-compare-options" role="group" aria-label="家長人工比對記錄">
+          <button type="button" class="compare-option" data-review="unchecked">尚未核對</button>
+          <button type="button" class="compare-option" data-review="checked">✓ 已人工比對</button>
+          <button type="button" class="compare-option" data-review="issue">! 發現筆順差異</button>
+        </div>
+        <p id="hanziCompareFoot" class="compare-foot">這是家長的檢查紀錄，不代表教育部已認證此示範。</p>
+      </section></details><p class="safe-note">🔒 練習記錄只保存在目前裝置，無需註冊。</p>
+        </aside></div>
+      <div class="mobile-bottom-spacer"></div>
+    </section>
+  </main>
+</div>
+<div id="printSheet" aria-hidden="true"></div>
+<div class="voice-panel-overlay hidden" id="voicePanelOverlay" role="presentation">
+ <section class="voice-panel" id="voicePanel" role="dialog" aria-modal="true" aria-labelledby="voicePanelTitle" tabindex="-1">
+  <div class="voice-panel-header"><span class="voice-panel-icon" aria-hidden="true">🔊</span><div><span class="voice-panel-kicker">LITTLE EARS LAB</span><h2 id="voicePanelTitle">小耳朵發音設定</h2><p>數字用臺灣國語，英文優先採用清楚的美式字母名稱錄音</p></div><button type="button" id="voicePanelClose" class="voice-close" aria-label="關閉聲音設定">✕</button></div>
+  <div class="voice-panel-content">
+   <div class="voice-device" id="voiceDeviceInfo">正在辨識此裝置的語音…</div>
+   <div class="voice-mode-row hidden" id="voiceModeRow"><strong>發音來源</strong><div class="voice-mode-picks"><button type="button" data-speech-mode="recording" class="selected">🎙️ 真人錄音優先</button><button type="button" data-speech-mode="synthesis">🗣️ 裝置合成音</button></div><p>注音採用教育部錄音。英文優先使用美式字母名稱真人錄音（不限男女聲），可切回裝置語音。</p></div>
+   <div class="number-recording-panel hidden" id="englishRecordingPanel">
+    <div class="number-recording-title"><span aria-hidden="true">🎧</span><strong>英文 A～Z 真人發音音檔</strong></div>
+    <p>預設可連網試聽 Wikimedia Commons 已找到的美式字母名稱真人錄音；錄音者不一定相同。L、X 暫使用裝置英語合成音。若你有 26 個經確認的 MP3，匯入後就會優先播放，並在這台裝置離線使用。</p>
+    <label for="englishClipFiles" class="number-import-btn">＋ 匯入 A～Z 錄音（可多選）</label>
+    <input id="englishClipFiles" type="file" accept=".mp3,.m4a,.wav,.ogg,audio/*" multiple class="number-hidden-file">
+    <div id="englishClipCount" role="status" aria-live="polite" class="number-clip-status">正在讀取英文字母音檔…</div>
+    <div class="number-clip-footer"><small>檔名 A.mp3、B.mp3 … Z.mp3（不分大小寫）；支援 MP3／M4A／WAV／OGG。舊 iPad 建議 MP3／M4A。錄音只在目前裝置。</small><button type="button" id="englishClearClips">清除錄音</button></div>
+    <small class="english-attribution">開放音檔：Wikimedia Commons，多位貢獻者，主要採 CC BY-SA 3.0 等授權；<a href="https://commons.wikimedia.org/wiki/Category:U.S._English_pronunciation_of_letters" target="_blank" rel="noopener">查看來源與授權</a>。</small>
+   </div>
+   <div class="number-recording-panel hidden" id="numberRecordingPanel">
+    <div class="number-recording-title"><span aria-hidden="true">🎙️</span><strong>數字真人錄音（選用）</strong></div>
+    <p>目前沒有核對過的一整套 0～99 授權音檔，因此不會假裝已內建真人聲音。你可以匯入自己有權使用的完整數字錄音；每個數字要錄成獨立一段，不拆開拼接。</p>
+    <label class="number-audio-switch"><input id="numberAudioToggle" type="checkbox"><span>優先播放已匯入的完整錄音</span></label>
+    <label for="numberClipFiles" class="number-import-btn">＋ 匯入數字錄音（可一次選多個）</label>
+    <input id="numberClipFiles" type="file" accept=".mp3,.m4a,.wav,.ogg,audio/*" multiple class="number-hidden-file">
+    <div id="numberClipCount" role="status" aria-live="polite" class="number-clip-status">正在檢查已儲存錄音…</div>
+    <div class="number-clip-footer"><small>檔名：0.mp3、1.mp3 … 99.mp3；支援 mp3／m4a／wav／ogg，每檔 4 MB 以下。錄音儲存在這台裝置，不隨練字 JSON 備份轉移。</small><button type="button" id="numberClearClips">清除錄音</button></div>
+   </div>
+   <div id="voiceTtsPanel" class="voice-field"><label for="voiceSelection">這台裝置的聲音</label><button type="button" id="voiceRefreshBtn" class="voice-refresh">↻ 重新偵測</button><select id="voiceSelection" aria-describedby="voiceStatusText"></select><p class="voice-hint" id="voiceStatusText" role="status" aria-live="polite">正在取得語音清單…</p></div>
+   <div class="voice-field"><div class="voice-label-line"><label for="voiceSpeed">發音速度</label><strong id="voiceSpeedText">0.95 倍</strong></div><input type="range" id="voiceSpeed" min="0.65" max="1.05" step="0.05" value="0.95"><div class="voice-speed-presets" role="group" aria-label="快速調整發音速度"><button type="button" data-voice-rate="0.80">🐢 慢慢聽</button><button type="button" data-voice-rate="0.95">🌼 舒適</button><button type="button" data-voice-rate="1">🐇 正常</button></div></div>
+   <div id="voiceQuickSamples" class="voice-quick-samples" aria-label="逐字試聽"></div><div class="voice-sample"><span>目前試聽內容</span><strong id="voiceSampleText">十七</strong><button id="voiceTestBtn" type="button">▶ 試聽這個聲音</button></div>
+   <p class="voice-advisory" id="voiceAdvisory">語速是相對數值，實際快慢仍受裝置語音引擎影響。</p>
+   <button type="button" id="voicePanelConfirm" class="voice-confirm">✓ 設定好了，繼續練字</button>
+  </div>
+ </section>
+</div>
+<div id="zhOfficialOverlay" class="zh-official-overlay hidden" role="dialog" aria-modal="true" aria-label="教育部注音筆順動畫" aria-hidden="true">
+ <div class="zh-official-dialog"><div class="zh-official-dialog-head"><div><strong id="zhOfficialTitle">教育部注音筆順</strong><small>教育部《國語注音符號手冊》・原始 SVG 動畫</small></div><button type="button" id="closeZhOfficialBtn" aria-label="關閉官方筆順">✕</button></div>
+ <div class="zh-official-media" id="zhOfficialMedia"></div><div class="zh-official-dialog-foot"><button type="button" id="replayZhOfficialBtn">↻ 重新播放</button><a href="https://language.moe.gov.tw/001/Upload/files/site_content/M0001/juyin/" target="_blank" rel="noopener noreferrer">查看教育部原始教材 ↗</a></div><p>此處展示授權允許的教育部原始 SVG，與畫板上的開源筆順參考是不同來源。實際展示效果視原始 SVG 與瀏覽器支援情況而定。</p></div>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="celebrate" class="celebrate hidden" aria-hidden="true"><div class="celebrate-inner"><div class="celebrate-star">⭐</div><strong>太棒了！</strong><span>又完成一個練習！</span></div></div>
+<script src="./assets/glyphs.js"></script><script src="./assets/hanzi-data.js"></script><script src="./assets/hanzi-glyphs.js"></script><script src="./assets/hanzi-practice-guides.js"></script><script src="./assets/hanzi-pack.js"></script><script src="./assets/kana-offline.js"></script><script src="./assets/kana-pack.js"></script><script src="./assets/offline-export.js"></script><script src="./assets/zhuyin-official.js"></script><script src="./voice.js?v=1.44.0"></script><script src="./app.js?v=1.46.0"></script>
+</body>
+</html>
