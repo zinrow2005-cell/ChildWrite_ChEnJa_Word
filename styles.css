@@ -754,3 +754,21 @@ body.board-fullscreen .practice-navigation button{min-height:43px!important;}
 body.board-fullscreen .drawing-stage{min-height:0;min-width:0;}
 body.board-fullscreen .practice-helper-strip{display:none!important}
 @media(orientation:landscape) and (max-height:540px){body.board-fullscreen .practice-main-column{height:calc(100dvh - 48px - env(safe-area-inset-bottom,0px));}body.board-fullscreen .practice-navigation{height:calc(48px + env(safe-area-inset-bottom,0px));padding:2px 8px calc(2px + env(safe-area-inset-bottom,0px))}body.board-fullscreen .practice-navigation button{min-height:38px!important}body.board-fullscreen .paper-foot{display:none}}
+
+/* V1.50: full-screen compact helper strip must remain visible directly above navigation. */
+body.board-fullscreen .practice-helper-strip{
+ display:flex!important;visibility:visible!important;position:fixed!important;
+ left:6px;right:6px;bottom:calc(58px + env(safe-area-inset-bottom,0px));
+ z-index:112;height:39px;min-height:39px;box-sizing:border-box;
+ margin:0!important;padding:3px 6px;gap:5px;overflow-x:auto;overflow-y:hidden;
+ flex-wrap:nowrap;white-space:nowrap;background:#fffaf3;
+ border:1px solid #e8e0d5;border-radius:9px;opacity:1!important;
+}
+body.board-fullscreen .practice-helper-strip>*{visibility:visible!important;flex-shrink:0}
+body.board-fullscreen .practice-helper-strip button{min-height:29px;padding:4px 8px;font-size:11px}
+body.board-fullscreen .practice-main-column{height:calc(100dvh - 97px - env(safe-area-inset-bottom,0px))!important;}
+@media (orientation:landscape) and (max-height:540px){
+ body.board-fullscreen .practice-helper-strip{height:31px;min-height:31px;bottom:calc(48px + env(safe-area-inset-bottom,0px))}
+ body.board-fullscreen .practice-helper-strip button{min-height:24px;padding:2px 7px}
+ body.board-fullscreen .practice-main-column{height:calc(100dvh - 79px - env(safe-area-inset-bottom,0px))!important}
+}

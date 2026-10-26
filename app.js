@@ -1,4 +1,4 @@
-/* Little Lines Studio V1.49 — 五級國字各新增20字，總計300字／30課 */
+/* Little Lines Studio V1.50 — 五級國字各新增20字，總計300字／30課 */
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const NS='http://www.w3.org/2000/svg',STORAGE='little-lines-studio-v1',REFERENCE_STORE='little-lines-animcjk-v1';
@@ -1160,25 +1160,38 @@ function updatePaperGuideChip(){
 function openPractice(index){stopMyReplay({skipRestore:true});deferredPracticeReferences.clear();syncReferenceReadyControl();if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;state.current=index;state.strokes=[];state.redo=[];loadCurrent();showView(true)}
 function loadCurrent(){const data=state.art[currentItem().id];state.strokes=Array.isArray(data)?JSON.parse(JSON.stringify(data)):[];state.redo=[]}
 function persistCurrent(){stopMyReplay();if(!state.showingPractice||!state.items.length)return;state.art[currentItem().id]=JSON.parse(JSON.stringify(state.strokes));queueSave()}
+function resetLetterInk(itemId){
+ // Never restore a previous attempt when navigating. Keep completion/progress only.
+ if(itemId)delete state.art[itemId];
+ state.strokes=[];state.redo=[];state.activeStroke=null;state.activePointer=null;
+ // Clear canvas immediately, even before the next character template is rendered.
+ if(ctx&&canvas.width)ctx.clearRect(0,0,canvasW,canvasH);
+ updateStrokeCount();
+}
 function move(direction){
- stopMyReplay();if(state.activePointer!==null)return;
+ stopMyReplay({skipRestore:true});
+ if(state.activePointer!==null)return;
  const next=state.current+direction;
  if(next<0||next>=state.items.length){toast(next<0?'已經是第一個字囉':'已經到最後一個字囉');return}
+ const oldId=currentItem().id;
  deferredPracticeReferences.clear();syncReferenceReadyControl();window.LittleLinesVoice?.stop();cancelDemo();
- // V1.49: changing letters starts a fresh attempt, including when returning to a prior letter.
- // Discard old per-letter drawing, but do NOT modify completion / lesson progress.
- delete state.art[currentItem().id];
+ resetLetterInk(oldId);
  state.current=next;
- delete state.art[currentItem().id];
- state.strokes=[];state.redo=[];state.activeStroke=null;
+ resetLetterInk(currentItem().id);
  queueSave();
  if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;
- renderPractice();resizeCanvas();hideEraserCursor();
+ renderPractice();resizeCanvas();repaintCanvas();hideEraserCursor();
+ // Double-check after ResizeObserver and SVG reference rendering have settled.
+ requestAnimationFrame(()=>{if(state.activePointer===null&&state.strokes.length===0){
+  if(ctx&&canvas.width)ctx.clearRect(0,0,canvasW,canvasH);
+  repaintCanvas();updateStrokeCount();
+ }});
  if(!document.body.classList.contains('board-fullscreen')){
   const pad=$('#drawingStage').getBoundingClientRect();
   if(pad.bottom<80||pad.top>window.innerHeight-80)$('#drawingStage').scrollIntoView({block:'center',behavior:'instant'});
  }
 }
+
 function renderPractice(){stopMyReplay({skipRestore:true});syncReferenceReadyControl();cancelDemo();hanziAlignmentVisible=false;const item=currentItem();if(state.category==='hanzi'){state.free=hanziStage==='free';$('#traceModeBtn').classList.toggle('selected',!state.free);$('#freeModeBtn').classList.toggle('selected',state.free)}updateHanziReviewQuick();updateHanziMasteryQuick();updateZhuyinOfficialPractice();$('#hanziMetaDrawer').classList.toggle('hidden',state.category!=='hanzi');$('#hanziCompareDrawer').classList.toggle('hidden',state.category!=='hanzi');renderHanziWordInfo(item);renderHanziCompare(item);updateHanziAlignmentControls();state.guideIndex=0;renderFixedPracticeTitle(item);$('#practiceStepLabel').innerHTML=categoryName()+' <span>/</span> 第 '+(state.current+1)+' 個，共 '+state.items.length+' 個';$('#breadcrumb').textContent='正在描寫 '+item.chars.join('');const hasGuide=hasGuides();$('#practiceInstruction').textContent=state.category==='hanzi'&&isHanziIssue(item.chars[0])?'此字已標記筆順有差異：目前僅保留空心字描寫，筆順引導暫停。':state.category==='hanzi'&&!referenceFor(item.chars[0])?item.level>=2?'此字尚無開源逐筆參考，可先用固定空心字進行三階段描寫；連網時可嘗試取得臺灣繁體參考。':'沿著空心字描寫；離線箭頭只是未核對示意，請另核對教育部筆順。':hasGuide?'沿著箭頭的筆畫順序，選喜歡的顏色練習。':'沿著空心字外框慢慢描寫；連網後會嘗試載入逐筆資料。';$('#speakBtn').innerHTML='<span class="speaker-badge">🔊</span><span class="speak-main">聽發音</span><small>'+speechText(item)+'</small>';$('#speakBtn').setAttribute('aria-label','播放 '+speechLabel(item)+' 的發音');updateHanziReadBar(item);$('#arrowSettingHint').textContent=hasGuide?'顯示起筆點、順序及方向':'首次取得筆順資料需要連網';$('#demoBtn').disabled=!hasGuide;$('#demoBtn').textContent=hasGuide?'▶ 播放描寫示範':'⌛ 等待筆順資料';$('#demoBtn').title=hasGuide?(state.category==='hanzi'&&!referenceFor(item.chars[0])?'播放未經官方逐字核對的描寫方向示意':'播放逐筆方向示範'):'尚未取得這個字的逐筆筆順，不播放外框冒充筆順';$('#paperModeTag').textContent=state.free?'自由寫字':'描寫模式';$('#practiceDoneStatus').classList.toggle('finished',!!state.done[item.id]);$('#practiceDoneStatus').textContent=state.done[item.id]?'✓ 已完成練習':'尚未完成';$('#completeBtn').textContent=state.done[item.id]?'✓ 再練一次 ⭐':'✓ 我寫好了 ⭐';$('#fullscreenBoardBtn').title='目前：'+item.chars.join('')+'，點擊切換全螢幕';$('#prevBtn').disabled=state.current===0;$('#nextBtn').disabled=state.current===state.items.length-1;renderTemplate();updateGuidePanel();syncHanziStage();updatePaperGuideChip();repaintCanvas();updateStrokeCount();prepareReference(item)}
 function strokePaths(c){return DIGITS[c]||UPPER[c]||LOWER[c]||null}
 function referenceFor(c){
