@@ -709,3 +709,26 @@ body.hanzi-library .library-card{margin-top:5px!important}
  .board-action-bar button{flex-basis:34px;width:34px;height:33px;font-size:19px}
 }
 @media(max-width:380px){.quick-ink-bar{gap:3px}.quick-palette{gap:2px}.quick-swatch{width:clamp(13px,4vw,19px);flex-basis:19px}.quick-tool{min-width:27px;width:27px;flex-basis:27px}.open-tool-btn{padding:4px;font-size:9px}}
+
+
+/* V1.48 — dedicated mobile-compatible board overlay (no Fullscreen API dependency on iOS). */
+.fullscreen-board-btn{white-space:nowrap;flex:0 0 auto;min-height:33px;padding:5px 9px;border:1px solid #c6decf;border-radius:10px;background:#e9f6ee;color:#39755d;font-size:12px;font-weight:800}
+body.board-fullscreen .practice-main-column{position:fixed!important;inset:0 0 auto 0;height:calc(100dvh - 76px - env(safe-area-inset-bottom,0px));width:100%!important;max-width:none!important;z-index:110;background:#fafaf7;display:flex!important;flex-direction:column;gap:0;padding:calc(env(safe-area-inset-top,0px) + 5px) 8px 0;box-sizing:border-box;min-height:0}
+body.board-fullscreen .practice-main-column .quick-ink-bar{flex:0 0 auto;flex-wrap:wrap;gap:7px;min-height:45px;padding:6px 8px;margin:0 0 6px;max-width:none;border-radius:12px}
+body.board-fullscreen .practice-main-column .quick-palette{flex:1 1 135px;min-width:135px;justify-content:space-around;gap:5px}
+body.board-fullscreen .quick-swatch{flex:0 0 24px!important;width:24px!important;height:24px!important;aspect-ratio:1;border-radius:50%;box-sizing:border-box}
+body.board-fullscreen .quick-tool{flex:0 0 38px;min-width:38px;height:37px;font-size:20px}
+body.board-fullscreen .open-tool-btn{display:none}
+body.board-fullscreen .practice-paper{flex:1 1 auto!important;min-height:0!important;width:100%;max-width:none!important;display:flex;flex-direction:column;margin:0!important;overflow:hidden}
+body.board-fullscreen .practice-paper .paper-bar{display:none}
+body.board-fullscreen .practice-paper .board-action-bar{flex:0 0 auto;justify-content:center;min-height:46px;gap:clamp(9px,5vw,28px);padding:5px 8px}
+body.board-fullscreen .board-action-bar button{height:38px;width:42px;flex:0 0 42px;font-size:22px}
+body.board-fullscreen .drawing-stage{flex:1 1 auto!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;width:100%;height:auto!important;touch-action:none}
+body.board-fullscreen .paper-foot{flex:0 0 auto;min-height:23px;padding:3px 9px}
+body.board-fullscreen .practice-navigation{position:fixed!important;z-index:111;left:0;right:0;bottom:0;margin:0!important;padding:9px 12px calc(9px + env(safe-area-inset-bottom,0px));height:calc(76px + env(safe-area-inset-bottom,0px));box-sizing:border-box;background:#f8f7f3;border-top:1px solid #e3e6df;display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:none!important}
+body.board-fullscreen .practice-navigation button{flex:1;min-width:0;min-height:48px!important;font-size:clamp(13px,3vw,18px)!important}
+body.board-fullscreen .practice-navigation #completeBtn{display:none}
+body.board-fullscreen .practice-navigation #prevBtn,body.board-fullscreen .practice-navigation #nextBtn{max-width:48%}
+body.board-fullscreen .practice-main-column ~ *:not(.practice-navigation){visibility:hidden}
+@media(max-width:440px){body.board-fullscreen .fullscreen-board-btn{font-size:11px;padding:5px 7px}body.board-fullscreen .quick-ink-bar{gap:5px}body.board-fullscreen .quick-swatch{flex-basis:21px!important;width:21px!important;height:21px!important}body.board-fullscreen .practice-main-column{padding-left:5px;padding-right:5px}body.board-fullscreen .paper-foot{font-size:9px}}
+@media(orientation:landscape) and (max-height:540px){body.board-fullscreen .practice-main-column{height:calc(100dvh - 58px - env(safe-area-inset-bottom,0px));padding-top:2px}body.board-fullscreen .quick-ink-bar{padding:2px 8px;min-height:34px;margin-bottom:2px}body.board-fullscreen .practice-paper .board-action-bar{min-height:37px;padding:2px}body.board-fullscreen .board-action-bar button{height:31px}body.board-fullscreen .practice-navigation{height:calc(58px + env(safe-area-inset-bottom,0px));padding:5px 12px calc(5px + env(safe-area-inset-bottom,0px))}body.board-fullscreen .practice-navigation button{min-height:40px!important}}
