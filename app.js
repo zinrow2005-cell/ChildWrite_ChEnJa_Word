@@ -1157,7 +1157,26 @@ function updatePaperGuideChip(){
  chip.className='paper-guide-chip'+(state.category==='hanzi'&&isHanziIssue(item.chars[0])?' missing':state.category==='numbers'||state.category==='english'?' schematic':all?'':fetching?' pending':' missing');
  chip.textContent=state.category==='hanzi'&&isHanziIssue(item.chars[0])?'! 筆順待校正':state.category==='numbers'||state.category==='english'?'筆畫方向示意':all?(state.category==='hanzi'&&usableDeployedHanzi(item.chars[0])?'✓ 繁體開源筆順已離線內建':state.category==='japanese'&&(bundledKana[item.chars[0]]||deployedKana[item.chars[0]])?'✓ 已內建逐筆參考':'✓ 已取得開源逐筆資料'):state.category==='hanzi'&&!!practiceGuideFor(item.chars[0])?'✎ 離線描寫方向示意':fetching?'筆順下載中…':referenceFailed.has(item.chars[0])?'! 筆順載入失敗，可重試':'! 尚無逐筆示範';
 }
-function openPractice(index){stopMyReplay({skipRestore:true});deferredPracticeReferences.clear();syncReferenceReadyControl();if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;state.current=index;state.strokes=[];state.redo=[];loadCurrent();showView(true)}
+// V1.54: one shared writing-board shell for all five teaching categories.
+// Character shapes, reading audio and authoritative stroke references stay category-specific.
+const BOARD_CATEGORIES=new Set(['numbers','zhuyin','english','japanese','hanzi']);
+function syncUnifiedWritingBoard(){
+ const kind=BOARD_CATEGORIES.has(state.category)?state.category:'numbers';
+ const view=$('#practiceView');
+ view.dataset.boardCategory=kind;
+ view.classList.add('unified-writing-board');
+ document.body.dataset.writingCategory=kind;
+ // A common single-column board and identical controls across categories.
+ // Legacy Hanzi-only cards remain outside the shared drawing controls.
+ const panel=$('#drawingStage');
+ panel.setAttribute('aria-label',categoryName()+'寫字練習畫板');
+ const full=$('#fullscreenBoardBtn');
+ full.setAttribute('aria-label','切換'+categoryName()+'全螢幕寫字板');
+ ['prevBtn','nextBtn','undoBtn','redoBtn','clearBtn','demoBtn','followStepBtn'].forEach(id=>{
+  const el=$('#'+id);if(el)el.dataset.unifiedBoardAction='true';
+ });
+}
+function openPractice(index){syncUnifiedWritingBoard();stopMyReplay({skipRestore:true});deferredPracticeReferences.clear();syncReferenceReadyControl();if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;state.current=index;state.strokes=[];state.redo=[];loadCurrent();showView(true)}
 function loadCurrent(){const data=state.art[currentItem().id];state.strokes=Array.isArray(data)?JSON.parse(JSON.stringify(data)):[];state.redo=[]}
 function persistCurrent(){stopMyReplay();if(!state.showingPractice||!state.items.length)return;state.art[currentItem().id]=JSON.parse(JSON.stringify(state.strokes));queueSave()}
 function resetLetterInk(itemId){
@@ -1179,7 +1198,7 @@ function move(direction){
  state.current=next;
  resetLetterInk(currentItem().id);
  queueSave();
- if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;
+ if(state.category==='hanzi')hanziStage='trace';state.guideIndex=0;syncUnifiedWritingBoard();
  renderPractice();resizeCanvas();repaintCanvas();hideEraserCursor();
  // Double-check after ResizeObserver and SVG reference rendering have settled.
  requestAnimationFrame(()=>{if(state.activePointer===null&&state.strokes.length===0){
@@ -1192,7 +1211,7 @@ function move(direction){
  }
 }
 
-function renderPractice(){stopMyReplay({skipRestore:true});syncReferenceReadyControl();cancelDemo();hanziAlignmentVisible=false;const item=currentItem();if(state.category==='hanzi'){state.free=hanziStage==='free';$('#traceModeBtn').classList.toggle('selected',!state.free);$('#freeModeBtn').classList.toggle('selected',state.free)}updateHanziReviewQuick();updateHanziMasteryQuick();updateZhuyinOfficialPractice();$('#hanziMetaDrawer').classList.toggle('hidden',state.category!=='hanzi');$('#hanziCompareDrawer').classList.toggle('hidden',state.category!=='hanzi');renderHanziWordInfo(item);renderHanziCompare(item);updateHanziAlignmentControls();state.guideIndex=0;renderFixedPracticeTitle(item);$('#practiceStepLabel').innerHTML=categoryName()+' <span>/</span> 第 '+(state.current+1)+' 個，共 '+state.items.length+' 個';$('#breadcrumb').textContent='正在描寫 '+item.chars.join('');const hasGuide=hasGuides();$('#practiceInstruction').textContent=state.category==='hanzi'&&isHanziIssue(item.chars[0])?'此字已標記筆順有差異：目前僅保留空心字描寫，筆順引導暫停。':state.category==='hanzi'&&!referenceFor(item.chars[0])?item.level>=2?'此字尚無開源逐筆參考，可先用固定空心字進行三階段描寫；連網時可嘗試取得臺灣繁體參考。':'沿著空心字描寫；離線箭頭只是未核對示意，請另核對教育部筆順。':hasGuide?'沿著箭頭的筆畫順序，選喜歡的顏色練習。':'沿著空心字外框慢慢描寫；連網後會嘗試載入逐筆資料。';$('#speakBtn').innerHTML='<span class="speaker-badge">🔊</span><span class="speak-main">聽發音</span><small>'+speechText(item)+'</small>';$('#speakBtn').setAttribute('aria-label','播放 '+speechLabel(item)+' 的發音');updateHanziReadBar(item);$('#arrowSettingHint').textContent=hasGuide?'顯示起筆點、順序及方向':'首次取得筆順資料需要連網';$('#demoBtn').disabled=!hasGuide;$('#demoBtn').textContent=hasGuide?'▶ 播放描寫示範':'⌛ 等待筆順資料';$('#demoBtn').title=hasGuide?(state.category==='hanzi'&&!referenceFor(item.chars[0])?'播放未經官方逐字核對的描寫方向示意':'播放逐筆方向示範'):'尚未取得這個字的逐筆筆順，不播放外框冒充筆順';$('#paperModeTag').textContent=state.free?'自由寫字':'描寫模式';$('#practiceDoneStatus').classList.toggle('finished',!!state.done[item.id]);$('#practiceDoneStatus').textContent=state.done[item.id]?'✓ 已完成練習':'尚未完成';$('#completeBtn').textContent=state.done[item.id]?'✓ 再練一次 ⭐':'✓ 我寫好了 ⭐';$('#fullscreenBoardBtn').title='目前：'+item.chars.join('')+'，點擊切換全螢幕';$('#prevBtn').disabled=state.current===0;$('#nextBtn').disabled=state.current===state.items.length-1;renderTemplate();updateGuidePanel();syncHanziStage();updatePaperGuideChip();repaintCanvas();updateStrokeCount();prepareReference(item)}
+function renderPractice(){syncUnifiedWritingBoard();stopMyReplay({skipRestore:true});syncReferenceReadyControl();cancelDemo();hanziAlignmentVisible=false;const item=currentItem();if(state.category==='hanzi'){state.free=hanziStage==='free';$('#traceModeBtn').classList.toggle('selected',!state.free);$('#freeModeBtn').classList.toggle('selected',state.free)}updateHanziReviewQuick();updateHanziMasteryQuick();updateZhuyinOfficialPractice();$('#hanziMetaDrawer').classList.toggle('hidden',state.category!=='hanzi');$('#hanziCompareDrawer').classList.toggle('hidden',state.category!=='hanzi');renderHanziWordInfo(item);renderHanziCompare(item);updateHanziAlignmentControls();state.guideIndex=0;renderFixedPracticeTitle(item);$('#practiceStepLabel').innerHTML=categoryName()+' <span>/</span> 第 '+(state.current+1)+' 個，共 '+state.items.length+' 個';$('#breadcrumb').textContent='正在描寫 '+item.chars.join('');const hasGuide=hasGuides();$('#practiceInstruction').textContent=state.category==='hanzi'&&isHanziIssue(item.chars[0])?'此字已標記筆順有差異：目前僅保留空心字描寫，筆順引導暫停。':state.category==='hanzi'&&!referenceFor(item.chars[0])?item.level>=2?'此字尚無開源逐筆參考，可先用固定空心字進行三階段描寫；連網時可嘗試取得臺灣繁體參考。':'沿著空心字描寫；離線箭頭只是未核對示意，請另核對教育部筆順。':hasGuide?'沿著箭頭的筆畫順序，選喜歡的顏色練習。':'沿著空心字外框慢慢描寫；連網後會嘗試載入逐筆資料。';$('#speakBtn').innerHTML='<span class="speaker-badge">🔊</span><span class="speak-main">聽發音</span><small>'+speechText(item)+'</small>';$('#speakBtn').setAttribute('aria-label','播放 '+speechLabel(item)+' 的發音');updateHanziReadBar(item);$('#arrowSettingHint').textContent=hasGuide?'顯示起筆點、順序及方向':'首次取得筆順資料需要連網';$('#demoBtn').disabled=!hasGuide;$('#demoBtn').textContent=hasGuide?'▶ 播放描寫示範':'⌛ 等待筆順資料';$('#demoBtn').title=hasGuide?(state.category==='hanzi'&&!referenceFor(item.chars[0])?'播放未經官方逐字核對的描寫方向示意':'播放逐筆方向示範'):'尚未取得這個字的逐筆筆順，不播放外框冒充筆順';$('#paperModeTag').textContent=state.free?'自由寫字':'描寫模式';$('#practiceDoneStatus').classList.toggle('finished',!!state.done[item.id]);$('#practiceDoneStatus').textContent=state.done[item.id]?'✓ 已完成練習':'尚未完成';$('#completeBtn').textContent=state.done[item.id]?'✓ 再練一次 ⭐':'✓ 我寫好了 ⭐';$('#fullscreenBoardBtn').title='目前：'+item.chars.join('')+'，點擊切換全螢幕';$('#prevBtn').disabled=state.current===0;$('#nextBtn').disabled=state.current===state.items.length-1;renderTemplate();updateGuidePanel();syncHanziStage();updatePaperGuideChip();repaintCanvas();updateStrokeCount();prepareReference(item)}
 function strokePaths(c){return DIGITS[c]||UPPER[c]||LOWER[c]||null}
 function referenceFor(c){
  if(pendingPracticeReference(c))return null;

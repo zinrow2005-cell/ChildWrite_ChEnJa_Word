@@ -783,3 +783,18 @@ body.board-fullscreen .practice-main-column{height:calc(100dvh - 97px - env(safe
 /* V1.52: preserve and distinguish already-written demo strokes */
 .template-svg .demo-stroke{pointer-events:none;opacity:1;stroke:#db805e;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
 .template-svg .demo-stroke.demo-reference{stroke:#e8784e;stroke-width:42;opacity:.85;filter:none}
+
+/* V1.54: Every practice category uses the same board and tool geometry. */
+body.practice-open #practiceView.unified-writing-board .practice-main-column{min-width:0;width:100%}
+body.practice-open #practiceView.unified-writing-board .quick-ink-bar{display:flex;align-items:center;min-width:0}
+body.practice-open #practiceView.unified-writing-board .quick-palette{display:flex;align-items:center;min-width:0}
+body.practice-open #practiceView.unified-writing-board .quick-swatch{aspect-ratio:1/1;flex-shrink:0;border-radius:50%}
+body.practice-open #practiceView.unified-writing-board .practice-paper{min-width:0}
+body.practice-open #practiceView.unified-writing-board .practice-helper-strip{display:flex;align-items:center;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;scrollbar-width:thin}
+body.practice-open #practiceView.unified-writing-board .drawing-stage{min-width:0;touch-action:none}
+body.board-fullscreen #practiceView.unified-writing-board .practice-main-column{width:100%!important;max-width:none!important}
+body.board-fullscreen #practiceView.unified-writing-board .practice-paper{flex:1 1 auto;min-height:0;overflow:hidden}
+body.board-fullscreen #practiceView.unified-writing-board .drawing-stage{flex:1 1 auto;min-height:0;aspect-ratio:auto!important;height:auto!important}
+body.board-fullscreen #practiceView.unified-writing-board .practice-helper-strip{display:flex!important;position:fixed!important;flex-wrap:nowrap!important;white-space:nowrap!important;visibility:visible!important}
+body.board-fullscreen #practiceView.unified-writing-board .practice-navigation{display:flex!important}
+@media(max-width:720px){body.practice-open #practiceView.unified-writing-board .quick-palette{gap:6px}body.practice-open #practiceView.unified-writing-board .quick-tool{flex-shrink:0}}
