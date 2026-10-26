@@ -732,3 +732,25 @@ body.board-fullscreen .practice-navigation #prevBtn,body.board-fullscreen .pract
 body.board-fullscreen .practice-main-column ~ *:not(.practice-navigation){visibility:hidden}
 @media(max-width:440px){body.board-fullscreen .fullscreen-board-btn{font-size:11px;padding:5px 7px}body.board-fullscreen .quick-ink-bar{gap:5px}body.board-fullscreen .quick-swatch{flex-basis:21px!important;width:21px!important;height:21px!important}body.board-fullscreen .practice-main-column{padding-left:5px;padding-right:5px}body.board-fullscreen .paper-foot{font-size:9px}}
 @media(orientation:landscape) and (max-height:540px){body.board-fullscreen .practice-main-column{height:calc(100dvh - 58px - env(safe-area-inset-bottom,0px));padding-top:2px}body.board-fullscreen .quick-ink-bar{padding:2px 8px;min-height:34px;margin-bottom:2px}body.board-fullscreen .practice-paper .board-action-bar{min-height:37px;padding:2px}body.board-fullscreen .board-action-bar button{height:31px}body.board-fullscreen .practice-navigation{height:calc(58px + env(safe-area-inset-bottom,0px));padding:5px 12px calc(5px + env(safe-area-inset-bottom,0px))}body.board-fullscreen .practice-navigation button{min-height:40px!important}}
+
+/* V1.49 單列輔助工具與全螢幕畫板擴大 */
+.practice-helper-strip{display:flex;align-items:center;gap:7px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;white-space:nowrap;min-height:42px;margin:5px 0 0;padding:4px 6px;background:#fffaf3;border:1px solid #eee9df;border-radius:11px;max-width:100%;}
+.practice-helper-strip button{flex:0 0 auto;font-size:11px;font-weight:750;min-height:30px;padding:5px 9px;border:1px solid #e4dfd6;background:#fffdf9;color:#807168;border-radius:8px;}
+.practice-helper-strip button.selected,.practice-helper-strip button[aria-pressed="true"]{background:#e7f5ef;border-color:#b7d8c7;color:#367962;}
+.practice-helper-strip .helper-status,.practice-helper-strip .helper-reference{flex:0 1 auto;min-width:0;max-width:160px;overflow:hidden;text-overflow:ellipsis;font-size:10px;color:#927b6d;}
+.practice-helper-strip .helper-reference{color:#4b937b;max-width:148px;}
+.practice-helper-strip .helper-count{font-size:11px;color:#b18a72;font-weight:800;flex:0 0 auto;}
+@media(max-width:720px){.practice-helper-strip{gap:4px;padding:4px;min-height:38px}.practice-helper-strip button{padding:5px 7px;font-size:10px}.practice-helper-strip .helper-status{max-width:85px}.practice-helper-strip .helper-reference{max-width:95px}}
+/* 將底部導航壓縮，騰出更多高度給可繪畫的田字格 */
+body.board-fullscreen .practice-main-column{height:calc(100dvh - 58px - env(safe-area-inset-bottom,0px));padding:2px 4px 0;}
+body.board-fullscreen .practice-main-column .quick-ink-bar{min-height:36px;margin-bottom:2px;padding:2px 7px;gap:5px;}
+body.board-fullscreen .practice-paper{border-radius:8px;}
+body.board-fullscreen .practice-paper .board-action-bar{min-height:34px;padding:2px 6px;gap:clamp(7px,3vw,23px)}
+body.board-fullscreen .board-action-bar button{width:36px;height:30px;flex:0 0 36px;font-size:19px}
+body.board-fullscreen .paper-foot{min-height:18px;height:18px;padding:0 7px;font-size:10px}
+body.board-fullscreen .practice-navigation{height:calc(58px + env(safe-area-inset-bottom,0px));padding:4px 10px calc(4px + env(safe-area-inset-bottom,0px));}
+body.board-fullscreen .practice-navigation button{min-height:43px!important;}
+/* 避免寬螢幕上田字格受 stage 的寬高比拉扁；維持等比並置中 */
+body.board-fullscreen .drawing-stage{min-height:0;min-width:0;}
+body.board-fullscreen .practice-helper-strip{display:none!important}
+@media(orientation:landscape) and (max-height:540px){body.board-fullscreen .practice-main-column{height:calc(100dvh - 48px - env(safe-area-inset-bottom,0px));}body.board-fullscreen .practice-navigation{height:calc(48px + env(safe-area-inset-bottom,0px));padding:2px 8px calc(2px + env(safe-area-inset-bottom,0px))}body.board-fullscreen .practice-navigation button{min-height:38px!important}body.board-fullscreen .paper-foot{display:none}}

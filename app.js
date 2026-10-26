@@ -1,4 +1,4 @@
-/* Little Lines Studio V1.48 — 五級國字各新增20字，總計300字／30課 */
+/* Little Lines Studio V1.49 — 五級國字各新增20字，總計300字／30課 */
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const NS='http://www.w3.org/2000/svg',STORAGE='little-lines-studio-v1',REFERENCE_STORE='little-lines-animcjk-v1';
@@ -1165,7 +1165,7 @@ function move(direction){
  const next=state.current+direction;
  if(next<0||next>=state.items.length){toast(next<0?'已經是第一個字囉':'已經到最後一個字囉');return}
  deferredPracticeReferences.clear();syncReferenceReadyControl();window.LittleLinesVoice?.stop();cancelDemo();
- // V1.48: changing letters starts a fresh attempt, including when returning to a prior letter.
+ // V1.49: changing letters starts a fresh attempt, including when returning to a prior letter.
  // Discard old per-letter drawing, but do NOT modify completion / lesson progress.
  delete state.art[currentItem().id];
  state.current=next;

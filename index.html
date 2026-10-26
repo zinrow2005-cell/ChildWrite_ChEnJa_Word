@@ -34,7 +34,7 @@
       <button type="button" data-hanzi-page="data" class="hanzi-subnav-item"><span>🗂️</span> 逐筆資料管理</button>
     </nav>
     <div class="sidebar-note"><span class="note-sparkle">✧</span><strong>每天寫一點點，</strong><span>慢慢就會越來越棒！</span><div class="note-doodle">✎ 〰 ✦</div></div>
-    <div class="sidebar-footer">Made for little hands <span>♡</span><small>V1.48 · 全螢幕練字板</small></div>
+    <div class="sidebar-footer">Made for little hands <span>♡</span><small>V1.49 · 全螢幕練字板</small></div>
   </aside>
   <main class="main-content" id="mainContent">
     <header class="top-header">
@@ -139,9 +139,19 @@
           </div>
           <div class="hanzi-stage-bottom"><span>切換階段會保留目前畫過的線；可按「清空畫板」重新寫。筆順僅依已取得、已核對的來源教學。</span><button id="hanziMasteryBtn" type="button" class="hanzi-mastery-btn" aria-pressed="false">☆ 家長確認：我會寫了</button></div>
         </section>
-        <div class="kid-replay-row removed-feature" role="group" aria-label="回看自己書寫的筆跡"><button type="button" id="myReplayBtn" class="kid-replay-btn" aria-pressed="false">▶ 回看我寫的</button><label for="myReplaySpeed">回放速度 <select id="myReplaySpeed" aria-label="我的書寫回放速度"><option value="0.75">慢慢看</option><option value="1" selected>正常</option><option value="1.5">快一點</option></select></label><span id="myReplayStatus" aria-live="polite">依儲存的畫線順序重現，不是標準筆順</span></div><div class="kid-learning-row"><button type="button" id="focusBtn">⛶ 專心練習</button><button type="button" id="followStepBtn">✎ 寫一筆提示下一筆</button><span>由孩子自己操作，無需評分</span></div>
-        <div class="guide-toolbar" id="guideToolbar" aria-label="示範控制"><div class="guide-status"><span id="guideTag">印刷字描寫示意</span><strong id="guideStepText">共 1 筆</strong></div><div class="guide-controls"><button id="oneStepBtn" type="button" class="one-step-btn" aria-pressed="false" title="一次只強調目前的筆畫">◎ 一次看一筆</button><button id="guidePrev" type="button" aria-label="前一筆">← 前一筆</button><button id="guideNext" type="button" aria-label="下一筆">下一筆 →</button><button id="guidePlay" type="button" aria-label="播放示範">▶ 播放</button></div></div>
-        <div class="zh-official-practice hidden" id="zhOfficialPractice"><button type="button" id="showZhuyinOfficialBtn">📖 看教育部正式筆順</button><span id="zhOfficialPracticeStatus">官方動畫尚未內建</span></div><div class="reference-control"><span id="referenceStatus">可離線練習</span><button id="retryGuideBtn" class="hidden" type="button">↻ 重試下載逐筆資料</button></div><p class="source-caption" id="sourceCaption">書寫示意為練字輔助，非官方標準筆順。</p><a class="reference-link hidden" id="referenceLink" href="#" target="_blank" rel="noopener noreferrer">↗ 線上查詢標準筆順（需網路）</a>
+        <div class="kid-replay-row removed-feature" role="group" aria-label="回看自己書寫的筆跡"><button type="button" id="myReplayBtn" class="kid-replay-btn" aria-pressed="false">▶ 回看我寫的</button><label for="myReplaySpeed">回放速度 <select id="myReplaySpeed" aria-label="我的書寫回放速度"><option value="0.75">慢慢看</option><option value="1" selected>正常</option><option value="1.5">快一點</option></select></label><span id="myReplayStatus" aria-live="polite">依儲存的畫線順序重現，不是標準筆順</span></div>        <div class="practice-helper-strip" role="group" aria-label="練字輔助與筆順狀態">
+          <button type="button" id="focusBtn" title="專心練習">⛶ 專心練習</button>
+          <button type="button" id="followStepBtn" title="寫一筆後提示下一筆">✎ 寫一筆提示下一筆</button>
+          <span class="helper-status" id="guideTag">印刷字描寫示意</span>
+          <strong class="helper-count" id="guideStepText">共 1 筆</strong>
+          <button id="oneStepBtn" type="button" class="one-step-btn" aria-pressed="false" title="一次只強調目前筆畫">◎ 一次看一筆</button>
+          <button id="guidePrev" type="button" aria-label="前一筆" title="前一筆">‹</button>
+          <button id="guideNext" type="button" aria-label="下一筆" title="下一筆">›</button>
+          <button id="guidePlay" type="button" aria-label="播放示範" title="播放示範">▶</button>
+          <span class="helper-reference" id="referenceStatus">可離線練習</span>
+          <button id="retryGuideBtn" class="hidden" type="button" title="重試取得逐筆路徑">↻</button>
+        </div>
+<div class="zh-official-practice hidden" id="zhOfficialPractice"><button type="button" id="showZhuyinOfficialBtn">📖 看教育部正式筆順</button><span id="zhOfficialPracticeStatus">官方動畫尚未內建</span></div><p class="source-caption" id="sourceCaption">書寫示意為練字輔助，非官方標準筆順。</p><a class="reference-link hidden" id="referenceLink" href="#" target="_blank" rel="noopener noreferrer">↗ 線上查詢標準筆順（需網路）</a>
         </div>
         <div id="toolBackdrop" class="tool-backdrop hidden" aria-hidden="true"></div><aside class="tool-card" id="practiceTools" aria-label="練字工具"><div class="tool-drawer-heading"><strong>🎨 練字工具箱</strong><button type="button" id="closeToolBtn" aria-label="關閉工具箱">✕ 關閉</button></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon">✿</span><div><strong>我的畫筆顏色</strong><small>挑一個喜歡的柔和色彩</small></div></div><div id="palette" class="pastel-palette"></div><div class="custom-color-row"><label for="customColor">🎨 自訂顏色</label><input type="color" id="customColor" value="#f39a88" aria-label="選擇自訂畫筆顏色"><span class="current-color-dot" id="currentColorDot"></span></div></div>
           <div class="tool-divider"></div><div class="tool-section"><div class="tool-heading"><span class="tool-heading-icon width-icon">〰</span><div><strong>畫筆工具</strong><small>調整線條，寫起來更順手</small></div></div><div class="tool-two"><button type="button" class="tool-mode selected" data-tool="pen">✎<span>彩色筆</span></button><button type="button" class="tool-mode" data-tool="eraser">▰<span>橡皮擦</span></button></div><label class="auto-pen-toggle"><input id="autoPenWidth" type="checkbox" checked><span class="auto-pen-icon">✦</span><span class="auto-pen-text"><strong>畫筆自動符合字內框</strong><small>描寫時依字形大小自動調整，建議開啟</small></span><span class="auto-pen-tag">推薦</span></label>
