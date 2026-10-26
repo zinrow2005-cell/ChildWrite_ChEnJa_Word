@@ -772,3 +772,10 @@ body.board-fullscreen .practice-main-column{height:calc(100dvh - 97px - env(safe
  body.board-fullscreen .practice-helper-strip button{min-height:24px;padding:2px 7px}
  body.board-fullscreen .practice-main-column{height:calc(100dvh - 79px - env(safe-area-inset-bottom,0px))!important}
 }
+
+/* V1.51: make stroke demonstrations and next-stroke hint readable on phones and tablets */
+.template-svg .demo-stroke.demo-reference{stroke:#eb7856;stroke-width:48;opacity:1;stroke-dasharray:none;filter:drop-shadow(0 0 4px #fff)}
+.template-svg .demo-stroke:not(.demo-reference){stroke:#dc7152;opacity:1;filter:drop-shadow(0 0 2px #fff)}
+.template-svg .next-stroke-preview{fill:none;stroke:#ef855c;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 6;opacity:1;pointer-events:none;filter:drop-shadow(0 0 2px white)}
+.template-svg .next-stroke-preview.reference-preview{stroke-width:35;stroke-dasharray:38 22;opacity:1}
+.template-svg.study-ghost .next-stroke-preview{display:none}

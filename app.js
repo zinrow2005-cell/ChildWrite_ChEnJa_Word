@@ -1480,7 +1480,7 @@ function clearDrawing(){stopMyReplay();
  repaintCanvas();updateStrokeCount();updateGuidePanel();persistCurrent();
  toast(hadArt?'已清空全部筆跡和示範，空心字保留':hadDemo?'已停止示範，畫板已清空':'畫板已經是空白的囉');
 }
-function cancelDemo(){if(state.demoTimer){clearTimeout(state.demoTimer);state.demoTimer=null}svg.querySelectorAll('.demo-stroke,.demo-outline').forEach(e=>e.remove());const b=$('#guidePlay');if(b)b.textContent='▶ 播放'}
+function cancelDemo(){if(state.demoTimer){clearTimeout(state.demoTimer);state.demoTimer=null}svg.querySelectorAll('.demo-stroke,.demo-outline,.next-stroke-preview').forEach(e=>e.remove());const b=$('#guidePlay');if(b)b.textContent='▶ 播放'}
 // 教學線與 SVG 字形外框分開：未有逐筆資料的注音、日文只做「字形外框巡覽」，不冒充官方筆順。
 function guidePaths(){return [...svg.querySelectorAll('.guide-line')]}
 function sourceNotice(){if(state.category==='zhuyin')return zhOfficialEntry(currentItem().chars[0])?'教育部原始 SVG 筆順動畫已內建，可點「查看教育部正式筆順」；畫板上逐筆路徑仍是另一份開源描寫參考。':'畫板逐筆資料來自 AnimCJK 開源參考，正式標準請另參考教育部《國語注音符號手冊》。';if(state.category==='japanese')return (bundledKana[currentItem().chars[0]]||deployedKana[currentItem().chars[0]])?'此字已內建 AnimCJK 開源日文逐筆參考，可離線播放；與學校使用的字形仍需核對。':'逐筆路徑：AnimCJK / kana-svg-data 開源假名參考，成功下載後可離線快取；若失敗可重試。';;if(state.category==='hanzi'&&isHanziIssue(currentItem().chars[0]))return '此字由家長標記「發現筆順差異」，已暫停筆順箭頭與動畫；仍可練習空心字形。請查閱教育部來源。';if(state.category==='hanzi')return referenceFor(currentItem().chars[0])?'目前顯示 AnimCJK 臺灣繁體逐筆參考（'+(usableDeployedHanzi(currentItem().chars[0])?'已內建，可離線使用':'本機已取得')+'）；仍請以教育部官方筆順教材核對。':'此字尚無可用的開源逐筆資料；簡單級可能有未經官方核對的人工方向示意。可取得 AnimCJK 臺灣繁體參考後再逐筆檢視。';return '數字與英文為印刷字練習方向示意，不代表各校統一規範。'}
@@ -1498,10 +1498,10 @@ function updateGuidePanel(){syncReferenceReadyControl();const ref=isReferenceCat
  $('#referenceStatus').textContent=ref?(loaded&&(bundledKana[currentItem().chars[0]]||deployedKana[currentItem().chars[0]])?'✓ 已內建日文描寫參考，可離線播放':loaded?'✓ 已取得逐筆路徑':builtinDemo?'✓ 已內建描寫示意，可離線播放；正式筆順尚需核對':referencePending.has(currentItem().chars[0])?'正在取得逐筆資料…':referenceFailed.has(currentItem().chars[0])?'下載失敗：請連網後重試（仍可描寫空心字）':'尚未載入筆順，可按「重試下載」'):'可離線練習';
  $('#retryGuideBtn').classList.toggle('hidden',!ref||loaded);
  $('#retryGuideBtn').disabled=referencePending.has(currentItem().chars[0]);
- $('#followStepBtn').classList.toggle('selected',state.followStep);const ss=$('#oneStepBtn');if(ss){ss.classList.toggle('selected',state.oneStep);ss.setAttribute('aria-pressed',String(state.oneStep));ss.disabled=!available;ss.textContent=state.oneStep?'✓ 一次看一筆':'◎ 一次看一筆'}svg.classList.toggle('single-step',state.oneStep&&!state.free&&available);if(state.oneStep&&available)highlightGuide();updatePaperGuideChip();
+ $('#followStepBtn').classList.toggle('selected',state.followStep);const ss=$('#oneStepBtn');if(ss){ss.classList.toggle('selected',state.oneStep);ss.setAttribute('aria-pressed',String(state.oneStep));ss.disabled=!available;ss.textContent=state.oneStep?'✓ 一次看一筆':'◎ 一次看一筆'}svg.classList.toggle('single-step',state.oneStep&&!state.free&&available);if(state.oneStep&&available)highlightGuide();if(state.followStep&&available&&!state.free&&!svg.querySelector('.next-stroke-preview'))showNextStrokePreview();updatePaperGuideChip();
 }
 function playOutline(){const paths=[...svg.querySelectorAll('.glyph-fill-outline')];if(!paths.length){toast('沒有可播放的字形，請直接描寫');return}const target=paths[0],p=svgEl('path',{d:target.getAttribute('d'),class:'demo-outline'},target.parentNode);let len=0;try{len=p.getTotalLength()}catch{len=400};p.style.strokeDasharray=''+len;p.style.strokeDashoffset=''+len;p.getBoundingClientRect();p.style.transition='stroke-dashoffset 2500ms linear';p.style.strokeDashoffset='0';state.demoTimer=setTimeout(()=>{p.remove();state.demoTimer=null;$('#guidePlay').textContent='▶ 播放'},2850)}
-function animateGuideStep(index,loop){cancelDemo();if(state.free){toast('先切回「空心字描寫」再觀看示範');return}if(!state.arrows){state.arrows=true;$('#showArrows').checked=true;renderTemplate()}const paths=guidePaths();if(!hasGuides()){toast('這個字的逐筆筆順尚未取得，請先下載');updateGuidePanel();return}if(!paths.length)return;state.guideIndex=Math.max(0,Math.min(index,paths.length-1));updateGuidePanel();highlightGuide();const p=paths[state.guideIndex],demo=svgEl('path',{d:p.getAttribute('d'),class:'demo-stroke'+(p.classList.contains('reference-guide')?' demo-reference':'')},p.parentNode);const len=demo.getTotalLength(),ms=Math.min(1600,650+len*4);demo.style.strokeDasharray=''+len;demo.style.strokeDashoffset=''+len;demo.getBoundingClientRect();demo.style.transition='stroke-dashoffset '+ms+'ms ease-in-out';demo.style.strokeDashoffset='0';$('#guidePlay').textContent='■ 播放中';state.demoTimer=setTimeout(()=>{demo.remove();state.demoTimer=null;if(loop&&state.guideIndex<paths.length-1)animateGuideStep(state.guideIndex+1,true);else $('#guidePlay').textContent='▶ 播放'},ms+190)}
+function animateGuideStep(index,loop){cancelDemo();if(state.free){toast('先切回「空心字描寫」再觀看示範');return}if(!state.arrows){state.arrows=true;$('#showArrows').checked=true;renderTemplate()}const paths=guidePaths();if(!hasGuides()){toast('這個字的逐筆筆順尚未取得，請先下載');updateGuidePanel();return}if(!paths.length){toast('筆順線條尚未建立，請重試筆順資料');return;}state.guideIndex=Math.max(0,Math.min(index,paths.length-1));updateGuidePanel();highlightGuide();const p=paths[state.guideIndex],demo=svgEl('path',{d:p.getAttribute('d'),class:'demo-stroke'+(p.classList.contains('reference-guide')?' demo-reference':'')},p.parentNode);const len=demo.getTotalLength(),ms=Math.min(1700,750+len*4);demo.style.strokeDasharray=''+len;demo.style.strokeDashoffset=''+len;demo.getBoundingClientRect();demo.style.transition='stroke-dashoffset '+ms+'ms ease-in-out';demo.style.strokeDashoffset='0';$('#guidePlay').textContent='■ 播放中';state.demoTimer=setTimeout(()=>{demo.remove();state.demoTimer=null;if(loop&&state.guideIndex<paths.length-1)animateGuideStep(state.guideIndex+1,true);else $('#guidePlay').textContent='▶ 播放'},ms+190)}
 function demoStrokes(){animateGuideStep(0,true)}
 function manualGuide(delta){cancelDemo();if(!hasGuides()){toast('尚無可播放的逐筆資料，請點「重試下載」');return}const count=guidePaths().length;state.guideIndex=Math.max(0,Math.min(count-1,state.guideIndex+delta));highlightGuide();animateGuideStep(state.guideIndex,false)}
 function toast(message){const el=$('#toast');clearTimeout(toastTimer);el.textContent=message;el.classList.add('visible');toastTimer=setTimeout(()=>el.classList.remove('visible'),2500)}
@@ -1553,8 +1553,23 @@ function setBoardFullscreen(enable){
  requestAnimationFrame(()=>{renderTemplate();resizeCanvas();updateGuidePanel()});
 }
 function toggleFocus(){state.focus=!state.focus;document.body.classList.toggle('focus-mode',state.focus);$('#focusBtn').textContent=state.focus?'↙ 退出專心練習':'⛶ 專心練習';resizeCanvas();}
-function toggleFollowStep(){state.followStep=!state.followStep;$('#followStepBtn').classList.toggle('selected',state.followStep);if(state.followStep&&hasGuides()){state.guideIndex=0;animateGuideStep(0,false)}else toast(state.followStep?'每寫完一筆，會自動提示下一筆':'已關閉寫完自動提示');}
-function autoAdvanceGuide(){if(!state.followStep||!hasGuides()||state.tool==='eraser'||state.free)return;const total=guidePaths().length;if(state.guideIndex<total-1){state.guideIndex++;updateGuidePanel();highlightGuide()}else{toast('所有示範筆畫已完成！可以點「我寫好了」⭐')}}
+function toggleFollowStep(){state.followStep=!state.followStep;$('#followStepBtn').classList.toggle('selected',state.followStep);if(state.followStep&&hasGuides()){state.guideIndex=0;showNextStrokePreview()}else toast(state.followStep?'每寫完一筆，會自動提示下一筆':'已關閉寫完自動提示');}
+function showNextStrokePreview(){
+ // Give the learner an actual visible trace rather than only changing the stroke counter.
+ svg.querySelectorAll('.next-stroke-preview').forEach(el=>el.remove());
+ if(state.free||!hasGuides())return;
+ if(!state.arrows){state.arrows=true;$('#showArrows').checked=true;renderTemplate()}
+ const path=guidePaths()[state.guideIndex];if(!path)return;
+ highlightGuide();
+ const preview=svgEl('path',{d:path.getAttribute('d'),class:'next-stroke-preview'+(path.classList.contains('reference-guide')?' reference-preview':'')},path.parentNode);
+ preview.setAttribute('data-guide-preview',String(state.guideIndex));
+}
+function autoAdvanceGuide(){
+ if(!state.followStep||!hasGuides()||state.tool==='eraser'||state.free)return;
+ const total=guidePaths().length;
+ if(state.guideIndex<total-1){state.guideIndex++;updateGuidePanel();showNextStrokePreview()}
+ else{svg.querySelectorAll('.next-stroke-preview').forEach(el=>el.remove());toast('所有示範筆畫已完成！可以點「我寫好了」⭐')}
+}
 function highlightGuide(){svg.querySelectorAll('.guide-line,.reference-median,.offline-median,.arrow-tri').forEach(node=>{const step=Number(node.dataset.step);node.classList.toggle('guide-active',step===state.guideIndex);node.classList.toggle('step-selected',step===state.guideIndex)});svg.querySelectorAll('.guide-label').forEach(node=>node.classList.toggle('label-active',Number(node.dataset.step)===state.guideIndex))}
 function toggleSingleStep(){if(!hasGuides()){toast('這個字尚無可使用的逐筆資料');return}cancelDemo();state.oneStep=!state.oneStep;state.guideIndex=0;svg.classList.toggle('single-step',state.oneStep&&!state.free);updateGuidePanel();if(!state.oneStep)svg.querySelectorAll('.guide-active,.label-active,.step-selected').forEach(el=>el.classList.remove('guide-active','label-active','step-selected'));toast(state.oneStep?'已啟用：每次只強調一筆，按「下一筆」慢慢練':'已顯示全部筆畫箭頭')}
 function bindUI(){
