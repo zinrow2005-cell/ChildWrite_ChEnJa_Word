@@ -779,3 +779,7 @@ body.board-fullscreen .practice-main-column{height:calc(100dvh - 97px - env(safe
 .template-svg .next-stroke-preview{fill:none;stroke:#ef855c;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:10 6;opacity:1;pointer-events:none;filter:drop-shadow(0 0 2px white)}
 .template-svg .next-stroke-preview.reference-preview{stroke-width:35;stroke-dasharray:38 22;opacity:1}
 .template-svg.study-ghost .next-stroke-preview{display:none}
+
+/* V1.52: preserve and distinguish already-written demo strokes */
+.template-svg .demo-stroke{pointer-events:none;opacity:1;stroke:#db805e;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.template-svg .demo-stroke.demo-reference{stroke:#e8784e;stroke-width:42;opacity:.85;filter:none}
