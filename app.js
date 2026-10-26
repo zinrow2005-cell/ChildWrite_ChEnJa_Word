@@ -1185,7 +1185,7 @@ function move(direction){
  requestAnimationFrame(()=>{if(state.activePointer===null&&state.strokes.length===0){
   if(ctx&&canvas.width)ctx.clearRect(0,0,canvasW,canvasH);
   repaintCanvas();updateStrokeCount();
- }});
+ }scheduleFollowStepPreview();});
  if(!document.body.classList.contains('board-fullscreen')){
   const pad=$('#drawingStage').getBoundingClientRect();
   if(pad.bottom<80||pad.top>window.innerHeight-80)$('#drawingStage').scrollIntoView({block:'center',behavior:'instant'});
@@ -1400,7 +1400,7 @@ function renderTemplate(){
   nested.dataset.inkWidth=strokeGlyphLocalWidth(char,reference,paths,outline,nested);
  });
  oldSvg.remove();newSvg.style.visibility='';
- updateAutoPenWidth();
+ updateAutoPenWidth();scheduleFollowStepPreview();
 }
 function resizeCanvas(){stopMyReplay({skipRestore:true});const r=canvas.getBoundingClientRect(),newW=Math.max(1,Math.round(r.width)),newH=Math.max(1,Math.round(r.height));if(newW===canvasW&&newH===canvasH)return;canvasW=newW;canvasH=newH;const ratio=Math.min(2.5,window.devicePixelRatio||1);canvas.width=Math.round(newW*ratio);canvas.height=Math.round(newH*ratio);ctx.setTransform(ratio,0,0,ratio,0,0);repaintCanvas();updateAutoPenWidth()}
 function drawStroke(context,stroke,width,height){if(!stroke||!Array.isArray(stroke.points)||!stroke.points.length)return;context.save();context.globalCompositeOperation=stroke.eraser?'destination-out':'source-over';context.strokeStyle=stroke.color||'#eda7a0';context.fillStyle=stroke.color||'#eda7a0';context.lineWidth=stroke.widthRatio?stroke.widthRatio*width:stroke.width||14;context.lineJoin='round';context.lineCap='round';const pts=stroke.points,px=p=>[p.x*width,p.y*height];let [x,y]=px(pts[0]);if(pts.length===1){context.beginPath();context.arc(x,y,context.lineWidth/2,0,Math.PI*2);context.fill();context.restore();return}context.beginPath();context.moveTo(x,y);for(let i=1;i<pts.length;i++){const [nx,ny]=px(pts[i]);if(i<pts.length-1){const [nnx,nny]=px(pts[i+1]);context.quadraticCurveTo(nx,ny,(nx+nnx)/2,(ny+nny)/2)}else context.lineTo(nx,ny)}context.stroke();context.restore()}
@@ -1499,7 +1499,22 @@ function updateGuidePanel(){syncReferenceReadyControl();const ref=isReferenceCat
  $('#referenceStatus').textContent=ref?(loaded&&(bundledKana[currentItem().chars[0]]||deployedKana[currentItem().chars[0]])?'✓ 已內建日文描寫參考，可離線播放':loaded?'✓ 已取得逐筆路徑':builtinDemo?'✓ 已內建描寫示意，可離線播放；正式筆順尚需核對':referencePending.has(currentItem().chars[0])?'正在取得逐筆資料…':referenceFailed.has(currentItem().chars[0])?'下載失敗：請連網後重試（仍可描寫空心字）':'尚未載入筆順，可按「重試下載」'):'可離線練習';
  $('#retryGuideBtn').classList.toggle('hidden',!ref||loaded);
  $('#retryGuideBtn').disabled=referencePending.has(currentItem().chars[0]);
- $('#followStepBtn').classList.toggle('selected',state.followStep);const ss=$('#oneStepBtn');if(ss){ss.classList.toggle('selected',state.oneStep);ss.setAttribute('aria-pressed',String(state.oneStep));ss.disabled=!available;ss.textContent=state.oneStep?'✓ 一次看一筆':'◎ 一次看一筆'}svg.classList.toggle('single-step',state.oneStep&&!state.free&&available);if(state.oneStep&&available)highlightGuide();if(state.followStep&&available&&!state.free&&!svg.querySelector('.next-stroke-preview'))showNextStrokePreview();updatePaperGuideChip();
+ $('#followStepBtn').classList.toggle('selected',state.followStep);$('#followStepBtn').setAttribute('aria-pressed',String(state.followStep));const ss=$('#oneStepBtn');if(ss){ss.classList.toggle('selected',state.oneStep);ss.setAttribute('aria-pressed',String(state.oneStep));ss.disabled=!available;ss.textContent=state.oneStep?'✓ 一次看一筆':'◎ 一次看一筆'}svg.classList.toggle('single-step',state.oneStep&&!state.free&&available);if(state.oneStep&&available)highlightGuide();if(state.followStep&&available&&!state.free&&!svg.querySelector('.next-stroke-preview'))showNextStrokePreview();scheduleFollowStepPreview();updatePaperGuideChip();
+}
+// V1.53: restore the active first/next stroke after character navigation or SVG rebuild.
+let followRefreshToken=0;
+function scheduleFollowStepPreview(){
+ const ticket=++followRefreshToken;
+ if(!state.followStep||!state.showingPractice||state.free)return;
+ const itemId=currentItem().id;
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{
+  if(ticket!==followRefreshToken||!state.followStep||!state.showingPractice||state.free||currentItem().id!==itemId)return;
+  if(!hasGuides())return; // asynchronous reference loading calls updateGuidePanel again
+  if(!state.arrows){state.arrows=true;$('#showArrows').checked=true;renderTemplate()}
+  if(!guidePaths().length)return;
+  const current=svg.querySelector('.next-stroke-preview');
+  if(!current||current.getAttribute('data-guide-preview')!==String(state.guideIndex))showNextStrokePreview();
+ }));
 }
 function playOutline(){const paths=[...svg.querySelectorAll('.glyph-fill-outline')];if(!paths.length){toast('沒有可播放的字形，請直接描寫');return}const target=paths[0],p=svgEl('path',{d:target.getAttribute('d'),class:'demo-outline'},target.parentNode);let len=0;try{len=p.getTotalLength()}catch{len=400};p.style.strokeDasharray=''+len;p.style.strokeDashoffset=''+len;p.getBoundingClientRect();p.style.transition='stroke-dashoffset 2500ms linear';p.style.strokeDashoffset='0';state.demoTimer=setTimeout(()=>{p.remove();state.demoTimer=null;$('#guidePlay').textContent='▶ 播放'},2850)}
 // V1.52: one animation session for an entire character. Keep completed strokes visible.
@@ -1603,7 +1618,7 @@ function setBoardFullscreen(enable){
  requestAnimationFrame(()=>{renderTemplate();resizeCanvas();updateGuidePanel()});
 }
 function toggleFocus(){state.focus=!state.focus;document.body.classList.toggle('focus-mode',state.focus);$('#focusBtn').textContent=state.focus?'↙ 退出專心練習':'⛶ 專心練習';resizeCanvas();}
-function toggleFollowStep(){state.followStep=!state.followStep;$('#followStepBtn').classList.toggle('selected',state.followStep);if(state.followStep&&hasGuides()){state.guideIndex=0;showNextStrokePreview()}else toast(state.followStep?'每寫完一筆，會自動提示下一筆':'已關閉寫完自動提示');}
+function toggleFollowStep(){state.followStep=!state.followStep;$('#followStepBtn').classList.toggle('selected',state.followStep);$('#followStepBtn').setAttribute('aria-pressed',String(state.followStep));if(state.followStep){state.guideIndex=0;updateGuidePanel();scheduleFollowStepPreview();if(!hasGuides())toast('提示模式已開啟，取得筆順後會自動顯示第一筆')}else{++followRefreshToken;svg.querySelectorAll('.next-stroke-preview').forEach(el=>el.remove());toast('已關閉寫完自動提示')}}
 function showNextStrokePreview(){
  // Give the learner an actual visible trace rather than only changing the stroke counter.
  svg.querySelectorAll('.next-stroke-preview').forEach(el=>el.remove());
